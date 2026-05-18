@@ -92,7 +92,7 @@ func _update_fish(delta: float) -> void:
 		_fish_vel = -absf(_fish_vel)
 
 func _update_zone(delta: float) -> void:
-	if Input.is_action_pressed("interact"):
+	if InputMap.has_action("interact") and Input.is_action_pressed("interact"):
 		_zone_vel -= RISE_ACCEL * delta
 	_zone_vel += FALL_GRAVITY * delta
 	_zone_vel = clampf(_zone_vel, -10.0, 10.0)

@@ -46,8 +46,6 @@ func _on_day_ended() -> void:
 		_unfreeze_player()
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("INTERACT"):
-		print("[FishingSystem] F pressed | can_fish:%s | in_spot:%s | minigame_null:%s" % [_can_fish, _in_spot, minigame == null])
 	if not _can_fish or not _in_spot or minigame.is_active():
 		return
 	if not InputMap.has_action("INTERACT"):

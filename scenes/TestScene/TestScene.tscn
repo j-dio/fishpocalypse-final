@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://cqjk6u4wv4adb"]
+[gd_scene format=3 uid="uid://cqjk6u4wv4adb"]
 
 [ext_resource type="Script" uid="uid://cddg1xr5hye1d" path="res://addons/MarchingSquaresTerrain/algorithm/terrain/marching_squares_terrain.gd" id="1_scy8l"]
 [ext_resource type="Script" uid="uid://dqeuj3gddfm65" path="res://addons/MarchingSquaresTerrain/editor/tools/scripts/marching_squares_texture_names.gd" id="2_b37wp"]
@@ -20,6 +20,8 @@
 [ext_resource type="PackedScene" path="res://scenes/fishing_spot.tscn" id="16_fsp"]
 [ext_resource type="Resource" path="res://resources/data/items_db.tres" id="17_db"]
 [ext_resource type="Resource" path="res://resources/data/rarities/rarity_config.tres" id="18_rc"]
+[ext_resource type="PackedScene" uid="uid://x0tobd048vlo" path="res://scenes/enemy/spawner.tscn" id="21_v3fq3"]
+[ext_resource type="PackedScene" uid="uid://2kqy5yq4kdod" path="res://scenes/enemy/enemy.tscn" id="22_0f85l"]
 
 [sub_resource type="Texture2D" id="Texture2D_p1dug"]
 resource_local_to_scene = false
@@ -92,14 +94,14 @@ shader_parameter/speed = 0.005
 [sub_resource type="PlaneMesh" id="PlaneMesh_b37wp"]
 material = SubResource("ShaderMaterial_g63d6")
 
-[node name="TestScene" type="Node3D"]
+[node name="TestScene" type="Node3D" unique_id=173358319]
 
-[node name="DebugPlayer" parent="." instance=ExtResource("11_jwbod")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.867311, 1.5975461, -17.111214)
+[node name="Player" parent="." unique_id=994863897 instance=ExtResource("11_jwbod")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.867311, 0.5601834, -17.111214)
 
-[node name="ISLAND" type="Node3D" parent="."]
+[node name="ISLAND" type="Node3D" parent="." unique_id=1631850605]
 
-[node name="MarchingSquaresTerrain" type="Node3D" parent="ISLAND"]
+[node name="MarchingSquaresTerrain" type="Node3D" parent="ISLAND" unique_id=584715905]
 script = ExtResource("1_scy8l")
 data_directory = "res://scenes/TestScene_TerrainData/MarchingSquaresTerrain_cb34eac5"
 _storage_initialized = true
@@ -132,141 +134,141 @@ texture_scale_12 = 0.9
 current_texture_preset = SubResource("Resource_uyltb")
 metadata/_custom_type_script = "uid://cddg1xr5hye1d"
 
-[node name="Chunk (0, -1)" type="MeshInstance3D" parent="ISLAND/MarchingSquaresTerrain" node_paths=PackedStringArray("terrain_system")]
+[node name="Chunk (0, -1)" type="MeshInstance3D" parent="ISLAND/MarchingSquaresTerrain" unique_id=645249953 node_paths=PackedStringArray("terrain_system")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -64)
 script = ExtResource("9_oye2u")
 terrain_system = NodePath("..")
 chunk_coords = Vector2i(0, -1)
 
-[node name="GrassPlanter" type="MultiMeshInstance3D" parent="ISLAND/MarchingSquaresTerrain/Chunk (0, -1)"]
+[node name="GrassPlanter" type="MultiMeshInstance3D" parent="ISLAND/MarchingSquaresTerrain/Chunk (0, -1)" unique_id=435819482]
 cast_shadow = 0
 script = ExtResource("10_h6vph")
 
-[node name="Chunk (-1, -1)" type="MeshInstance3D" parent="ISLAND/MarchingSquaresTerrain" node_paths=PackedStringArray("terrain_system")]
+[node name="Chunk (-1, -1)" type="MeshInstance3D" parent="ISLAND/MarchingSquaresTerrain" unique_id=734625039 node_paths=PackedStringArray("terrain_system")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -64, 0, -64)
 script = ExtResource("9_oye2u")
 terrain_system = NodePath("..")
 chunk_coords = Vector2i(-1, -1)
 
-[node name="GrassPlanter" type="MultiMeshInstance3D" parent="ISLAND/MarchingSquaresTerrain/Chunk (-1, -1)"]
+[node name="GrassPlanter" type="MultiMeshInstance3D" parent="ISLAND/MarchingSquaresTerrain/Chunk (-1, -1)" unique_id=353750308]
 cast_shadow = 0
 script = ExtResource("10_h6vph")
 
-[node name="Chunk (-1, 0)" type="MeshInstance3D" parent="ISLAND/MarchingSquaresTerrain" node_paths=PackedStringArray("terrain_system")]
+[node name="Chunk (-1, 0)" type="MeshInstance3D" parent="ISLAND/MarchingSquaresTerrain" unique_id=644255202 node_paths=PackedStringArray("terrain_system")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -64, 0, 0)
 script = ExtResource("9_oye2u")
 terrain_system = NodePath("..")
 chunk_coords = Vector2i(-1, 0)
 
-[node name="GrassPlanter" type="MultiMeshInstance3D" parent="ISLAND/MarchingSquaresTerrain/Chunk (-1, 0)"]
+[node name="GrassPlanter" type="MultiMeshInstance3D" parent="ISLAND/MarchingSquaresTerrain/Chunk (-1, 0)" unique_id=1609547360]
 cast_shadow = 0
 script = ExtResource("10_h6vph")
 
-[node name="Chunk (0, 0)" type="MeshInstance3D" parent="ISLAND/MarchingSquaresTerrain" node_paths=PackedStringArray("terrain_system")]
+[node name="Chunk (0, 0)" type="MeshInstance3D" parent="ISLAND/MarchingSquaresTerrain" unique_id=1398497030 node_paths=PackedStringArray("terrain_system")]
 script = ExtResource("9_oye2u")
 terrain_system = NodePath("..")
 
-[node name="GrassPlanter" type="MultiMeshInstance3D" parent="ISLAND/MarchingSquaresTerrain/Chunk (0, 0)"]
+[node name="GrassPlanter" type="MultiMeshInstance3D" parent="ISLAND/MarchingSquaresTerrain/Chunk (0, 0)" unique_id=1244037404]
 cast_shadow = 0
 script = ExtResource("10_h6vph")
 
-[node name="Chunk (-2, -1)" type="MeshInstance3D" parent="ISLAND/MarchingSquaresTerrain" node_paths=PackedStringArray("terrain_system")]
+[node name="Chunk (-2, -1)" type="MeshInstance3D" parent="ISLAND/MarchingSquaresTerrain" unique_id=514406203 node_paths=PackedStringArray("terrain_system")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -128, 0, -64)
 script = ExtResource("9_oye2u")
 terrain_system = NodePath("..")
 chunk_coords = Vector2i(-2, -1)
 
-[node name="GrassPlanter" type="MultiMeshInstance3D" parent="ISLAND/MarchingSquaresTerrain/Chunk (-2, -1)"]
+[node name="GrassPlanter" type="MultiMeshInstance3D" parent="ISLAND/MarchingSquaresTerrain/Chunk (-2, -1)" unique_id=1273984590]
 cast_shadow = 0
 script = ExtResource("10_h6vph")
 
-[node name="Chunk (-2, 0)" type="MeshInstance3D" parent="ISLAND/MarchingSquaresTerrain" node_paths=PackedStringArray("terrain_system")]
+[node name="Chunk (-2, 0)" type="MeshInstance3D" parent="ISLAND/MarchingSquaresTerrain" unique_id=736454490 node_paths=PackedStringArray("terrain_system")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -128, 0, 0)
 script = ExtResource("9_oye2u")
 terrain_system = NodePath("..")
 chunk_coords = Vector2i(-2, 0)
 
-[node name="GrassPlanter" type="MultiMeshInstance3D" parent="ISLAND/MarchingSquaresTerrain/Chunk (-2, 0)"]
+[node name="GrassPlanter" type="MultiMeshInstance3D" parent="ISLAND/MarchingSquaresTerrain/Chunk (-2, 0)" unique_id=1432250054]
 cast_shadow = 0
 script = ExtResource("10_h6vph")
 
-[node name="Chunk (1, -1)" type="MeshInstance3D" parent="ISLAND/MarchingSquaresTerrain" node_paths=PackedStringArray("terrain_system")]
+[node name="Chunk (1, -1)" type="MeshInstance3D" parent="ISLAND/MarchingSquaresTerrain" unique_id=1357797552 node_paths=PackedStringArray("terrain_system")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 64, 0, -64)
 script = ExtResource("9_oye2u")
 terrain_system = NodePath("..")
 chunk_coords = Vector2i(1, -1)
 
-[node name="GrassPlanter" type="MultiMeshInstance3D" parent="ISLAND/MarchingSquaresTerrain/Chunk (1, -1)"]
+[node name="GrassPlanter" type="MultiMeshInstance3D" parent="ISLAND/MarchingSquaresTerrain/Chunk (1, -1)" unique_id=1296499007]
 cast_shadow = 0
 script = ExtResource("10_h6vph")
 
-[node name="Chunk (1, 0)" type="MeshInstance3D" parent="ISLAND/MarchingSquaresTerrain" node_paths=PackedStringArray("terrain_system")]
+[node name="Chunk (1, 0)" type="MeshInstance3D" parent="ISLAND/MarchingSquaresTerrain" unique_id=636066009 node_paths=PackedStringArray("terrain_system")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 64, 0, 0)
 script = ExtResource("9_oye2u")
 terrain_system = NodePath("..")
 chunk_coords = Vector2i(1, 0)
 
-[node name="GrassPlanter" type="MultiMeshInstance3D" parent="ISLAND/MarchingSquaresTerrain/Chunk (1, 0)"]
+[node name="GrassPlanter" type="MultiMeshInstance3D" parent="ISLAND/MarchingSquaresTerrain/Chunk (1, 0)" unique_id=1686330435]
 cast_shadow = 0
 script = ExtResource("10_h6vph")
 
-[node name="Chunk (1, -2)" type="MeshInstance3D" parent="ISLAND/MarchingSquaresTerrain" node_paths=PackedStringArray("terrain_system")]
+[node name="Chunk (1, -2)" type="MeshInstance3D" parent="ISLAND/MarchingSquaresTerrain" unique_id=703841587 node_paths=PackedStringArray("terrain_system")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 64, 0, -128)
 script = ExtResource("9_oye2u")
 terrain_system = NodePath("..")
 chunk_coords = Vector2i(1, -2)
 
-[node name="GrassPlanter" type="MultiMeshInstance3D" parent="ISLAND/MarchingSquaresTerrain/Chunk (1, -2)"]
+[node name="GrassPlanter" type="MultiMeshInstance3D" parent="ISLAND/MarchingSquaresTerrain/Chunk (1, -2)" unique_id=1038079127]
 cast_shadow = 0
 script = ExtResource("10_h6vph")
 
-[node name="Chunk (0, -2)" type="MeshInstance3D" parent="ISLAND/MarchingSquaresTerrain" node_paths=PackedStringArray("terrain_system")]
+[node name="Chunk (0, -2)" type="MeshInstance3D" parent="ISLAND/MarchingSquaresTerrain" unique_id=1792089902 node_paths=PackedStringArray("terrain_system")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -128)
 script = ExtResource("9_oye2u")
 terrain_system = NodePath("..")
 chunk_coords = Vector2i(0, -2)
 
-[node name="GrassPlanter" type="MultiMeshInstance3D" parent="ISLAND/MarchingSquaresTerrain/Chunk (0, -2)"]
+[node name="GrassPlanter" type="MultiMeshInstance3D" parent="ISLAND/MarchingSquaresTerrain/Chunk (0, -2)" unique_id=1829902736]
 cast_shadow = 0
 script = ExtResource("10_h6vph")
 
-[node name="Chunk (-1, -2)" type="MeshInstance3D" parent="ISLAND/MarchingSquaresTerrain" node_paths=PackedStringArray("terrain_system")]
+[node name="Chunk (-1, -2)" type="MeshInstance3D" parent="ISLAND/MarchingSquaresTerrain" unique_id=792355806 node_paths=PackedStringArray("terrain_system")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -64, 0, -128)
 script = ExtResource("9_oye2u")
 terrain_system = NodePath("..")
 chunk_coords = Vector2i(-1, -2)
 
-[node name="GrassPlanter" type="MultiMeshInstance3D" parent="ISLAND/MarchingSquaresTerrain/Chunk (-1, -2)"]
+[node name="GrassPlanter" type="MultiMeshInstance3D" parent="ISLAND/MarchingSquaresTerrain/Chunk (-1, -2)" unique_id=1244158431]
 cast_shadow = 0
 script = ExtResource("10_h6vph")
 
-[node name="Chunk (-2, -2)" type="MeshInstance3D" parent="ISLAND/MarchingSquaresTerrain" node_paths=PackedStringArray("terrain_system")]
+[node name="Chunk (-2, -2)" type="MeshInstance3D" parent="ISLAND/MarchingSquaresTerrain" unique_id=2059132701 node_paths=PackedStringArray("terrain_system")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -128, 0, -128)
 script = ExtResource("9_oye2u")
 terrain_system = NodePath("..")
 chunk_coords = Vector2i(-2, -2)
 
-[node name="GrassPlanter" type="MultiMeshInstance3D" parent="ISLAND/MarchingSquaresTerrain/Chunk (-2, -2)"]
+[node name="GrassPlanter" type="MultiMeshInstance3D" parent="ISLAND/MarchingSquaresTerrain/Chunk (-2, -2)" unique_id=240394753]
 cast_shadow = 0
 script = ExtResource("10_h6vph")
 
-[node name="WaterPlaceholder" type="MeshInstance3D" parent="ISLAND"]
+[node name="WaterPlaceholder" type="MeshInstance3D" parent="ISLAND" unique_id=487152787]
 transform = Transform3D(150, 0, 0, 0, 150, 0, 0, 0, 150, 0, -1.5, 0)
 visible = false
 mesh = SubResource("PlaneMesh_cbjsr")
 
-[node name="WaterPlaceholder2" type="MeshInstance3D" parent="ISLAND"]
+[node name="WaterPlaceholder2" type="MeshInstance3D" parent="ISLAND" unique_id=1711942086]
 transform = Transform3D(150, 0, 0, 0, 150, 0, 0, 0, 150, 0, -1.5, 0)
 mesh = SubResource("PlaneMesh_cbjsr")
 
-[node name="SKY" type="Node3D" parent="."]
+[node name="SKY" type="Node3D" parent="." unique_id=188053715]
 transform = Transform3D(150, 0, 0, 0, 150, 0, 0, 0, 150, 0, 71.67545, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="SKY"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SKY" unique_id=1545235893]
 layers = 1023
 mesh = SubResource("PlaneMesh_b37wp")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1583943386]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 99.995, 0)
 light_color = Color(1, 1, 0.93333334, 1)
 light_energy = 4.0
@@ -275,15 +277,19 @@ shadow_enabled = true
 shadow_bias = 2.0
 directional_shadow_mode = 0
 
-[node name="FishingSystem" type="Node" parent="."]
+[node name="FishingSystem" type="Node" parent="." unique_id=472102291]
 script = ExtResource("14_fsys")
 items_db = ExtResource("17_db")
 rarity_config = ExtResource("18_rc")
 minigame = NodePath("../UI/FishingMinigame")
 
-[node name="FishingSpot" parent="." instance=ExtResource("16_fsp")]
+[node name="FishingSpot" parent="." unique_id=329996234 instance=ExtResource("16_fsp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.83638, 0.5590067, -20.5)
 
-[node name="UI" type="CanvasLayer" parent="."]
+[node name="UI" type="CanvasLayer" parent="." unique_id=1498236771]
 
-[node name="FishingMinigame" parent="UI" instance=ExtResource("15_fmg")]
+[node name="FishingMinigame" parent="UI" unique_id=2020259612 instance=ExtResource("15_fmg")]
+
+[node name="Spawner" parent="." unique_id=183489620 node_paths=PackedStringArray("player") instance=ExtResource("21_v3fq3")]
+player = NodePath("../Player")
+enemy = ExtResource("22_0f85l")

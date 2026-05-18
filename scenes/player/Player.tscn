@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://mofvcu1lrqev"]
+
+[ext_resource type="Script" uid="uid://beeh7fh0mlnt3" path="res://player.gd" id="1_wr5hl"]
+[ext_resource type="Texture2D" uid="uid://d2ydtux5cmm37" path="res://assets/placeholder/guy.png" id="2_gfjak"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gfjak"]
+size = Vector3(2.509325, 3.1248245, 1.4932652)
+
+[node name="Player" type="CharacterBody3D" unique_id=572261153]
+script = ExtResource("1_wr5hl")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=132412172]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.025090218, 1.5414772, -0.025101662)
+shape = SubResource("BoxShape3D_gfjak")
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=353650690]
+transform = Transform3D(1, 0, 0, 0, 0.9077775, 0.4194521, 0, -0.4194521, 0.9077775, 0, 1.4384054, 0)
+texture = ExtResource("2_gfjak")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1450406981]
+transform = Transform3D(1, 0, 0, 0, 0.72453296, 0.6892403, 0, -0.6892403, 0.72453296, 0, 8.38146, 7.284339)
+current = true

@@ -2,12 +2,12 @@
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_qflav"]
 noise_type = 3
-frequency = 0.0075
-fractal_octaves = 7
-fractal_lacunarity = 1.75
-fractal_gain = 0.7
+seed = 1
+frequency = 0.0081
 
 [resource]
+width = 256
+height = 256
 noise = SubResource("FastNoiseLite_qflav")
 seamless = true
 in_3d_space = true

@@ -80,17 +80,16 @@ func _roll_item(pole: FishingPoleData) -> Resource:
 		if w.spawn_day <= day:
 			var idx := _rarity_index(w.rarity)
 			pool.append(w)
-			weights.append(BASE_RARITY_WEIGHTS[idx] * (1.0 + pole.base_lure_chance * w.rarity.lure_multiplier))
+			weights.append(BASE_RARITY_WEIGHTS[idx] * (1.0 + pole.base_lure_chance * (w.rarity.lure_multiplier if w.rarity != null else 1.0)))
 
 	for h: HealingItemData in items_db.healing_items:
-		var idx := _rarity_index(h.rarity)
 		pool.append(h)
-		weights.append(BASE_RARITY_WEIGHTS[idx] * (1.0 + pole.base_lure_chance * h.rarity.lure_multiplier))
+		weights.append(BASE_RARITY_WEIGHTS[0] * (1.0 + pole.base_lure_chance))
 
 	for p: FishingPoleData in items_db.fishing_poles:
 		var idx := _rarity_index(p.rarity)
 		pool.append(p)
-		weights.append(BASE_RARITY_WEIGHTS[idx] * (1.0 + pole.base_lure_chance * p.rarity.lure_multiplier))
+		weights.append(BASE_RARITY_WEIGHTS[idx] * (1.0 + pole.base_lure_chance * (p.rarity.lure_multiplier if p.rarity != null else 1.0)))
 
 	if pool.is_empty():
 		return null

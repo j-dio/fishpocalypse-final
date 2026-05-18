@@ -18,8 +18,8 @@
 [ext_resource type="Script" uid="uid://d2m8wwurpal4s" path="res://scripts/fishSystem/fishing_system.gd" id="14_fsys"]
 [ext_resource type="PackedScene" path="res://scenes/ui/fishing_minigame.tscn" id="15_fmg"]
 [ext_resource type="PackedScene" path="res://scenes/fishing_spot.tscn" id="16_fsp"]
-[ext_resource type="Resource" path="res://resources/data/items_db.tres" id="17_db"]
-[ext_resource type="Resource" path="res://resources/data/rarities/rarity_config.tres" id="18_rc"]
+[ext_resource type="Resource" path="res://assets/resources/items/items_db.tres" id="17_db"]
+[ext_resource type="Resource" path="res://assets/resources/rarities/rarity_config.tres" id="18_rc"]
 [ext_resource type="PackedScene" uid="uid://x0tobd048vlo" path="res://scenes/enemy/spawner.tscn" id="21_v3fq3"]
 [ext_resource type="PackedScene" uid="uid://2kqy5yq4kdod" path="res://scenes/enemy/enemy.tscn" id="22_0f85l"]
 
@@ -279,7 +279,7 @@ directional_shadow_mode = 0
 
 [node name="FishingSystem" type="Node" parent="." unique_id=472102291]
 script = ExtResource("14_fsys")
-items_db = SubResource("Resource_oye2u")
+items_db = ExtResource("17_db")
 rarity_config = ExtResource("18_rc")
 
 [node name="FishingSpot" parent="." unique_id=329996234 instance=ExtResource("16_fsp")]

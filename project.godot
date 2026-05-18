@@ -21,7 +21,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-GameState="*res://autoloads/game_state.gd"
+GameState="*res://0_autoloads/game_state.gd"
 
 [display]
 

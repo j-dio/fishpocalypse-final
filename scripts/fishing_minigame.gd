@@ -45,7 +45,7 @@ func cancel() -> void:
 	_set_state(State.IDLE)
 
 func is_active() -> bool:
-	return _state == State.ACTIVE
+	return _state != State.IDLE
 
 func _set_state(s: State) -> void:
 	_state = s

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="RarityTier" load_steps=2 format=3 uid="uid://tjjifhuhteam"]
+
+[ext_resource type="Script" uid="uid://b6n72xqvx6ro0" path="res://scripts/rarity/rarity_tier.gd" id="1_p380s"]
+
+[resource]
+script = ExtResource("1_p380s")
+name = "Mythic"
+color = Color(1, 0, 0.5, 1)
+weight = 0.1
+shot_delay_multiplier = 0.4
+lure_multiplier = 5.0
+cost_multiplier = 0.4
+heal_multiplier = 5.0

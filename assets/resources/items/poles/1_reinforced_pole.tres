@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="FishingPoleData" load_steps=3 format=3 uid="uid://dqgabgbptwfw6"]
+
+[ext_resource type="Resource" uid="uid://c6bjtoa84jgmi" path="res://assets/resources/rarities/1_uncommon.tres" id="1_syffx"]
+[ext_resource type="Script" uid="uid://btinxc3vf3cat" path="res://scripts/item/itemAttributes/fishing_pole_data.gd" id="2_gt07h"]
+
+[resource]
+script = ExtResource("2_gt07h")
+weight = 25.0
+base_bar_size = 0.35
+base_lure_speed = 1.3
+base_lure_chance = 0.55
+rarity = ExtResource("1_syffx")

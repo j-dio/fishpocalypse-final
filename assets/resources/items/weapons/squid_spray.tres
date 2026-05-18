@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="FishWeaponData" load_steps=2 format=3 uid="uid://bx8tuqsxbgofm"]
+
+[ext_resource type="Script" uid="uid://cb7xcgwlk1l1h" path="res://scripts/item/itemAttributes/fish_weapon_data.gd" id="1_ssm5d"]
+
+[resource]
+script = ExtResource("1_ssm5d")
+spawn_day = 8
+base_damage_per_shot = 11.0
+base_shot_delay = 0.7
+base_projectiles_per_shot = 3
+base_recharge_cost = 18.0

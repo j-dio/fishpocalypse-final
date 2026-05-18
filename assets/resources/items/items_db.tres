@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="ItemsDB" load_steps=20 format=3 uid="uid://dyjmr7uqctvpk"]
+
+[ext_resource type="Script" uid="uid://cb7xcgwlk1l1h" path="res://scripts/item/itemAttributes/fish_weapon_data.gd" id="1_17ixc"]
+[ext_resource type="Resource" uid="uid://ddk0edb4xrwyp" path="res://assets/resources/items/weapons/sardine_shooter.tres" id="2_yi4aw"]
+[ext_resource type="Resource" uid="uid://duqs0wt1hjnub" path="res://assets/resources/items/weapons/tuna_lobber.tres" id="3_3n6p6"]
+[ext_resource type="Resource" uid="uid://djy70k6j1vhd3" path="res://assets/resources/items/weapons/mackerel_burst.tres" id="4_2ji87"]
+[ext_resource type="Resource" uid="uid://csf1eacvh6dwt" path="res://assets/resources/items/weapons/bangus_blaster.tres" id="5_7cjp4"]
+[ext_resource type="Resource" uid="uid://bx8tuqsxbgofm" path="res://assets/resources/items/weapons/squid_spray.tres" id="6_qob13"]
+[ext_resource type="Resource" uid="uid://p8aexjtlixri" path="res://assets/resources/items/weapons/crab_cannon.tres" id="7_qbc1k"]
+[ext_resource type="Resource" uid="uid://dfotxynqstn4u" path="res://assets/resources/items/weapons/shark_shotgun.tres" id="8_psv5g"]
+[ext_resource type="Resource" uid="uid://umlmcxwchtcx" path="res://assets/resources/items/weapons/bakunawa_beam.tres" id="9_04lti"]
+[ext_resource type="Script" uid="uid://btinxc3vf3cat" path="res://scripts/item/itemAttributes/fishing_pole_data.gd" id="10_fegjt"]
+[ext_resource type="Resource" path="res://assets/resources/items/poles/0_basic_pole.tres" id="11_dm3l0"]
+[ext_resource type="Resource" path="res://assets/resources/items/poles/1_reinforced_pole.tres" id="12_pjaxe"]
+[ext_resource type="Resource" path="res://assets/resources/items/poles/2_fish_pole.tres" id="13_f50o8"]
+[ext_resource type="Script" uid="uid://8ko8ju356at2" path="res://scripts/item/itemAttributes/healing_item_data.gd" id="14_jnyfi"]
+[ext_resource type="Resource" path="res://assets/resources/items/healingItems/0_bandage.tres" id="15_dh8vk"]
+[ext_resource type="Resource" path="res://assets/resources/items/healingItems/3_fish_wrap.tres" id="16_j7ygc"]
+[ext_resource type="Resource" path="res://assets/resources/items/healingItems/1_herbal_brew.tres" id="17_t7wfi"]
+[ext_resource type="Resource" path="res://assets/resources/items/healingItems/4_sea_blessing.tres" id="18_x3wa2"]
+[ext_resource type="Script" uid="uid://xpnm82ynjqsm" path="res://scripts/item/items_db.gd" id="19_16ios"]
+
+[resource]
+script = ExtResource("19_16ios")
+fish_weapons = Array[ExtResource("1_17ixc")]([ExtResource("2_yi4aw"), ExtResource("3_3n6p6"), ExtResource("4_2ji87"), ExtResource("5_7cjp4"), ExtResource("6_qob13"), ExtResource("7_qbc1k"), ExtResource("8_psv5g"), ExtResource("9_04lti")])
+healing_items = Array[ExtResource("14_jnyfi")]([ExtResource("15_dh8vk"), ExtResource("16_j7ygc"), ExtResource("17_t7wfi"), ExtResource("18_x3wa2")])
+fishing_poles = Array[ExtResource("10_fegjt")]([ExtResource("11_dm3l0"), ExtResource("12_pjaxe"), ExtResource("13_f50o8")])

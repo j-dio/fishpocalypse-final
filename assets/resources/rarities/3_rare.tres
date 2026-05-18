@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="RarityTier" load_steps=2 format=3 uid="uid://1dg3p3oa18u0"]
+
+[ext_resource type="Script" uid="uid://b6n72xqvx6ro0" path="res://scripts/rarity/rarity_tier.gd" id="1_r2srp"]
+
+[resource]
+script = ExtResource("1_r2srp")
+name = "Rare"
+color = Color(0.255, 0.412, 0.882, 1)
+weight = 10.0
+weapon_multiplier = 1.7
+shot_delay_multiplier = 0.8
+lure_multiplier = 1.5
+cost_multiplier = 0.8
+heal_multiplier = 1.5

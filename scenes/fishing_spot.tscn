@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3]
 
-[ext_resource type="Script" path="res://scripts/fishing_spot.gd" id="1_fsp"]
+[ext_resource type="Script" uid="uid://dygm3jib53ekk" path="res://scripts/fishSystem/fishing_spot.gd" id="1_fsp"]
 
 [sub_resource type="CylinderShape3D" id="SubResource_1"]
 height = 1.5

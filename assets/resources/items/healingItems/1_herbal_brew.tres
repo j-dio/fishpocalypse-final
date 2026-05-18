@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="HealingItemData" load_steps=2 format=3 uid="uid://crfcm8wn0p6xd"]
+
+[ext_resource type="Script" uid="uid://8ko8ju356at2" path="res://scripts/item/itemAttributes/healing_item_data.gd" id="1_d3ilg"]
+
+[resource]
+script = ExtResource("1_d3ilg")
+weight = 20.0
+base_heal_amount = 60.0
+use_delay = 1.2
+stack_limit = 2

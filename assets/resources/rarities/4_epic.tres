@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="RarityTier" load_steps=2 format=3 uid="uid://ckbetd72dnxex"]
+
+[ext_resource type="Script" uid="uid://b6n72xqvx6ro0" path="res://scripts/rarity/rarity_tier.gd" id="1_dhix8"]
+
+[resource]
+script = ExtResource("1_dhix8")
+name = "Epic"
+color = Color(0.627, 0.125, 0.941, 1)
+weight = 3.0
+weapon_multiplier = 2.2
+shot_delay_multiplier = 0.7
+lure_multiplier = 2.0
+cost_multiplier = 0.7
+heal_multiplier = 2.0

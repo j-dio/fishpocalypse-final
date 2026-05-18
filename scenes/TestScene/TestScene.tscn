@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://cqjk6u4wv4adb"]
+[gd_scene load_steps=36 format=3 uid="uid://cqjk6u4wv4adb"]
 
 [ext_resource type="Script" uid="uid://cddg1xr5hye1d" path="res://addons/MarchingSquaresTerrain/algorithm/terrain/marching_squares_terrain.gd" id="1_scy8l"]
 [ext_resource type="Script" uid="uid://dqeuj3gddfm65" path="res://addons/MarchingSquaresTerrain/editor/tools/scripts/marching_squares_texture_names.gd" id="2_b37wp"]
@@ -10,16 +10,15 @@
 [ext_resource type="Script" uid="uid://fvb3vi413siv" path="res://addons/MarchingSquaresTerrain/editor/tools/scripts/marching_squares_texture_preset.gd" id="8_40akt"]
 [ext_resource type="Script" uid="uid://cql4d8s5t5xcx" path="res://addons/MarchingSquaresTerrain/algorithm/terrain/marching_squares_terrain_chunk.gd" id="9_oye2u"]
 [ext_resource type="Script" uid="uid://22l7ysgniux3" path="res://addons/MarchingSquaresTerrain/algorithm/grass/marching_squares_grass_planter.gd" id="10_h6vph"]
-[ext_resource type="PackedScene" uid="uid://c7nwvepnxcsw" path="res://scenes/player/DebugPlayer.tscn" id="11_jwbod"]
+[ext_resource type="PackedScene" uid="uid://c7nwvepnxcsw" path="res://scenes/Player/DebugPlayer.tscn" id="11_jwbod"]
 [ext_resource type="Shader" uid="uid://cbd0h0rh7wpph" path="res://shader/clouds.gdshader" id="12_b37wp"]
 [ext_resource type="Shader" uid="uid://b8e01oiuos4am" path="res://shader/ocean.gdshader" id="12_ewnbt"]
 [ext_resource type="Texture2D" uid="uid://kxdso5iygehk" path="res://assets/resources/wave_noise.tres" id="13_61ffe"]
 [ext_resource type="Texture2D" uid="uid://cv4ugy50jeh4i" path="res://assets/resources/cloud_noise.tres" id="13_g63d6"]
-[ext_resource type="Script" uid="uid://d2m8wwurpal4s" path="res://scripts/fishing_system.gd" id="14_fsys"]
+[ext_resource type="Script" uid="uid://d2m8wwurpal4s" path="res://scripts/fishSystem/fishing_system.gd" id="14_fsys"]
 [ext_resource type="PackedScene" path="res://scenes/ui/fishing_minigame.tscn" id="15_fmg"]
 [ext_resource type="PackedScene" path="res://scenes/fishing_spot.tscn" id="16_fsp"]
-[ext_resource type="Resource" path="res://resources/data/items_db.tres" id="17_db"]
-[ext_resource type="Resource" path="res://resources/data/rarities/rarity_config.tres" id="18_rc"]
+[ext_resource type="Resource" uid="uid://lih8tf53aotr" path="res://assets/resources/rarities/rarity_config.tres" id="18_rc"]
 
 [sub_resource type="Texture2D" id="Texture2D_p1dug"]
 resource_local_to_scene = false
@@ -91,6 +90,9 @@ shader_parameter/speed = 0.005
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_b37wp"]
 material = SubResource("ShaderMaterial_g63d6")
+
+[sub_resource type="Resource" id="Resource_oye2u"]
+metadata/__load_path__ = "res://resources/data/items_db.tres"
 
 [node name="TestScene" type="Node3D"]
 
@@ -277,9 +279,8 @@ directional_shadow_mode = 0
 
 [node name="FishingSystem" type="Node" parent="."]
 script = ExtResource("14_fsys")
-items_db = ExtResource("17_db")
+items_db = SubResource("Resource_oye2u")
 rarity_config = ExtResource("18_rc")
-minigame = NodePath("../UI/FishingMinigame")
 
 [node name="FishingSpot" parent="." instance=ExtResource("16_fsp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.83638, 0.5590067, -20.5)

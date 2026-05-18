@@ -1,10 +1,10 @@
 [gd_scene load_steps=6 format=3]
 
-[ext_resource type="Script" path="res://scripts/fishing_system.gd" id="1_fs"]
+[ext_resource type="Script" uid="uid://d2m8wwurpal4s" path="res://scripts/fishSystem/fishing_system.gd" id="1_fs"]
 [ext_resource type="PackedScene" path="res://scenes/ui/fishing_minigame.tscn" id="2_fmg"]
 [ext_resource type="PackedScene" path="res://scenes/fishing_spot.tscn" id="3_fsp"]
-[ext_resource type="Resource" path="res://resources/data/items_db.tres" id="4_db"]
-[ext_resource type="Resource" path="res://resources/data/rarities/rarity_config.tres" id="5_rc"]
+[ext_resource type="Resource" uid="uid://dyjmr7uqctvpk" path="res://assets/resources/items/items_db.tres" id="4_db"]
+[ext_resource type="Resource" path="res://assets/resources/rarities/rarity_config.tres" id="5_rc"]
 
 [node name="Main" type="Node3D"]
 

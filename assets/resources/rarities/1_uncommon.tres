@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="RarityTier" load_steps=2 format=3 uid="uid://c6bjtoa84jgmi"]
+
+[ext_resource type="Script" uid="uid://b6n72xqvx6ro0" path="res://scripts/rarity/rarity_tier.gd" id="1_j5115"]
+
+[resource]
+script = ExtResource("1_j5115")
+name = "Uncommon"
+color = Color(0.196, 0.804, 0.196, 1)
+weight = 25.0
+weapon_multiplier = 1.3
+shot_delay_multiplier = 0.9
+lure_multiplier = 1.2
+cost_multiplier = 0.9
+heal_multiplier = 1.2

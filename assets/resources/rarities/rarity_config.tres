@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="RarityConfig" load_steps=9 format=3 uid="uid://lih8tf53aotr"]
+
+[ext_resource type="Script" uid="uid://b3l4mkx2jhvf6" path="res://scripts/rarity/rarity_config.gd" id="1_iph8m"]
+[ext_resource type="Script" uid="uid://b6n72xqvx6ro0" path="res://scripts/rarity/rarity_tier.gd" id="2_dtaqu"]
+[ext_resource type="Resource" path="res://assets/resources/rarities/0_common.tres" id="3_vyog0"]
+[ext_resource type="Resource" path="res://assets/resources/rarities/1_uncommon.tres" id="4_k3ymf"]
+[ext_resource type="Resource" uid="uid://1dg3p3oa18u0" path="res://assets/resources/rarities/3_rare.tres" id="5_jii5m"]
+[ext_resource type="Resource" path="res://assets/resources/rarities/4_epic.tres" id="6_xkaop"]
+[ext_resource type="Resource" uid="uid://b2jobnf883hmk" path="res://assets/resources/rarities/5_legendary.tres" id="7_tonhn"]
+[ext_resource type="Resource" uid="uid://tjjifhuhteam" path="res://assets/resources/rarities/6_mythic.tres" id="8_mu0nb"]
+
+[resource]
+script = ExtResource("1_iph8m")
+tiers = Array[ExtResource("2_dtaqu")]([ExtResource("3_vyog0"), ExtResource("4_k3ymf"), ExtResource("5_jii5m"), ExtResource("6_xkaop"), ExtResource("7_tonhn"), ExtResource("8_mu0nb")])

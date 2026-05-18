@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3]
 
-[ext_resource type="Script" path="res://scripts/fishing_minigame.gd" id="1_fmg"]
-[ext_resource type="Script" path="res://scripts/fishing_bar.gd" id="2_fb"]
+[ext_resource type="Script" uid="uid://6cxlnnsaydcq" path="res://scripts/fishSystem/fishing_minigame.gd" id="1_fmg"]
+[ext_resource type="Script" uid="uid://8bo4ffiqn4ll" path="res://scripts/fishSystem/fishing_bar.gd" id="2_fb"]
 
 [node name="FishingMinigame" type="Control"]
 layout_mode = 3

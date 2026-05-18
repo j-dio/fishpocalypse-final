@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://cty5iu42f5vlj"]
+
+[ext_resource type="Script" uid="uid://lpkjwexsfu0s" path="res://scripts/item/1_poleTemplate.gd" id="1_5ed85"]
+
+[node name="PoleTemplate" type="Node3D"]
+script = ExtResource("1_5ed85")
+
+[node name="Marker3D" type="Marker3D" parent="."]
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+
+[node name="string" type="Node3D" parent="."]

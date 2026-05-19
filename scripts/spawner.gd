@@ -2,12 +2,27 @@ extends Node3D
 
 @export var player : CharacterBody3D
 @export var enemy : PackedScene
+@export var night : Node3D
 
 var distance : float = 50.0
+
+var day : int:
+	set(value):
+		day = value
+		
+var hour : int:
+	set(value):
+		hour = value
+		if hour >= 6:
+			hour -= 6
+			day += 1
 
 var minute : int:
 	set(value):
 		minute = value
+		if minute >= 3:
+			minute -= 3
+			hour += 1
 		
 var second : int:
 	set(value):
@@ -36,5 +51,6 @@ func amount(number : int = 1):
 		spawn(get_random_position())
 
 func _on_timer_timeout() -> void:
-	second += 1
-	amount(second%2)
+	if night.check_night():
+		second += 1
+		amount(randi_range(1, 5) + minute)

@@ -74,7 +74,7 @@ _None yet_
 - [x] Dodge action (`DODGE` input) — direction-based, timed, animation wired
 - [ ] Mouse or right-stick aim (player character faces aim direction)
 - [x] `Health` component (reusable node: current/max value, `take_damage()`, `heal()`, `died` signal)
-- [ ] HP on Player via Health component; no passive regen
+- [x] HP on Player via Health component; no passive regen
 - [ ] CP stat: starts full; depletes on fire (Phase 3); recharges at rate over time
 - [ ] SP stat: starts full; depletes on dodge (Phase 3); regenerates over time
 - [ ] `CameraRig` as a separate scene tracking Player's XZ position (lerp speed configurable)
@@ -214,7 +214,7 @@ _None yet_
 - [x] Catch probability influenced by `base_lure_chance * rarity.lure_multiplier`; weighted pick across all pool types
 - [x] Player frozen during minigame (`set_physics_process(false)`); unfrozen on catch/fail/cancel
 - [x] Minigame cancels if DAY ends mid-fish
-- [x] Caught item delivered to `InventorySystem.pickup()` — **blocked on Phase 5** (stub in place: `push_warning` if InventorySystem absent)
+- [x] Caught item spawned as a physical world drop via `ItemSpawner` at player position; player walks over it to auto-pickup via `InventorySystem`
 
 ### Reminders
 - `spawn_day` on `FishWeaponData` is the primary progression gate — tune thresholds in Phase 9
@@ -225,8 +225,7 @@ _None yet_
 _None yet_
 
 ### Warnings
-- Fishing system will silently drop caught items until `InventorySystem` is implemented (Phase 5)
-- Fishing wait mechanic (WAITING/BITE states) implemented in FishingMinigame
+_None yet_
 
 ---
 
@@ -380,4 +379,4 @@ _None yet_
 - **Navigation re-bake:** Required any time `Island.tscn` geometry changes (Phase 0, Phase 8).
 - **Placeholder marking:** All stand-in assets live in `assets/_placeholder/` — check before Phase 8 that nothing is still pointing there unintentionally.
 - **Arts course deadline:** The Module 1 + 2 art integration must be grader-legible. Don't defer the intro/outro copy and mythology naming — schedule them intentionally in Phase 8.
-- **Phase 5 unblocks Phase 6:** `FishingSystem` is largely complete but silently drops caught items until `InventorySystem.pickup()` exists. Phase 5 is the current critical-path blocker.
+- **Phase 5 / Phase 6 integration complete:** `FishingSystem` routes caught items through `ItemSpawner` as physical world drops; `InventorySystem` auto-picks them up when the player walks over them. Both systems are unblocked.

@@ -9,6 +9,11 @@
 
 [node name="Debugscene" type="Node3D"]
 
+[node name="Test_DayNightSys" parent="." instance=ExtResource("6_kt4yw")]
+transform = Transform3D(1, 0, 0, 0, 0.61902535, 0.78537095, 0, -0.78537095, 0.61902535, -38.557625, 18.330717, -30.996449)
+day_length_sec = 160
+speed_factor = 20.0
+
 [node name="plane" type="Node3D" parent="."]
 transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 0, 0, 0)
 
@@ -18,6 +23,7 @@ script = ExtResource("1_6vqgu")
 data_directory = "res://scenes/DEBUGSCENE_TerrainData/MarchingSquaresTerrain_6e005b73"
 polygon_texture_resolution = 16
 _storage_initialized = true
+texture_albedo_1 = Color(0.56078434, 0.9137255, 0.015686275, 1)
 metadata/_custom_type_script = "uid://cddg1xr5hye1d"
 
 [node name="Chunk (-1, -1)" type="MeshInstance3D" parent="plane/MarchingSquaresTerrain" node_paths=PackedStringArray("terrain_system")]
@@ -30,14 +36,11 @@ chunk_coords = Vector2i(-1, -1)
 cast_shadow = 0
 script = ExtResource("3_kt4yw")
 
-[node name="DebugPlayer" parent="." instance=ExtResource("1_f51xp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.483946, 1.5366004, -4.9039993)
-
-[node name="Test_SpawnSystem" parent="." instance=ExtResource("5_11k51")]
+[node name="Test_SpawnItemSystem" parent="." instance=ExtResource("5_11k51")]
 transform = Transform3D(15, 0, 0, 0, 15, 0, 0, 0, 15, -13.619774, 0.8912382, -20.280832)
 dbg = true
 
-[node name="DayNightSys" parent="." instance=ExtResource("6_kt4yw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38.557625, 18.330717, -30.996449)
-day_length_sec = 160
-speed_factor = 10.0
+[node name="DebugPlayer" parent="." instance=ExtResource("1_f51xp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.483946, 1.5366004, -4.9039993)
+
+[editable path="Test_DayNightSys"]

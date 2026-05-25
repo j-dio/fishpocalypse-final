@@ -9,6 +9,7 @@ extends CharacterBody3D
 @onready var anim: AnimatedSprite3D = $Sprite3D
 @onready var inventory: InventorySystem = $InventorySystem
 @onready var health: HealthComponent = $HealthComponent
+@onready var spotlight: SpotLight3D = $SpotLight3D
 
 var is_dodging := false
 var dodge_timer := 0.0
@@ -24,6 +25,16 @@ func _physics_process(delta: float) -> void:
 		velocity.y -= gravity * delta
 	else:
 		velocity.y = 0
+	if spotlight: spotlight.visible = false
+	
+	# Connect to Day/Night system
+	var day_night_system = get_tree().get_first_node_in_group("day_night")
+	if day_night_system: day_night_system.day_night_changed.connect(_on_night_changed); print("[DNS] Found")
+	
+# Suga kung gabii na
+func _on_night_changed(active: bool) -> void:
+	if spotlight: spotlight.visible = active
+
 
 	if is_dodging:
 		dodge_timer -= delta
@@ -34,15 +45,18 @@ func _physics_process(delta: float) -> void:
 			is_dodging = false
 		move_and_slide()
 		return
-
+		
+	# INPUT
 	var input_dir := Vector3.ZERO
 	if Input.is_action_pressed("D"): input_dir.x += 1
 	if Input.is_action_pressed("A"): input_dir.x -= 1
 	if Input.is_action_pressed("S"): input_dir.z += 1
 	if Input.is_action_pressed("W"): input_dir.z -= 1
 	input_dir = input_dir.normalized()
-
-	var speed := run_speed if Input.is_action_pressed("RUN") else walk_speed
+	
+	var speed = walk_speed
+	if Input.is_action_pressed("RUN"): speed = run_speed
+	
 	velocity.x = input_dir.x * speed
 	velocity.z = input_dir.z * speed
 

@@ -78,4 +78,7 @@ INTERACT={
 
 [rendering]
 
+occlusion_culling/bvh_build_quality=0
 textures/canvas_textures/default_texture_filter=0
+lights_and_shadows/directional_shadow/size=1024
+lights_and_shadows/positional_shadow/atlas_size=1024

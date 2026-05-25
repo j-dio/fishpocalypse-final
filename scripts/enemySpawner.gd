@@ -14,7 +14,7 @@ func _ready() -> void:
 	if day_night_system == null:
 		push_warning("No Day/Night system found in group 'day_night'")
 		return
-	day_night_system.is_night.connect(_on_night_changed)
+	day_night_system.day_night_changed.connect(_on_night_changed)
 	
 	
 func _on_night_changed(active: bool) -> void:

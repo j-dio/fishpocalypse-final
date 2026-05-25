@@ -2,21 +2,33 @@
 
 [ext_resource type="Script" uid="uid://bykntgvfrlrs8" path="res://scripts/dayNightSystem/day_cycle.gd" id="1_ffewv"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ffewv"]
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_f5mkf"]
+sky_top_color = Color(0.22745098, 0.3019608, 0.9490196, 1)
+sky_horizon_color = Color(0.70352817, 0.59571946, 0.86086285, 1)
+sky_curve = 0.15528998
+ground_bottom_color = Color(0.15827146, 0.40654263, 0.7881376, 1)
+ground_horizon_color = Color(0.53137714, 0.66220057, 0.7779697, 1)
 
-[sub_resource type="Sky" id="Sky_03cim"]
-sky_material = SubResource("ProceduralSkyMaterial_ffewv")
+[sub_resource type="Sky" id="Sky_veb5h"]
+sky_material = SubResource("ProceduralSkyMaterial_f5mkf")
 
 [sub_resource type="Environment" id="Environment_ffewv"]
 background_mode = 2
-sky = SubResource("Sky_03cim")
+sky = SubResource("Sky_veb5h")
+ambient_light_source = 1
 
 [node name="DayNightSys" type="Node3D"]
 script = ExtResource("1_ffewv")
+speed_factor = 5.0
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-light_color = Color(1, 1, 0.43529412, 1)
+light_color = Color(0.9332031, 0.97659343, 0.99628085, 1)
+light_energy = 1.5
+light_bake_mode = 1
 shadow_enabled = true
+shadow_opacity = 0.9
+shadow_blur = 2.5
+sky_mode = 1
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_ffewv")

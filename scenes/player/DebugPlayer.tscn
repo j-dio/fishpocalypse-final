@@ -270,6 +270,8 @@ transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
 billboard = 1
 shaded = true
 double_sided = false
+alpha_cut = 3
+alpha_scissor_threshold = 1.0
 texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_id87f")
 animation = &"idle"
@@ -283,3 +285,11 @@ script = ExtResource("3_health")
 
 [node name="InventorySystem" type="Node" parent="."]
 script = ExtResource("4_inv")
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 4.4519567, 0)
+visible = false
+light_color = Color(1, 0, 0, 1)
+light_energy = 5.0
+shadow_enabled = true
+spot_range = 7.143156
+spot_angle = 44.10083

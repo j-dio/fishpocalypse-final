@@ -2,7 +2,7 @@
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_qflav"]
 noise_type = 3
-seed = 1
+seed = 2
 frequency = 0.0081
 
 [resource]

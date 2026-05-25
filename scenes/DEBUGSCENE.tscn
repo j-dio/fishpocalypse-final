@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://c1e1hib0s0kw5"]
 
 [ext_resource type="Script" uid="uid://cddg1xr5hye1d" path="res://addons/MarchingSquaresTerrain/algorithm/terrain/marching_squares_terrain.gd" id="1_6vqgu"]
-[ext_resource type="PackedScene" uid="uid://c7nwvepnxcsw" path="res://scenes/Player/DebugPlayer.tscn" id="1_f51xp"]
+[ext_resource type="PackedScene" uid="uid://c7nwvepnxcsw" path="res://scenes/player/DebugPlayer.tscn" id="1_f51xp"]
 [ext_resource type="Script" uid="uid://cql4d8s5t5xcx" path="res://addons/MarchingSquaresTerrain/algorithm/terrain/marching_squares_terrain_chunk.gd" id="2_11k51"]
 [ext_resource type="Script" uid="uid://22l7ysgniux3" path="res://addons/MarchingSquaresTerrain/algorithm/grass/marching_squares_grass_planter.gd" id="3_kt4yw"]
 [ext_resource type="PackedScene" uid="uid://bjgds8umisd4" path="res://scenes/ItemRelated/ItemSpawner.tscn" id="5_11k51"]

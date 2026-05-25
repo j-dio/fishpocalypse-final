@@ -7,6 +7,7 @@ const BASE_RARITY_WEIGHTS: Array[float] = [100.0, 60.0, 30.0, 10.0, 3.0, 1.0]
 @export var items_db: ItemsDB
 @export var rarity_config: RarityConfig
 @export var minigame: FishingMinigame
+@export var item_spawner: ItemSpawner
 
 var _can_fish: bool = false
 var _in_spot: bool = false
@@ -65,7 +66,7 @@ func _start_fishing() -> void:
 		return
 	if _current_spot != null and _player != null:
 		_player.global_rotation.y = _current_spot.facing_marker.global_rotation.y
-	minigame.start(item, pole)
+	minigame.start_wait(item, pole)
 	_freeze_player()
 
 func _roll_item(pole: FishingPoleData) -> Resource:
@@ -139,16 +140,22 @@ func _on_spot_exited() -> void:
 
 func _on_caught(item: Resource) -> void:
 	_unfreeze_player()
-	if _player == null:
+	if item_spawner == null:
+		push_error("FishingSystem: 'item_spawner' export not assigned — caught item lost")
 		return
-	var inv := _player.get_node_or_null("InventorySystem")
-	if inv == null:
-		push_warning("FishingSystem: InventorySystem not on player — item lost until CJ's Phase 5 is merged")
-		return
-	inv.pickup(item)
+	if _player != null:
+		item_spawner.spawn_marker.global_position = _player.global_position
+	var rarity: RarityTier = _get_item_rarity(item)
+	if item is FishWeaponData:
+		item_spawner.spawn_weapon(item as FishWeaponData, rarity)
+	elif item is HealingItemData:
+		var common: RarityTier = rarity_config.tiers[0] if rarity_config and not rarity_config.tiers.is_empty() else null
+		item_spawner.spawn_healing_item(item as HealingItemData, common)
+	elif item is FishingPoleData:
+		item_spawner.spawn_pole(item as FishingPoleData, rarity)
 
 func _on_failed() -> void:
-	_unfreeze_player()  # Phase 8: play fail SFX via AudioManager
+	_unfreeze_player()
 
 func _freeze_player() -> void:
 	if _player == null:
@@ -168,3 +175,11 @@ func _connect_fishing_spots() -> void:
 	for spot: FishingSpot in get_tree().get_nodes_in_group("fishing_spots"):
 		spot.player_entered.connect(_on_spot_entered)
 		spot.player_exited.connect(_on_spot_exited)
+
+func _get_item_rarity(item: Resource) -> RarityTier:
+	var r: RarityTier = item.get("rarity") as RarityTier
+	if r != null:
+		return r
+	if rarity_config and not rarity_config.tiers.is_empty():
+		return rarity_config.tiers[0]
+	return null

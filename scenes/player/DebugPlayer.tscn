@@ -1,7 +1,9 @@
-[gd_scene load_steps=31 format=3 uid="uid://c7nwvepnxcsw"]
+[gd_scene load_steps=33 format=3 uid="uid://c7nwvepnxcsw"]
 
 [ext_resource type="Script" uid="uid://dvsyw7f7k5gyl" path="res://scripts/player/DebugPlayer.gd" id="1_x2lrw"]
 [ext_resource type="Texture2D" uid="uid://bx6ioj8ukq16w" path="res://assets/sprites/SpriteSheet_Player.png" id="2_gf0uj"]
+[ext_resource type="Script" uid="uid://c_health1" path="res://scripts/components/health_component.gd" id="3_health"]
+[ext_resource type="Script" uid="uid://c_inv1" path="res://scripts/player/inventory_system.gd" id="4_inv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ok2xt"]
 atlas = ExtResource("2_gf0uj")
@@ -278,6 +280,11 @@ frame_progress = 0.11909925
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_xit8r")
 
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("3_health")
+
+[node name="InventorySystem" type="Node" parent="."]
+script = ExtResource("4_inv")
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 4.4519567, 0)
 visible = false

@@ -52,3 +52,27 @@ func shoot():
 
 	if audio: audio.play()
 	fire_timer.start()
+
+func _ready() -> void:
+	_setup_pickup_area()
+
+func _setup_pickup_area() -> void:
+	var area := Area3D.new()
+	area.name = "PickupArea"
+	var col := CollisionShape3D.new()
+	var sphere := SphereShape3D.new()
+	sphere.radius = 1.2
+	col.shape = sphere
+	area.add_child(col)
+	area.body_entered.connect(_on_body_entered)
+	add_child(area)
+
+func _on_body_entered(body: Node3D) -> void:
+	if not body.is_in_group("player"):
+		return
+	var inv: InventorySystem = body.get_node_or_null("InventorySystem")
+	if inv:
+		inv.pickup(self)
+
+func _on_picked_up() -> void:
+	queue_free()

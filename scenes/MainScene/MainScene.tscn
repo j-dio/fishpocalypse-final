@@ -612,7 +612,6 @@ shape = SubResource("BoxShape3D_qrpbx")
 
 [node name="SKY" type="Node3D" parent="."]
 transform = Transform3D(150, 0, 0, 0, 150, 0, 0, 0, 150, 0, 71.67545, 0)
-visible = false
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="SKY"]
 layers = 1023

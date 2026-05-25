@@ -10,7 +10,7 @@
 [ext_resource type="Script" uid="uid://fvb3vi413siv" path="res://addons/MarchingSquaresTerrain/editor/tools/scripts/marching_squares_texture_preset.gd" id="8_40akt"]
 [ext_resource type="Script" uid="uid://cql4d8s5t5xcx" path="res://addons/MarchingSquaresTerrain/algorithm/terrain/marching_squares_terrain_chunk.gd" id="9_oye2u"]
 [ext_resource type="Script" uid="uid://22l7ysgniux3" path="res://addons/MarchingSquaresTerrain/algorithm/grass/marching_squares_grass_planter.gd" id="10_h6vph"]
-[ext_resource type="PackedScene" uid="uid://c7nwvepnxcsw" path="res://scenes/Player/DebugPlayer.tscn" id="11_jwbod"]
+[ext_resource type="PackedScene" uid="uid://c7nwvepnxcsw" path="res://scenes/player/DebugPlayer.tscn" id="11_jwbod"]
 [ext_resource type="Shader" uid="uid://cbd0h0rh7wpph" path="res://shader/clouds.gdshader" id="12_b37wp"]
 [ext_resource type="Shader" uid="uid://b8e01oiuos4am" path="res://shader/ocean.gdshader" id="12_ewnbt"]
 [ext_resource type="Texture2D" uid="uid://kxdso5iygehk" path="res://assets/resources/wave_noise.tres" id="13_61ffe"]
@@ -106,15 +106,15 @@ shader_parameter/speed = 0.0030000001425
 [sub_resource type="PlaneMesh" id="PlaneMesh_b37wp"]
 material = SubResource("ShaderMaterial_g63d6")
 
-[node name="TestScene" type="Node3D"]
+[node name="TestScene" type="Node3D" unique_id=469542510]
 
-[node name="DN_CYCLE" parent="." instance=ExtResource("23_bv014")]
+[node name="DN_CYCLE" parent="." unique_id=1953072460 instance=ExtResource("23_bv014")]
 transform = Transform3D(0.7071067, 0.49999997, -0.49999994, 0, 0.70710677, 0.7071067, 0.7071067, -0.49999997, 0.49999994, 0, 90, 10)
 speed_factor = 1.0
 
-[node name="ISLAND" type="Node3D" parent="."]
+[node name="ISLAND" type="Node3D" parent="." unique_id=780296146]
 
-[node name="MarchingSquaresTerrain" type="Node3D" parent="ISLAND"]
+[node name="MarchingSquaresTerrain" type="Node3D" parent="ISLAND" unique_id=611527923]
 script = ExtResource("1_scy8l")
 data_directory = "res://scenes/TestScene_TerrainData/MarchingSquaresTerrain_cb34eac5"
 _storage_initialized = true
@@ -152,469 +152,470 @@ texture_scale_12 = 0.9
 current_texture_preset = SubResource("Resource_uyltb")
 metadata/_custom_type_script = "uid://cddg1xr5hye1d"
 
-[node name="Chunk (0, -1)" type="MeshInstance3D" parent="ISLAND/MarchingSquaresTerrain" node_paths=PackedStringArray("terrain_system")]
+[node name="Chunk (0, -1)" type="MeshInstance3D" parent="ISLAND/MarchingSquaresTerrain" unique_id=150482112 node_paths=PackedStringArray("terrain_system")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -64)
 script = ExtResource("9_oye2u")
 terrain_system = NodePath("..")
 chunk_coords = Vector2i(0, -1)
 
-[node name="GrassPlanter" type="MultiMeshInstance3D" parent="ISLAND/MarchingSquaresTerrain/Chunk (0, -1)"]
+[node name="GrassPlanter" type="MultiMeshInstance3D" parent="ISLAND/MarchingSquaresTerrain/Chunk (0, -1)" unique_id=754274566]
 cast_shadow = 0
 script = ExtResource("10_h6vph")
 
-[node name="Chunk (-1, -1)" type="MeshInstance3D" parent="ISLAND/MarchingSquaresTerrain" node_paths=PackedStringArray("terrain_system")]
+[node name="Chunk (-1, -1)" type="MeshInstance3D" parent="ISLAND/MarchingSquaresTerrain" unique_id=502808024 node_paths=PackedStringArray("terrain_system")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -64, 0, -64)
 script = ExtResource("9_oye2u")
 terrain_system = NodePath("..")
 chunk_coords = Vector2i(-1, -1)
 
-[node name="GrassPlanter" type="MultiMeshInstance3D" parent="ISLAND/MarchingSquaresTerrain/Chunk (-1, -1)"]
+[node name="GrassPlanter" type="MultiMeshInstance3D" parent="ISLAND/MarchingSquaresTerrain/Chunk (-1, -1)" unique_id=56719907]
 cast_shadow = 0
 script = ExtResource("10_h6vph")
 
-[node name="Chunk (-1, 0)" type="MeshInstance3D" parent="ISLAND/MarchingSquaresTerrain" node_paths=PackedStringArray("terrain_system")]
+[node name="Chunk (-1, 0)" type="MeshInstance3D" parent="ISLAND/MarchingSquaresTerrain" unique_id=1333639509 node_paths=PackedStringArray("terrain_system")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -64, 0, 0)
 script = ExtResource("9_oye2u")
 terrain_system = NodePath("..")
 chunk_coords = Vector2i(-1, 0)
 
-[node name="GrassPlanter" type="MultiMeshInstance3D" parent="ISLAND/MarchingSquaresTerrain/Chunk (-1, 0)"]
+[node name="GrassPlanter" type="MultiMeshInstance3D" parent="ISLAND/MarchingSquaresTerrain/Chunk (-1, 0)" unique_id=252279990]
 cast_shadow = 0
 script = ExtResource("10_h6vph")
 
-[node name="Chunk (0, 0)" type="MeshInstance3D" parent="ISLAND/MarchingSquaresTerrain" node_paths=PackedStringArray("terrain_system")]
+[node name="Chunk (0, 0)" type="MeshInstance3D" parent="ISLAND/MarchingSquaresTerrain" unique_id=122160758 node_paths=PackedStringArray("terrain_system")]
 script = ExtResource("9_oye2u")
 terrain_system = NodePath("..")
 
-[node name="GrassPlanter" type="MultiMeshInstance3D" parent="ISLAND/MarchingSquaresTerrain/Chunk (0, 0)"]
+[node name="GrassPlanter" type="MultiMeshInstance3D" parent="ISLAND/MarchingSquaresTerrain/Chunk (0, 0)" unique_id=42911293]
 cast_shadow = 0
 script = ExtResource("10_h6vph")
 
-[node name="Chunk (-2, -1)" type="MeshInstance3D" parent="ISLAND/MarchingSquaresTerrain" node_paths=PackedStringArray("terrain_system")]
+[node name="Chunk (-2, -1)" type="MeshInstance3D" parent="ISLAND/MarchingSquaresTerrain" unique_id=1189360250 node_paths=PackedStringArray("terrain_system")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -128, 0, -64)
 script = ExtResource("9_oye2u")
 terrain_system = NodePath("..")
 chunk_coords = Vector2i(-2, -1)
 
-[node name="GrassPlanter" type="MultiMeshInstance3D" parent="ISLAND/MarchingSquaresTerrain/Chunk (-2, -1)"]
+[node name="GrassPlanter" type="MultiMeshInstance3D" parent="ISLAND/MarchingSquaresTerrain/Chunk (-2, -1)" unique_id=1571304865]
 cast_shadow = 0
 script = ExtResource("10_h6vph")
 
-[node name="Chunk (-2, 0)" type="MeshInstance3D" parent="ISLAND/MarchingSquaresTerrain" node_paths=PackedStringArray("terrain_system")]
+[node name="Chunk (-2, 0)" type="MeshInstance3D" parent="ISLAND/MarchingSquaresTerrain" unique_id=889489655 node_paths=PackedStringArray("terrain_system")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -128, 0, 0)
 script = ExtResource("9_oye2u")
 terrain_system = NodePath("..")
 chunk_coords = Vector2i(-2, 0)
 
-[node name="GrassPlanter" type="MultiMeshInstance3D" parent="ISLAND/MarchingSquaresTerrain/Chunk (-2, 0)"]
+[node name="GrassPlanter" type="MultiMeshInstance3D" parent="ISLAND/MarchingSquaresTerrain/Chunk (-2, 0)" unique_id=357278541]
 cast_shadow = 0
 script = ExtResource("10_h6vph")
 
-[node name="Chunk (1, -1)" type="MeshInstance3D" parent="ISLAND/MarchingSquaresTerrain" node_paths=PackedStringArray("terrain_system")]
+[node name="Chunk (1, -1)" type="MeshInstance3D" parent="ISLAND/MarchingSquaresTerrain" unique_id=2108481402 node_paths=PackedStringArray("terrain_system")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 64, 0, -64)
 script = ExtResource("9_oye2u")
 terrain_system = NodePath("..")
 chunk_coords = Vector2i(1, -1)
 
-[node name="GrassPlanter" type="MultiMeshInstance3D" parent="ISLAND/MarchingSquaresTerrain/Chunk (1, -1)"]
+[node name="GrassPlanter" type="MultiMeshInstance3D" parent="ISLAND/MarchingSquaresTerrain/Chunk (1, -1)" unique_id=653476035]
 cast_shadow = 0
 script = ExtResource("10_h6vph")
 
-[node name="Chunk (1, 0)" type="MeshInstance3D" parent="ISLAND/MarchingSquaresTerrain" node_paths=PackedStringArray("terrain_system")]
+[node name="Chunk (1, 0)" type="MeshInstance3D" parent="ISLAND/MarchingSquaresTerrain" unique_id=491311651 node_paths=PackedStringArray("terrain_system")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 64, 0, 0)
 script = ExtResource("9_oye2u")
 terrain_system = NodePath("..")
 chunk_coords = Vector2i(1, 0)
 
-[node name="GrassPlanter" type="MultiMeshInstance3D" parent="ISLAND/MarchingSquaresTerrain/Chunk (1, 0)"]
+[node name="GrassPlanter" type="MultiMeshInstance3D" parent="ISLAND/MarchingSquaresTerrain/Chunk (1, 0)" unique_id=470819815]
 cast_shadow = 0
 script = ExtResource("10_h6vph")
 
-[node name="Chunk (1, -2)" type="MeshInstance3D" parent="ISLAND/MarchingSquaresTerrain" node_paths=PackedStringArray("terrain_system")]
+[node name="Chunk (1, -2)" type="MeshInstance3D" parent="ISLAND/MarchingSquaresTerrain" unique_id=282183131 node_paths=PackedStringArray("terrain_system")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 64, 0, -128)
 script = ExtResource("9_oye2u")
 terrain_system = NodePath("..")
 chunk_coords = Vector2i(1, -2)
 
-[node name="GrassPlanter" type="MultiMeshInstance3D" parent="ISLAND/MarchingSquaresTerrain/Chunk (1, -2)"]
+[node name="GrassPlanter" type="MultiMeshInstance3D" parent="ISLAND/MarchingSquaresTerrain/Chunk (1, -2)" unique_id=1363280364]
 cast_shadow = 0
 script = ExtResource("10_h6vph")
 
-[node name="Chunk (0, -2)" type="MeshInstance3D" parent="ISLAND/MarchingSquaresTerrain" node_paths=PackedStringArray("terrain_system")]
+[node name="Chunk (0, -2)" type="MeshInstance3D" parent="ISLAND/MarchingSquaresTerrain" unique_id=2147048827 node_paths=PackedStringArray("terrain_system")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -128)
 script = ExtResource("9_oye2u")
 terrain_system = NodePath("..")
 chunk_coords = Vector2i(0, -2)
 
-[node name="GrassPlanter" type="MultiMeshInstance3D" parent="ISLAND/MarchingSquaresTerrain/Chunk (0, -2)"]
+[node name="GrassPlanter" type="MultiMeshInstance3D" parent="ISLAND/MarchingSquaresTerrain/Chunk (0, -2)" unique_id=1445239428]
 cast_shadow = 0
 script = ExtResource("10_h6vph")
 
-[node name="Chunk (-1, -2)" type="MeshInstance3D" parent="ISLAND/MarchingSquaresTerrain" node_paths=PackedStringArray("terrain_system")]
+[node name="Chunk (-1, -2)" type="MeshInstance3D" parent="ISLAND/MarchingSquaresTerrain" unique_id=1735551428 node_paths=PackedStringArray("terrain_system")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -64, 0, -128)
 script = ExtResource("9_oye2u")
 terrain_system = NodePath("..")
 chunk_coords = Vector2i(-1, -2)
 
-[node name="GrassPlanter" type="MultiMeshInstance3D" parent="ISLAND/MarchingSquaresTerrain/Chunk (-1, -2)"]
+[node name="GrassPlanter" type="MultiMeshInstance3D" parent="ISLAND/MarchingSquaresTerrain/Chunk (-1, -2)" unique_id=1813496080]
 cast_shadow = 0
 script = ExtResource("10_h6vph")
 
-[node name="Chunk (-2, -2)" type="MeshInstance3D" parent="ISLAND/MarchingSquaresTerrain" node_paths=PackedStringArray("terrain_system")]
+[node name="Chunk (-2, -2)" type="MeshInstance3D" parent="ISLAND/MarchingSquaresTerrain" unique_id=1392493461 node_paths=PackedStringArray("terrain_system")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -128, 0, -128)
 script = ExtResource("9_oye2u")
 terrain_system = NodePath("..")
 chunk_coords = Vector2i(-2, -2)
 
-[node name="GrassPlanter" type="MultiMeshInstance3D" parent="ISLAND/MarchingSquaresTerrain/Chunk (-2, -2)"]
+[node name="GrassPlanter" type="MultiMeshInstance3D" parent="ISLAND/MarchingSquaresTerrain/Chunk (-2, -2)" unique_id=53261783]
 cast_shadow = 0
 script = ExtResource("10_h6vph")
 
-[node name="Dagat" type="MeshInstance3D" parent="ISLAND"]
+[node name="Dagat" type="MeshInstance3D" parent="ISLAND" unique_id=1813932752]
 transform = Transform3D(150, 0, 0, 0, 150, 0, 0, 0, 150, 0, -1.5, 0)
 mesh = SubResource("PlaneMesh_cbjsr")
 
-[node name="Kahoys" type="Node3D" parent="ISLAND"]
+[node name="Kahoys" type="Node3D" parent="ISLAND" unique_id=73657917]
 
-[node name="Kahoy" type="MeshInstance3D" parent="ISLAND/Kahoys"]
+[node name="Kahoy" type="MeshInstance3D" parent="ISLAND/Kahoys" unique_id=1907764821]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 69.08512, 0.1, -35.299133)
 mesh = ExtResource("14_qrpbx")
 skeleton = NodePath("../../../SKY")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="ISLAND/Kahoys/Kahoy"]
+[node name="StaticBody3D" type="StaticBody3D" parent="ISLAND/Kahoys/Kahoy" unique_id=854130429]
 visible = false
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="ISLAND/Kahoys/Kahoy/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ISLAND/Kahoys/Kahoy/StaticBody3D" unique_id=270518826]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7132566, 0)
 visible = false
 shape = SubResource("BoxShape3D_qrpbx")
 
-[node name="Kahoy2" type="MeshInstance3D" parent="ISLAND/Kahoys"]
+[node name="Kahoy2" type="MeshInstance3D" parent="ISLAND/Kahoys" unique_id=1100079173]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 63.948723, 0.1, -18.423191)
 mesh = ExtResource("14_qrpbx")
 skeleton = NodePath("../../../SKY")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="ISLAND/Kahoys/Kahoy2"]
+[node name="StaticBody3D" type="StaticBody3D" parent="ISLAND/Kahoys/Kahoy2" unique_id=402754661]
 visible = false
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="ISLAND/Kahoys/Kahoy2/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ISLAND/Kahoys/Kahoy2/StaticBody3D" unique_id=1873323967]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7132566, 0)
 visible = false
 shape = SubResource("BoxShape3D_qrpbx")
 
-[node name="Kahoy3" type="MeshInstance3D" parent="ISLAND/Kahoys"]
+[node name="Kahoy3" type="MeshInstance3D" parent="ISLAND/Kahoys" unique_id=900889357]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 29.776043, 0.1, -42.51531)
 mesh = ExtResource("14_qrpbx")
 skeleton = NodePath("../../../SKY")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="ISLAND/Kahoys/Kahoy3"]
+[node name="StaticBody3D" type="StaticBody3D" parent="ISLAND/Kahoys/Kahoy3" unique_id=565519836]
 visible = false
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="ISLAND/Kahoys/Kahoy3/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ISLAND/Kahoys/Kahoy3/StaticBody3D" unique_id=1631377393]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7132566, 0)
 visible = false
 shape = SubResource("BoxShape3D_qrpbx")
 
-[node name="Kahoy4" type="MeshInstance3D" parent="ISLAND/Kahoys"]
+[node name="Kahoy4" type="MeshInstance3D" parent="ISLAND/Kahoys" unique_id=213450885]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 16.640001, 0.1, -14.258964)
 mesh = ExtResource("14_qrpbx")
 skeleton = NodePath("../../../SKY")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="ISLAND/Kahoys/Kahoy4"]
+[node name="StaticBody3D" type="StaticBody3D" parent="ISLAND/Kahoys/Kahoy4" unique_id=886857681]
 visible = false
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="ISLAND/Kahoys/Kahoy4/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ISLAND/Kahoys/Kahoy4/StaticBody3D" unique_id=1213224862]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7132566, 0)
 visible = false
 shape = SubResource("BoxShape3D_qrpbx")
 
-[node name="Kahoy5" type="MeshInstance3D" parent="ISLAND/Kahoys"]
+[node name="Kahoy5" type="MeshInstance3D" parent="ISLAND/Kahoys" unique_id=1431641533]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 75.49762, 4.3991218, -50.24132)
 mesh = ExtResource("14_qrpbx")
 skeleton = NodePath("../../../SKY")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="ISLAND/Kahoys/Kahoy5"]
+[node name="StaticBody3D" type="StaticBody3D" parent="ISLAND/Kahoys/Kahoy5" unique_id=1615217776]
 visible = false
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="ISLAND/Kahoys/Kahoy5/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ISLAND/Kahoys/Kahoy5/StaticBody3D" unique_id=1681074468]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7132566, 0)
 visible = false
 shape = SubResource("BoxShape3D_qrpbx")
 
-[node name="Kahoy6" type="MeshInstance3D" parent="ISLAND/Kahoys"]
+[node name="Kahoy6" type="MeshInstance3D" parent="ISLAND/Kahoys" unique_id=1963024856]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 78.09211, 0.1, 5.3155603)
 mesh = ExtResource("14_qrpbx")
 skeleton = NodePath("../../../SKY")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="ISLAND/Kahoys/Kahoy6"]
+[node name="StaticBody3D" type="StaticBody3D" parent="ISLAND/Kahoys/Kahoy6" unique_id=1969464694]
 visible = false
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="ISLAND/Kahoys/Kahoy6/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ISLAND/Kahoys/Kahoy6/StaticBody3D" unique_id=994261400]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7132566, 0)
 visible = false
 shape = SubResource("BoxShape3D_qrpbx")
 
-[node name="Kahoy7" type="MeshInstance3D" parent="ISLAND/Kahoys"]
+[node name="Kahoy7" type="MeshInstance3D" parent="ISLAND/Kahoys" unique_id=237872913]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 7.759617, 0.1, 6.9945316)
 mesh = ExtResource("14_qrpbx")
 skeleton = NodePath("../../../SKY")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="ISLAND/Kahoys/Kahoy7"]
+[node name="StaticBody3D" type="StaticBody3D" parent="ISLAND/Kahoys/Kahoy7" unique_id=1571522015]
 visible = false
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="ISLAND/Kahoys/Kahoy7/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ISLAND/Kahoys/Kahoy7/StaticBody3D" unique_id=153371228]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7132566, 0)
 visible = false
 shape = SubResource("BoxShape3D_qrpbx")
 
-[node name="Kahoy8" type="MeshInstance3D" parent="ISLAND/Kahoys"]
+[node name="Kahoy8" type="MeshInstance3D" parent="ISLAND/Kahoys" unique_id=1485184496]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 44.872025, 0.1, 15.530775)
 mesh = ExtResource("14_qrpbx")
 skeleton = NodePath("../../../SKY")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="ISLAND/Kahoys/Kahoy8"]
+[node name="StaticBody3D" type="StaticBody3D" parent="ISLAND/Kahoys/Kahoy8" unique_id=184239931]
 visible = false
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="ISLAND/Kahoys/Kahoy8/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ISLAND/Kahoys/Kahoy8/StaticBody3D" unique_id=1392533714]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7132566, 0)
 visible = false
 shape = SubResource("BoxShape3D_qrpbx")
 
-[node name="Kahoy9" type="MeshInstance3D" parent="ISLAND/Kahoys"]
+[node name="Kahoy9" type="MeshInstance3D" parent="ISLAND/Kahoys" unique_id=2000888020]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 28.480856, 0.1, 41.85574)
 mesh = ExtResource("14_qrpbx")
 skeleton = NodePath("../../../SKY")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="ISLAND/Kahoys/Kahoy9"]
+[node name="StaticBody3D" type="StaticBody3D" parent="ISLAND/Kahoys/Kahoy9" unique_id=1278288963]
 visible = false
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="ISLAND/Kahoys/Kahoy9/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ISLAND/Kahoys/Kahoy9/StaticBody3D" unique_id=775244278]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7132566, 0)
 visible = false
 shape = SubResource("BoxShape3D_qrpbx")
 
-[node name="Kahoy10" type="MeshInstance3D" parent="ISLAND/Kahoys"]
+[node name="Kahoy10" type="MeshInstance3D" parent="ISLAND/Kahoys" unique_id=559193918]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 93.74933, 0.1, 34.880043)
 mesh = ExtResource("14_qrpbx")
 skeleton = NodePath("../../../SKY")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="ISLAND/Kahoys/Kahoy10"]
+[node name="StaticBody3D" type="StaticBody3D" parent="ISLAND/Kahoys/Kahoy10" unique_id=55087311]
 visible = false
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="ISLAND/Kahoys/Kahoy10/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ISLAND/Kahoys/Kahoy10/StaticBody3D" unique_id=311248421]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7132566, 0)
 visible = false
 shape = SubResource("BoxShape3D_qrpbx")
 
-[node name="Kahoy11" type="MeshInstance3D" parent="ISLAND/Kahoys"]
+[node name="Kahoy11" type="MeshInstance3D" parent="ISLAND/Kahoys" unique_id=322993382]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 63.33883, 0.1, 27.707472)
 mesh = ExtResource("14_qrpbx")
 skeleton = NodePath("../../../SKY")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="ISLAND/Kahoys/Kahoy11"]
+[node name="StaticBody3D" type="StaticBody3D" parent="ISLAND/Kahoys/Kahoy11" unique_id=2092976028]
 visible = false
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="ISLAND/Kahoys/Kahoy11/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ISLAND/Kahoys/Kahoy11/StaticBody3D" unique_id=637074113]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7132566, 0)
 visible = false
 shape = SubResource("BoxShape3D_qrpbx")
 
-[node name="Kahoy12" type="MeshInstance3D" parent="ISLAND/Kahoys"]
+[node name="Kahoy12" type="MeshInstance3D" parent="ISLAND/Kahoys" unique_id=526172582]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -84.511955, 0.1, 0)
 mesh = ExtResource("14_qrpbx")
 skeleton = NodePath("../../../SKY")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="ISLAND/Kahoys/Kahoy12"]
+[node name="StaticBody3D" type="StaticBody3D" parent="ISLAND/Kahoys/Kahoy12" unique_id=1065659552]
 visible = false
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="ISLAND/Kahoys/Kahoy12/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ISLAND/Kahoys/Kahoy12/StaticBody3D" unique_id=730556446]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7132566, 0)
 visible = false
 shape = SubResource("BoxShape3D_qrpbx")
 
-[node name="Kahoy13" type="MeshInstance3D" parent="ISLAND/Kahoys"]
+[node name="Kahoy13" type="MeshInstance3D" parent="ISLAND/Kahoys" unique_id=270843423]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -16.571777, 0.1, 2.2148075)
 mesh = ExtResource("14_qrpbx")
 skeleton = NodePath("../../../SKY")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="ISLAND/Kahoys/Kahoy13"]
+[node name="StaticBody3D" type="StaticBody3D" parent="ISLAND/Kahoys/Kahoy13" unique_id=1291169592]
 visible = false
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="ISLAND/Kahoys/Kahoy13/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ISLAND/Kahoys/Kahoy13/StaticBody3D" unique_id=1234119860]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7132566, 0)
 visible = false
 shape = SubResource("BoxShape3D_qrpbx")
 
-[node name="Kahoy14" type="MeshInstance3D" parent="ISLAND/Kahoys"]
+[node name="Kahoy14" type="MeshInstance3D" parent="ISLAND/Kahoys" unique_id=1040506259]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 4.767082, 0.1, 31.914055)
 mesh = ExtResource("14_qrpbx")
 skeleton = NodePath("../../../SKY")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="ISLAND/Kahoys/Kahoy14"]
+[node name="StaticBody3D" type="StaticBody3D" parent="ISLAND/Kahoys/Kahoy14" unique_id=1591186799]
 visible = false
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="ISLAND/Kahoys/Kahoy14/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ISLAND/Kahoys/Kahoy14/StaticBody3D" unique_id=1707935485]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7132566, 0)
 visible = false
 shape = SubResource("BoxShape3D_qrpbx")
 
-[node name="Kahoy15" type="MeshInstance3D" parent="ISLAND/Kahoys"]
+[node name="Kahoy15" type="MeshInstance3D" parent="ISLAND/Kahoys" unique_id=349738551]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -83.1255, 0.1, 42.998955)
 mesh = ExtResource("14_qrpbx")
 skeleton = NodePath("../../../SKY")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="ISLAND/Kahoys/Kahoy15"]
+[node name="StaticBody3D" type="StaticBody3D" parent="ISLAND/Kahoys/Kahoy15" unique_id=1891217608]
 visible = false
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="ISLAND/Kahoys/Kahoy15/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ISLAND/Kahoys/Kahoy15/StaticBody3D" unique_id=1613233646]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7132566, 0)
 visible = false
 shape = SubResource("BoxShape3D_qrpbx")
 
-[node name="Kahoy16" type="MeshInstance3D" parent="ISLAND/Kahoys"]
+[node name="Kahoy16" type="MeshInstance3D" parent="ISLAND/Kahoys" unique_id=1402173720]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -43.419716, 0.1, 15.476654)
 mesh = ExtResource("14_qrpbx")
 skeleton = NodePath("../../../SKY")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="ISLAND/Kahoys/Kahoy16"]
+[node name="StaticBody3D" type="StaticBody3D" parent="ISLAND/Kahoys/Kahoy16" unique_id=900061253]
 visible = false
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="ISLAND/Kahoys/Kahoy16/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ISLAND/Kahoys/Kahoy16/StaticBody3D" unique_id=839599015]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7132566, 0)
 visible = false
 shape = SubResource("BoxShape3D_qrpbx")
 
-[node name="Kahoy17" type="MeshInstance3D" parent="ISLAND/Kahoys"]
+[node name="Kahoy17" type="MeshInstance3D" parent="ISLAND/Kahoys" unique_id=1194662432]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -56.39204, 0.1, -57.301548)
 mesh = ExtResource("14_qrpbx")
 skeleton = NodePath("../../../SKY")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="ISLAND/Kahoys/Kahoy17"]
+[node name="StaticBody3D" type="StaticBody3D" parent="ISLAND/Kahoys/Kahoy17" unique_id=144395286]
 visible = false
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="ISLAND/Kahoys/Kahoy17/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ISLAND/Kahoys/Kahoy17/StaticBody3D" unique_id=1357883189]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7132566, 0)
 visible = false
 shape = SubResource("BoxShape3D_qrpbx")
 
-[node name="Kahoy18" type="MeshInstance3D" parent="ISLAND/Kahoys"]
+[node name="Kahoy18" type="MeshInstance3D" parent="ISLAND/Kahoys" unique_id=1825768959]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -25.86755, 0.1, -71.84247)
 mesh = ExtResource("14_qrpbx")
 skeleton = NodePath("../../../SKY")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="ISLAND/Kahoys/Kahoy18"]
+[node name="StaticBody3D" type="StaticBody3D" parent="ISLAND/Kahoys/Kahoy18" unique_id=1466604826]
 visible = false
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="ISLAND/Kahoys/Kahoy18/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ISLAND/Kahoys/Kahoy18/StaticBody3D" unique_id=719219036]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7132566, 0)
 visible = false
 shape = SubResource("BoxShape3D_qrpbx")
 
-[node name="Kahoy19" type="MeshInstance3D" parent="ISLAND/Kahoys"]
+[node name="Kahoy19" type="MeshInstance3D" parent="ISLAND/Kahoys" unique_id=419715042]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -81.980354, 0.1, -34.364494)
 mesh = ExtResource("14_qrpbx")
 skeleton = NodePath("../../../SKY")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="ISLAND/Kahoys/Kahoy19"]
+[node name="StaticBody3D" type="StaticBody3D" parent="ISLAND/Kahoys/Kahoy19" unique_id=436923758]
 visible = false
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="ISLAND/Kahoys/Kahoy19/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ISLAND/Kahoys/Kahoy19/StaticBody3D" unique_id=1446925375]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7132566, 0)
 visible = false
 shape = SubResource("BoxShape3D_qrpbx")
 
-[node name="Kahoy20" type="MeshInstance3D" parent="ISLAND/Kahoys"]
+[node name="Kahoy20" type="MeshInstance3D" parent="ISLAND/Kahoys" unique_id=177784417]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -47.969902, 0.1, -15.451265)
 mesh = ExtResource("14_qrpbx")
 skeleton = NodePath("../../../SKY")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="ISLAND/Kahoys/Kahoy20"]
+[node name="StaticBody3D" type="StaticBody3D" parent="ISLAND/Kahoys/Kahoy20" unique_id=1758314831]
 visible = false
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="ISLAND/Kahoys/Kahoy20/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ISLAND/Kahoys/Kahoy20/StaticBody3D" unique_id=1094790865]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7132566, 0)
 visible = false
 shape = SubResource("BoxShape3D_qrpbx")
 
-[node name="Kahoy21" type="MeshInstance3D" parent="ISLAND/Kahoys"]
+[node name="Kahoy21" type="MeshInstance3D" parent="ISLAND/Kahoys" unique_id=558990844]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -21.30818, 0.1, 47.22673)
 mesh = ExtResource("14_qrpbx")
 skeleton = NodePath("../../../SKY")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="ISLAND/Kahoys/Kahoy21"]
+[node name="StaticBody3D" type="StaticBody3D" parent="ISLAND/Kahoys/Kahoy21" unique_id=344422530]
 visible = false
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="ISLAND/Kahoys/Kahoy21/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ISLAND/Kahoys/Kahoy21/StaticBody3D" unique_id=1073595770]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7132566, 0)
 visible = false
 shape = SubResource("BoxShape3D_qrpbx")
 
-[node name="Kahoy22" type="MeshInstance3D" parent="ISLAND/Kahoys"]
+[node name="Kahoy22" type="MeshInstance3D" parent="ISLAND/Kahoys" unique_id=575689284]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 32.35962, 0.1, -93.0161)
 mesh = ExtResource("14_qrpbx")
 skeleton = NodePath("../../../SKY")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="ISLAND/Kahoys/Kahoy22"]
+[node name="StaticBody3D" type="StaticBody3D" parent="ISLAND/Kahoys/Kahoy22" unique_id=1754324790]
 visible = false
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="ISLAND/Kahoys/Kahoy22/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ISLAND/Kahoys/Kahoy22/StaticBody3D" unique_id=838585456]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7132566, 0)
 visible = false
 shape = SubResource("BoxShape3D_qrpbx")
 
-[node name="Kahoy23" type="MeshInstance3D" parent="ISLAND/Kahoys"]
+[node name="Kahoy23" type="MeshInstance3D" parent="ISLAND/Kahoys" unique_id=1565669370]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0.1, -95.11534)
 mesh = ExtResource("14_qrpbx")
 skeleton = NodePath("../../../SKY")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="ISLAND/Kahoys/Kahoy23"]
+[node name="StaticBody3D" type="StaticBody3D" parent="ISLAND/Kahoys/Kahoy23" unique_id=95309725]
 visible = false
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="ISLAND/Kahoys/Kahoy23/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ISLAND/Kahoys/Kahoy23/StaticBody3D" unique_id=790504782]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7132566, 0)
 visible = false
 shape = SubResource("BoxShape3D_qrpbx")
 
-[node name="Kahoy24" type="MeshInstance3D" parent="ISLAND/Kahoys"]
+[node name="Kahoy24" type="MeshInstance3D" parent="ISLAND/Kahoys" unique_id=1756138619]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 3.8213005, 0.1, -37.756638)
 mesh = ExtResource("14_qrpbx")
 skeleton = NodePath("../../../SKY")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="ISLAND/Kahoys/Kahoy24"]
+[node name="StaticBody3D" type="StaticBody3D" parent="ISLAND/Kahoys/Kahoy24" unique_id=199257934]
 visible = false
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="ISLAND/Kahoys/Kahoy24/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ISLAND/Kahoys/Kahoy24/StaticBody3D" unique_id=1549966280]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7132566, 0)
 visible = false
 shape = SubResource("BoxShape3D_qrpbx")
 
-[node name="Kahoy25" type="MeshInstance3D" parent="ISLAND/Kahoys"]
+[node name="Kahoy25" type="MeshInstance3D" parent="ISLAND/Kahoys" unique_id=1037560060]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 96.573, 11, -102.12)
 mesh = ExtResource("14_qrpbx")
 skeleton = NodePath("../../../SKY")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="ISLAND/Kahoys/Kahoy25"]
+[node name="StaticBody3D" type="StaticBody3D" parent="ISLAND/Kahoys/Kahoy25" unique_id=1655656788]
 visible = false
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="ISLAND/Kahoys/Kahoy25/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ISLAND/Kahoys/Kahoy25/StaticBody3D" unique_id=892009807]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7132566, 0)
 visible = false
 shape = SubResource("BoxShape3D_qrpbx")
 
-[node name="Kahoy26" type="MeshInstance3D" parent="ISLAND/Kahoys"]
+[node name="Kahoy26" type="MeshInstance3D" parent="ISLAND/Kahoys" unique_id=670124062]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 89.096, 11, -63.413)
 mesh = ExtResource("14_qrpbx")
 skeleton = NodePath("../../../SKY")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="ISLAND/Kahoys/Kahoy26"]
+[node name="StaticBody3D" type="StaticBody3D" parent="ISLAND/Kahoys/Kahoy26" unique_id=1565071362]
 visible = false
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="ISLAND/Kahoys/Kahoy26/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ISLAND/Kahoys/Kahoy26/StaticBody3D" unique_id=1178258671]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7132566, 0)
 visible = false
 shape = SubResource("BoxShape3D_qrpbx")
 
-[node name="Foliages" type="Node3D" parent="ISLAND"]
+[node name="Foliages" type="Node3D" parent="ISLAND" unique_id=360004925]
+visible = false
 
 [node name="AudioSources" type="Node3D" parent="ISLAND"]
 
@@ -657,25 +658,26 @@ parameters/looping = true
 [node name="SKY" type="Node3D" parent="."]
 transform = Transform3D(200, 0, 0, 0, 200, 0, 0, 0, 200, 0, 71.67545, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="SKY"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SKY" unique_id=169244059]
 layers = 1023
 mesh = SubResource("PlaneMesh_b37wp")
 
-[node name="Player" parent="." instance=ExtResource("11_jwbod")]
+[node name="Player" parent="." unique_id=478782437 instance=ExtResource("11_jwbod")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.867311, 0.5601834, -17.111214)
+disable_mode = 2
 
-[node name="FishingSpot" parent="." instance=ExtResource("16_fsp")]
+[node name="FishingSpot" parent="." unique_id=1985687269 instance=ExtResource("16_fsp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.83638, 0.5590067, -20.5)
 
-[node name="Spawner" parent="." node_paths=PackedStringArray("player") instance=ExtResource("21_v3fq3")]
+[node name="Spawner" parent="." unique_id=1235847215 node_paths=PackedStringArray("player") instance=ExtResource("21_v3fq3")]
 player = NodePath("../Player")
 enemy = ExtResource("22_0f85l")
 
-[node name="FishingSystem" type="Node" parent="."]
+[node name="FishingSystem" type="Node" parent="." unique_id=670019011]
 script = ExtResource("14_fsys")
 items_db = ExtResource("17_db")
 rarity_config = ExtResource("18_rc")
 
-[node name="UI" type="CanvasLayer" parent="."]
+[node name="UI" type="CanvasLayer" parent="." unique_id=1882678914]
 
-[node name="FishingMinigame" parent="UI" instance=ExtResource("15_fmg")]
+[node name="FishingMinigame" parent="UI" unique_id=1396498718 instance=ExtResource("15_fmg")]

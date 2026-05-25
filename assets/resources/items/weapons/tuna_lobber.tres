@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="FishWeaponData" load_steps=4 format=3 uid="uid://duqs0wt1hjnub"]
+[gd_resource type="Resource" script_class="FishWeaponData" format=3 uid="uid://duqs0wt1hjnub"]
 
 [ext_resource type="Script" uid="uid://cb7xcgwlk1l1h" path="res://scripts/itemSystem/itemAttributes/fish_weapon_data.gd" id="1_gw46j"]
 [ext_resource type="Texture2D" uid="uid://ldemr53bgmuu" path="res://assets/sprites/missing_sprite3.png" id="2_y1l7d"]

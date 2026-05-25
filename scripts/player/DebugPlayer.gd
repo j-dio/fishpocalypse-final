@@ -12,6 +12,13 @@ extends CharacterBody3D
 @onready var spotlight: SpotLight3D = $SpotLight3D
 @onready var audio_player: AudioStreamPlayer3D = $AudioStreamPlayer3D
 
+var last_valid_position := Vector3.ZERO
+var previous_valid_position := Vector3.ZERO
+var has_valid_position := false
+const WATER_Y_LEVEL := -1.5
+const SAVE_INTERVAL := 0.5
+var save_timer := 0.0
+
 var is_dodging := false
 var dodge_timer := 0.0
 var dodge_dir := Vector3.ZERO
@@ -61,6 +68,7 @@ func _physics_process(delta: float) -> void:
 				_play_walk_sound()
 		
 		move_and_slide()
+		_check_ocean_boundary()
 		return
 
 	# Input Direction

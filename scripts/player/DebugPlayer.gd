@@ -47,6 +47,8 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	save_timer += delta
+
 	if not is_on_floor(): velocity.y -= gravity * delta
 	else: velocity.y = 0
 	if is_dodging:
@@ -102,8 +104,27 @@ func _physics_process(delta: float) -> void:
 		print("Shoot! (CombatSystem not yet wired — Phase 3)")
 	_play_move_anim()
 	move_and_slide()
-	
-	
+	_check_ocean_boundary()
+
+
+func _check_ocean_boundary() -> void:
+	if global_position.y <= WATER_Y_LEVEL:
+		_push_back_to_land()
+	else:
+		if is_on_floor() and save_timer >= SAVE_INTERVAL:
+			save_timer = 0.0
+			previous_valid_position = last_valid_position
+			last_valid_position = global_position
+			has_valid_position = true
+
+
+func _push_back_to_land() -> void:
+	if not has_valid_position:
+		return
+	global_position = previous_valid_position
+	velocity = Vector3.ZERO
+
+
 func _on_night_changed(active: bool) -> void:
 	if spotlight: spotlight.visible = active
 	

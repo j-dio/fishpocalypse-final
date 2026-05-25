@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="FishingPoleData" load_steps=4 format=3 uid="uid://bh7y3pobcvt0r"]
+[gd_resource type="Resource" script_class="FishingPoleData" format=3 uid="uid://bh7y3pobcvt0r"]
 
 [ext_resource type="Script" uid="uid://btinxc3vf3cat" path="res://scripts/itemSystem/itemAttributes/fishing_pole_data.gd" id="1_jdm5w"]
 [ext_resource type="Texture2D" uid="uid://dv6sm1evvirtr" path="res://assets/sprites/missing_sprite.png" id="2_7c0b5"]

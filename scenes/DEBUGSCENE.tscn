@@ -23,6 +23,7 @@ script = ExtResource("1_6vqgu")
 data_directory = "res://scenes/DEBUGSCENE_TerrainData/MarchingSquaresTerrain_6e005b73"
 polygon_texture_resolution = 16
 _storage_initialized = true
+texture_albedo_1 = Color(0.56078434, 0.9137255, 0.015686275, 1)
 metadata/_custom_type_script = "uid://cddg1xr5hye1d"
 
 [node name="Chunk (-1, -1)" type="MeshInstance3D" parent="plane/MarchingSquaresTerrain" node_paths=PackedStringArray("terrain_system")]
@@ -43,4 +44,3 @@ dbg = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.483946, 1.5366004, -4.9039993)
 
 [editable path="Test_DayNightSys"]
-[editable path="DebugPlayer"]

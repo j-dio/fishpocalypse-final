@@ -1,11 +1,11 @@
-[gd_scene load_steps=39 format=3 uid="uid://cqjk6u4wv4adb"]
+[gd_scene load_steps=41 format=3 uid="uid://cqjk6u4wv4adb"]
 
 [ext_resource type="Script" uid="uid://cddg1xr5hye1d" path="res://addons/MarchingSquaresTerrain/algorithm/terrain/marching_squares_terrain.gd" id="1_scy8l"]
 [ext_resource type="Script" uid="uid://dqeuj3gddfm65" path="res://addons/MarchingSquaresTerrain/editor/tools/scripts/marching_squares_texture_names.gd" id="2_b37wp"]
 [ext_resource type="Texture2D" uid="uid://cxvnfgy865wsk" path="res://addons/MarchingSquaresTerrain/resources/plugin_materials/grass_leaf_sprite.png" id="3_g63d6"]
+[ext_resource type="Texture2D" uid="uid://bqfs0f51m3adc" path="res://assets/resources/sand.tres" id="3_ruire"]
 [ext_resource type="Script" uid="uid://c5yuywww81uee" path="res://addons/MarchingSquaresTerrain/editor/tools/scripts/marching_squares_texture_list.gd" id="4_ewnbt"]
 [ext_resource type="Texture2D" uid="uid://dbnc04k3n0sro" path="res://addons/MarchingSquaresTerrain/resources/plugin_materials/grass_terrain_noise.res" id="5_61ffe"]
-[ext_resource type="Texture2D" uid="uid://cv87twjgbqq0s" path="res://addons/MarchingSquaresTerrain/resources/plugin_materials/wall_noise_texture.res" id="6_cbjsr"]
 [ext_resource type="Script" uid="uid://mtlf02qfkqp5" path="res://addons/MarchingSquaresTerrain/editor/tools/scripts/marching_squares_quick_paint.gd" id="7_wwp34"]
 [ext_resource type="Script" uid="uid://fvb3vi413siv" path="res://addons/MarchingSquaresTerrain/editor/tools/scripts/marching_squares_texture_preset.gd" id="8_40akt"]
 [ext_resource type="Script" uid="uid://cql4d8s5t5xcx" path="res://addons/MarchingSquaresTerrain/algorithm/terrain/marching_squares_terrain_chunk.gd" id="9_oye2u"]
@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://kxdso5iygehk" path="res://assets/resources/wave_noise.tres" id="13_61ffe"]
 [ext_resource type="Texture2D" uid="uid://cv4ugy50jeh4i" path="res://assets/resources/cloud_noise.tres" id="13_g63d6"]
 [ext_resource type="Script" uid="uid://d2m8wwurpal4s" path="res://scripts/fishSystem/fishing_system.gd" id="14_fsys"]
+[ext_resource type="ArrayMesh" uid="uid://dxqp0wkpiex87" path="res://assets/models/kahoy/Sketchfab_Scene_coconut_tree_coconut_tree_mat_0.res" id="14_qrpbx"]
 [ext_resource type="PackedScene" path="res://scenes/FishingRelated/fishing_minigame.tscn" id="15_fmg"]
 [ext_resource type="PackedScene" path="res://scenes/FishingRelated/fishing_spot.tscn" id="16_fsp"]
 [ext_resource type="Resource" uid="uid://dyjmr7uqctvpk" path="res://assets/resources/items/items_db.tres" id="17_db"]
@@ -62,9 +63,9 @@ metadata/_custom_type_script = "uid://dqeuj3gddfm65"
 
 [sub_resource type="Resource" id="Resource_658wv"]
 script = ExtResource("4_ewnbt")
-terrain_textures = Array[Texture2D]([ExtResource("5_61ffe"), ExtResource("5_61ffe"), ExtResource("5_61ffe"), ExtResource("5_61ffe"), ExtResource("5_61ffe"), ExtResource("6_cbjsr"), null, SubResource("Texture2D_p1dug"), SubResource("Texture2D_38l2j"), SubResource("Texture2D_ta716"), SubResource("Texture2D_1nue7"), SubResource("Texture2D_iuhot"), SubResource("Texture2D_vk8tc"), SubResource("Texture2D_11ep3"), SubResource("Texture2D_fpfsv")])
-texture_scales = Array[float]([1.4, 1.4, 0.7999999999999999, 1.3, 1.2000000000000002, 0.6, 1.2000000000000002, 0.9, 1.0, 1.1, 1.0, 0.9, 1.0, 1.0, 1.0])
-grass_colors = Array[Color]([Color(0.5620437, 0.9140625, 0.016662616, 1), Color(1, 0.9265203, 0.3203125, 1), Color(0.56078434, 0.78431374, 0.015686275, 1), Color(0.48974344, 0.8255208, 0.032246906, 1), Color(0.4244792, 0.2130686, 0.029846193, 1), Color(0.93931264, 0.9609375, 0.3878784, 1)])
+terrain_textures = Array[Texture2D]([ExtResource("5_61ffe"), ExtResource("3_ruire"), ExtResource("5_61ffe"), ExtResource("5_61ffe"), ExtResource("5_61ffe"), ExtResource("3_ruire"), null, SubResource("Texture2D_p1dug"), SubResource("Texture2D_38l2j"), SubResource("Texture2D_ta716"), SubResource("Texture2D_1nue7"), SubResource("Texture2D_iuhot"), SubResource("Texture2D_vk8tc"), SubResource("Texture2D_11ep3"), SubResource("Texture2D_fpfsv")])
+texture_scales = Array[float]([1.4, 3.6, 0.7999999999999999, 1.3, 1.2000000000000002, 3.0, 1.2000000000000002, 0.9, 1.0, 1.1, 1.0, 0.9, 1.0, 1.0, 1.0])
+grass_colors = Array[Color]([Color(0.5620437, 0.9140625, 0.016662616, 1), Color(1, 0.9265203, 0.3203125, 1), Color(0.56078434, 0.78431374, 0.015686275, 1), Color(0.48974344, 0.8255208, 0.032246906, 1), Color(0.4244792, 0.2130686, 0.029846193, 1), Color(0.9869792, 0.8628438, 0.26473662, 1)])
 has_grass = Array[bool]([false, true, true, false, false])
 
 [sub_resource type="Resource" id="Resource_uyltb"]
@@ -84,6 +85,9 @@ shader_parameter/pixel_size = 256.0
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_cbjsr"]
 material = SubResource("ShaderMaterial_61ffe")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qrpbx"]
+size = Vector3(1, 4.9920654, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_g63d6"]
 render_priority = 0
@@ -110,6 +114,8 @@ data_directory = "res://scenes/TestScene_TerrainData/MarchingSquaresTerrain_cb34
 _storage_initialized = true
 grass_subdivisions = 10
 grass_size = Vector2(0.8, 0.8)
+texture_2 = ExtResource("3_ruire")
+texture_6 = ExtResource("3_ruire")
 texture_8 = SubResource("Texture2D_p1dug")
 texture_9 = SubResource("Texture2D_38l2j")
 texture_10 = SubResource("Texture2D_ta716")
@@ -126,13 +132,13 @@ texture_albedo_2 = Color(1, 0.9265203, 0.3203125, 1)
 texture_albedo_3 = Color(0.56078434, 0.78431374, 0.015686275, 1)
 texture_albedo_4 = Color(0.48974344, 0.8255208, 0.032246906, 1)
 texture_albedo_5 = Color(0.4244792, 0.2130686, 0.029846193, 1)
-texture_albedo_6 = Color(0.93931264, 0.9609375, 0.3878784, 1)
+texture_albedo_6 = Color(0.9869792, 0.8628438, 0.26473662, 1)
 texture_scale_1 = 1.4
-texture_scale_2 = 1.4
+texture_scale_2 = 3.6
 texture_scale_3 = 0.7999999999999999
 texture_scale_4 = 1.3
 texture_scale_5 = 1.2000000000000002
-texture_scale_6 = 0.6
+texture_scale_6 = 3.0
 texture_scale_7 = 1.2000000000000002
 texture_scale_8 = 0.9
 texture_scale_10 = 1.1
@@ -262,8 +268,351 @@ script = ExtResource("10_h6vph")
 transform = Transform3D(150, 0, 0, 0, 150, 0, 0, 0, 150, 0, -1.5, 0)
 mesh = SubResource("PlaneMesh_cbjsr")
 
+[node name="Kahoys" type="Node3D" parent="ISLAND"]
+
+[node name="Kahoy" type="MeshInstance3D" parent="ISLAND/Kahoys"]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 69.08512, 0.1, -35.299133)
+mesh = ExtResource("14_qrpbx")
+skeleton = NodePath("../../../SKY")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="ISLAND/Kahoys/Kahoy"]
+visible = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ISLAND/Kahoys/Kahoy/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7132566, 0)
+visible = false
+shape = SubResource("BoxShape3D_qrpbx")
+
+[node name="Kahoy2" type="MeshInstance3D" parent="ISLAND/Kahoys"]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 63.948723, 0.1, -18.423191)
+mesh = ExtResource("14_qrpbx")
+skeleton = NodePath("../../../SKY")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="ISLAND/Kahoys/Kahoy2"]
+visible = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ISLAND/Kahoys/Kahoy2/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7132566, 0)
+visible = false
+shape = SubResource("BoxShape3D_qrpbx")
+
+[node name="Kahoy3" type="MeshInstance3D" parent="ISLAND/Kahoys"]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 29.776043, 0.1, -42.51531)
+mesh = ExtResource("14_qrpbx")
+skeleton = NodePath("../../../SKY")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="ISLAND/Kahoys/Kahoy3"]
+visible = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ISLAND/Kahoys/Kahoy3/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7132566, 0)
+visible = false
+shape = SubResource("BoxShape3D_qrpbx")
+
+[node name="Kahoy4" type="MeshInstance3D" parent="ISLAND/Kahoys"]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 16.640001, 0.1, -14.258964)
+mesh = ExtResource("14_qrpbx")
+skeleton = NodePath("../../../SKY")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="ISLAND/Kahoys/Kahoy4"]
+visible = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ISLAND/Kahoys/Kahoy4/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7132566, 0)
+visible = false
+shape = SubResource("BoxShape3D_qrpbx")
+
+[node name="Kahoy5" type="MeshInstance3D" parent="ISLAND/Kahoys"]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 75.49762, 4.3991218, -50.24132)
+mesh = ExtResource("14_qrpbx")
+skeleton = NodePath("../../../SKY")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="ISLAND/Kahoys/Kahoy5"]
+visible = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ISLAND/Kahoys/Kahoy5/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7132566, 0)
+visible = false
+shape = SubResource("BoxShape3D_qrpbx")
+
+[node name="Kahoy6" type="MeshInstance3D" parent="ISLAND/Kahoys"]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 78.09211, 0.1, 5.3155603)
+mesh = ExtResource("14_qrpbx")
+skeleton = NodePath("../../../SKY")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="ISLAND/Kahoys/Kahoy6"]
+visible = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ISLAND/Kahoys/Kahoy6/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7132566, 0)
+visible = false
+shape = SubResource("BoxShape3D_qrpbx")
+
+[node name="Kahoy7" type="MeshInstance3D" parent="ISLAND/Kahoys"]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 7.759617, 0.1, 6.9945316)
+mesh = ExtResource("14_qrpbx")
+skeleton = NodePath("../../../SKY")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="ISLAND/Kahoys/Kahoy7"]
+visible = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ISLAND/Kahoys/Kahoy7/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7132566, 0)
+visible = false
+shape = SubResource("BoxShape3D_qrpbx")
+
+[node name="Kahoy8" type="MeshInstance3D" parent="ISLAND/Kahoys"]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 44.872025, 0.1, 15.530775)
+mesh = ExtResource("14_qrpbx")
+skeleton = NodePath("../../../SKY")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="ISLAND/Kahoys/Kahoy8"]
+visible = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ISLAND/Kahoys/Kahoy8/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7132566, 0)
+visible = false
+shape = SubResource("BoxShape3D_qrpbx")
+
+[node name="Kahoy9" type="MeshInstance3D" parent="ISLAND/Kahoys"]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 28.480856, 0.1, 41.85574)
+mesh = ExtResource("14_qrpbx")
+skeleton = NodePath("../../../SKY")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="ISLAND/Kahoys/Kahoy9"]
+visible = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ISLAND/Kahoys/Kahoy9/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7132566, 0)
+visible = false
+shape = SubResource("BoxShape3D_qrpbx")
+
+[node name="Kahoy10" type="MeshInstance3D" parent="ISLAND/Kahoys"]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 93.74933, 0.1, 34.880043)
+mesh = ExtResource("14_qrpbx")
+skeleton = NodePath("../../../SKY")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="ISLAND/Kahoys/Kahoy10"]
+visible = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ISLAND/Kahoys/Kahoy10/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7132566, 0)
+visible = false
+shape = SubResource("BoxShape3D_qrpbx")
+
+[node name="Kahoy11" type="MeshInstance3D" parent="ISLAND/Kahoys"]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 63.33883, 0.1, 27.707472)
+mesh = ExtResource("14_qrpbx")
+skeleton = NodePath("../../../SKY")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="ISLAND/Kahoys/Kahoy11"]
+visible = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ISLAND/Kahoys/Kahoy11/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7132566, 0)
+visible = false
+shape = SubResource("BoxShape3D_qrpbx")
+
+[node name="Kahoy12" type="MeshInstance3D" parent="ISLAND/Kahoys"]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -84.511955, 0.1, 0)
+mesh = ExtResource("14_qrpbx")
+skeleton = NodePath("../../../SKY")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="ISLAND/Kahoys/Kahoy12"]
+visible = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ISLAND/Kahoys/Kahoy12/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7132566, 0)
+visible = false
+shape = SubResource("BoxShape3D_qrpbx")
+
+[node name="Kahoy13" type="MeshInstance3D" parent="ISLAND/Kahoys"]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -16.571777, 0.1, 2.2148075)
+mesh = ExtResource("14_qrpbx")
+skeleton = NodePath("../../../SKY")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="ISLAND/Kahoys/Kahoy13"]
+visible = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ISLAND/Kahoys/Kahoy13/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7132566, 0)
+visible = false
+shape = SubResource("BoxShape3D_qrpbx")
+
+[node name="Kahoy14" type="MeshInstance3D" parent="ISLAND/Kahoys"]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 4.767082, 0.1, 31.914055)
+mesh = ExtResource("14_qrpbx")
+skeleton = NodePath("../../../SKY")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="ISLAND/Kahoys/Kahoy14"]
+visible = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ISLAND/Kahoys/Kahoy14/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7132566, 0)
+visible = false
+shape = SubResource("BoxShape3D_qrpbx")
+
+[node name="Kahoy15" type="MeshInstance3D" parent="ISLAND/Kahoys"]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -83.1255, 0.1, 42.998955)
+mesh = ExtResource("14_qrpbx")
+skeleton = NodePath("../../../SKY")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="ISLAND/Kahoys/Kahoy15"]
+visible = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ISLAND/Kahoys/Kahoy15/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7132566, 0)
+visible = false
+shape = SubResource("BoxShape3D_qrpbx")
+
+[node name="Kahoy16" type="MeshInstance3D" parent="ISLAND/Kahoys"]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -43.419716, 0.1, 15.476654)
+mesh = ExtResource("14_qrpbx")
+skeleton = NodePath("../../../SKY")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="ISLAND/Kahoys/Kahoy16"]
+visible = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ISLAND/Kahoys/Kahoy16/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7132566, 0)
+visible = false
+shape = SubResource("BoxShape3D_qrpbx")
+
+[node name="Kahoy17" type="MeshInstance3D" parent="ISLAND/Kahoys"]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -56.39204, 0.1, -57.301548)
+mesh = ExtResource("14_qrpbx")
+skeleton = NodePath("../../../SKY")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="ISLAND/Kahoys/Kahoy17"]
+visible = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ISLAND/Kahoys/Kahoy17/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7132566, 0)
+visible = false
+shape = SubResource("BoxShape3D_qrpbx")
+
+[node name="Kahoy18" type="MeshInstance3D" parent="ISLAND/Kahoys"]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -25.86755, 0.1, -71.84247)
+mesh = ExtResource("14_qrpbx")
+skeleton = NodePath("../../../SKY")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="ISLAND/Kahoys/Kahoy18"]
+visible = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ISLAND/Kahoys/Kahoy18/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7132566, 0)
+visible = false
+shape = SubResource("BoxShape3D_qrpbx")
+
+[node name="Kahoy19" type="MeshInstance3D" parent="ISLAND/Kahoys"]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -81.980354, 0.1, -34.364494)
+mesh = ExtResource("14_qrpbx")
+skeleton = NodePath("../../../SKY")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="ISLAND/Kahoys/Kahoy19"]
+visible = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ISLAND/Kahoys/Kahoy19/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7132566, 0)
+visible = false
+shape = SubResource("BoxShape3D_qrpbx")
+
+[node name="Kahoy20" type="MeshInstance3D" parent="ISLAND/Kahoys"]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -47.969902, 0.1, -15.451265)
+mesh = ExtResource("14_qrpbx")
+skeleton = NodePath("../../../SKY")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="ISLAND/Kahoys/Kahoy20"]
+visible = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ISLAND/Kahoys/Kahoy20/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7132566, 0)
+visible = false
+shape = SubResource("BoxShape3D_qrpbx")
+
+[node name="Kahoy21" type="MeshInstance3D" parent="ISLAND/Kahoys"]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -21.30818, 0.1, 47.22673)
+mesh = ExtResource("14_qrpbx")
+skeleton = NodePath("../../../SKY")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="ISLAND/Kahoys/Kahoy21"]
+visible = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ISLAND/Kahoys/Kahoy21/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7132566, 0)
+visible = false
+shape = SubResource("BoxShape3D_qrpbx")
+
+[node name="Kahoy22" type="MeshInstance3D" parent="ISLAND/Kahoys"]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 32.35962, 0.1, -93.0161)
+mesh = ExtResource("14_qrpbx")
+skeleton = NodePath("../../../SKY")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="ISLAND/Kahoys/Kahoy22"]
+visible = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ISLAND/Kahoys/Kahoy22/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7132566, 0)
+visible = false
+shape = SubResource("BoxShape3D_qrpbx")
+
+[node name="Kahoy23" type="MeshInstance3D" parent="ISLAND/Kahoys"]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0.1, -95.11534)
+mesh = ExtResource("14_qrpbx")
+skeleton = NodePath("../../../SKY")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="ISLAND/Kahoys/Kahoy23"]
+visible = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ISLAND/Kahoys/Kahoy23/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7132566, 0)
+visible = false
+shape = SubResource("BoxShape3D_qrpbx")
+
+[node name="Kahoy24" type="MeshInstance3D" parent="ISLAND/Kahoys"]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 3.8213005, 0.1, -37.756638)
+mesh = ExtResource("14_qrpbx")
+skeleton = NodePath("../../../SKY")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="ISLAND/Kahoys/Kahoy24"]
+visible = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ISLAND/Kahoys/Kahoy24/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7132566, 0)
+visible = false
+shape = SubResource("BoxShape3D_qrpbx")
+
+[node name="Kahoy25" type="MeshInstance3D" parent="ISLAND/Kahoys"]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 96.573, 11, -102.12)
+mesh = ExtResource("14_qrpbx")
+skeleton = NodePath("../../../SKY")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="ISLAND/Kahoys/Kahoy25"]
+visible = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ISLAND/Kahoys/Kahoy25/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7132566, 0)
+visible = false
+shape = SubResource("BoxShape3D_qrpbx")
+
+[node name="Kahoy26" type="MeshInstance3D" parent="ISLAND/Kahoys"]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 89.096, 11, -63.413)
+mesh = ExtResource("14_qrpbx")
+skeleton = NodePath("../../../SKY")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="ISLAND/Kahoys/Kahoy26"]
+visible = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ISLAND/Kahoys/Kahoy26/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7132566, 0)
+visible = false
+shape = SubResource("BoxShape3D_qrpbx")
+
+[node name="Foliages" type="Node3D" parent="ISLAND"]
+
 [node name="SKY" type="Node3D" parent="."]
 transform = Transform3D(150, 0, 0, 0, 150, 0, 0, 0, 150, 0, 71.67545, 0)
+visible = false
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="SKY"]
 layers = 1023

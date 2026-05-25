@@ -2,7 +2,7 @@
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_t8krc"]
 noise_type = 3
-frequency = 0.05
+frequency = 0.048
 offset = Vector3(0, 0, -186.05)
 fractal_octaves = 3
 fractal_weighted_strength = 1.0

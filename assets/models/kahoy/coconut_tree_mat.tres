@@ -1,0 +1,12 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://calxf5lx5n3q6"]
+
+[ext_resource type="Texture2D" uid="uid://wj65rtet8kpn" path="res://assets/models/kahoy/coconut_tree_0.png" id="1_ttidc"]
+
+[resource]
+resource_name = "coconut_tree_mat"
+cull_mode = 2
+shading_mode = 2
+specular_mode = 2
+disable_ambient_light = true
+disable_specular_occlusion = true
+albedo_texture = ExtResource("1_ttidc")

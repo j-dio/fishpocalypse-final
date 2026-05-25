@@ -27,7 +27,7 @@ light_energy = 1.5
 light_bake_mode = 1
 shadow_enabled = true
 shadow_opacity = 0.9
-shadow_blur = 5.0
+shadow_blur = 2.5
 sky_mode = 1
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]

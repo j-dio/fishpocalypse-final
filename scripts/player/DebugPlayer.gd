@@ -115,25 +115,7 @@ func _physics_process(delta: float) -> void:
 	velocity.x = input_dir.x * speed
 	velocity.z = input_dir.z * speed
 
-	if Input.is_action_just_pressed("SHOOT"):
-		print("Shoot! (CombatSystem not yet wired — Phase 3)")
-
 	_play_move_anim()
-	move_and_slide()
-	_check_ocean_boundary()
-	_update_aim()
-
-
-func _handle_dodge_physics(delta: float) -> void:
-	ghost_timer -= delta
-	if ghost_timer <= 0.0:
-		ghost_timer = ghost_interval
-		combat.spawn_dodge_ghost()
-
-	velocity.x = combat.dodge_dir.x * dodge_speed
-	velocity.z = combat.dodge_dir.z * dodge_speed
-
-	_play_anim("dodge")
 	move_and_slide()
 	_check_ocean_boundary()
 	_update_aim()
@@ -199,6 +181,10 @@ func _push_back_to_land() -> void:
 	if not has_valid_position: return
 	global_position = previous_valid_position
 	velocity = Vector3.ZERO
+
+func take_damage(amount: float) -> void:
+	_take_damage(amount)
+
 
 func _take_damage(amount: float) -> void:
 	if invincibility_timer > 0.0:

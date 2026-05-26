@@ -16,10 +16,6 @@ const SP_MAX := 100
 var _equipped_weapon_node: Weapon = null
 var _shot_delay_timer: float = 0.0
 
-var is_dodging := false
-var dodge_timer := 0.0
-var dodge_dir := Vector3.ZERO
-
 var _cp_regen_accum := 0.0
 var _sp_regen_accum := 0.0
 
@@ -32,9 +28,6 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if _shot_delay_timer > 0.0: _shot_delay_timer -= delta
-	if is_dodging:
-		dodge_timer -= delta
-		if dodge_timer <= 0.0: _end_dodge()
 
 	if Input.is_action_just_pressed("SHOOT"): fire()
 	if Input.is_action_just_pressed("DODGE"): dodge()
@@ -49,6 +42,7 @@ func _process(delta: float) -> void:
 		_inventory.use_item("item_slot_2")
 
 	_handle_regen(delta)
+
 
 
 # COMBAT -----------------------------------------------------------------------
@@ -72,21 +66,12 @@ func fire() -> void:
 
 
 func dodge() -> void:
-	if _player.SP < dodge_sp_cost or is_dodging: return
+	if _player.SP < dodge_sp_cost or _player.is_dodging: return
 	var move_dir := Vector3(_player.velocity.x, 0.0, _player.velocity.z).normalized()
 	_player.deduct_sp(dodge_sp_cost)
-	is_dodging = true
-	dodge_timer = _player.dodge_time
-	dodge_dir = move_dir
-	_player.start_dodge(dodge_dir)
+	_player.start_dodge(move_dir)
 	_player._play_dodge_sound()
 	dodged.emit()
-
-
-func _end_dodge() -> void:
-	is_dodging = false
-	dodge_timer = 0.0
-	_player.end_dodge()
 
 
 # WEAPON HANDLING --------------------------------------------------------------
@@ -119,22 +104,9 @@ func _handle_regen(delta: float) -> void:
 			var amount := int(_cp_regen_accum)
 			_cp_regen_accum -= amount
 			_player.CP = mini(_player.CP + amount, CP_MAX)
-	if not is_dodging and _player.SP < SP_MAX:
+	if not _player.is_dodging and _player.SP < SP_MAX:
 		_sp_regen_accum += _player.RR_SP * delta
 		if _sp_regen_accum >= 1.0:
 			var amount := int(_sp_regen_accum)
 			_sp_regen_accum -= amount
 			_player.SP = mini(_player.SP + amount, SP_MAX)
-
-
-# DODGE GHOST ------------------------------------------------------------------
-
-const _GHOST_SCRIPT = preload("res://scripts/player/dodge_ghost.gd")
-
-func spawn_dodge_ghost() -> void:
-	var ghost := Node3D.new()
-	ghost.set_script(_GHOST_SCRIPT)
-	get_tree().current_scene.add_child(ghost)
-	ghost.global_position = _player.global_position
-	ghost.global_rotation = _player.global_rotation
-	ghost.setup(_player.anim, _player.anim.frame)

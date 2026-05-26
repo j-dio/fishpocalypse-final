@@ -5,11 +5,12 @@
 [ext_resource type="Script" uid="uid://butapasd4olx0" path="res://scripts/components/health_component.gd" id="3_health"]
 [ext_resource type="Script" uid="uid://w1w5a2782ygt" path="res://scripts/player/inventory_system.gd" id="4_inv"]
 [ext_resource type="Script" uid="uid://cb7xcgwlk1l1h" path="res://scripts/itemSystem/itemAttributes/fish_weapon_data.gd" id="4_lsmmx"]
-[ext_resource type="Script" uid="uid://bsmvnugvgabp7" path="res://scripts/player/buff_system.gd" id="5_15rtr"]
+[ext_resource type="Script" path="res://scripts/player/buff_system.gd" id="5_15rtr"]
 [ext_resource type="Script" uid="uid://btinxc3vf3cat" path="res://scripts/itemSystem/itemAttributes/fishing_pole_data.gd" id="5_nwkom"]
 [ext_resource type="Script" uid="uid://8ko8ju356at2" path="res://scripts/itemSystem/itemAttributes/healing_item_data.gd" id="6_bmswy"]
 [ext_resource type="Script" uid="uid://sac2ms5xt7bk" path="res://scripts/player/combat_system.gd" id="6_q2jae"]
 [ext_resource type="Script" uid="uid://xpnm82ynjqsm" path="res://scripts/itemSystem/items_db.gd" id="7_blpqp"]
+[ext_resource type="Script" uid="uid://bui002s885pkf" path="res://scripts/ui/player_hud.gd" id="8_hud"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xit8r"]
 size = Vector3(1.5, 1.5, 0.5)
@@ -268,6 +269,45 @@ animations = [{
 script = ExtResource("7_blpqp")
 metadata/_custom_type_script = "uid://xpnm82ynjqsm"
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hud_bg"]
+content_margin_left = 6.0
+content_margin_top = 6.0
+content_margin_right = 6.0
+content_margin_bottom = 6.0
+bg_color = Color(0, 0, 0, 0.55)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bar_bg"]
+bg_color = Color(0.08, 0.08, 0.08, 0.9)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hp_fill"]
+bg_color = Color(0.85, 0.15, 0.15, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cp_fill"]
+bg_color = Color(0.2, 0.5, 0.95, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sp_fill"]
+bg_color = Color(0.15, 0.82, 0.28, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
 [node name="DebugPlayer" type="CharacterBody3D" unique_id=1697580463]
 script = ExtResource("1_x2lrw")
 
@@ -321,17 +361,84 @@ script = ExtResource("6_q2jae")
 
 [node name="UI_HUD" type="Control" parent="." unique_id=1279684202]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 
 [node name="player_stats" type="Control" parent="UI_HUD" unique_id=785374330]
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 12.0
+offset_top = 12.0
+offset_right = 232.0
+offset_bottom = 98.0
+scale = Vector2(0.505, 0.505)
+script = ExtResource("8_hud")
 
-[node name="TextEdit" type="TextEdit" parent="UI_HUD/player_stats" unique_id=298008992]
-layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
-text = "NIGGA"
+[node name="Panel" type="PanelContainer" parent="UI_HUD/player_stats" unique_id=100000001]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_hud_bg")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI_HUD/player_stats/Panel" unique_id=100000002]
+layout_mode = 2
+
+[node name="HPRow" type="HBoxContainer" parent="UI_HUD/player_stats/Panel/VBoxContainer" unique_id=100000003]
+custom_minimum_size = Vector2(0, 22)
+layout_mode = 2
+
+[node name="HPLabel" type="Label" parent="UI_HUD/player_stats/Panel/VBoxContainer/HPRow" unique_id=100000004]
+custom_minimum_size = Vector2(28, 0)
+layout_mode = 2
+text = "HP"
+
+[node name="HPBar" type="ProgressBar" parent="UI_HUD/player_stats/Panel/VBoxContainer/HPRow" unique_id=100000005]
+custom_minimum_size = Vector2(160, 16)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_styles/background = SubResource("StyleBoxFlat_bar_bg")
+theme_override_styles/fill = SubResource("StyleBoxFlat_hp_fill")
+value = 100.0
+show_percentage = false
+
+[node name="CPRow" type="HBoxContainer" parent="UI_HUD/player_stats/Panel/VBoxContainer" unique_id=100000006]
+custom_minimum_size = Vector2(0, 22)
+layout_mode = 2
+
+[node name="CPLabel" type="Label" parent="UI_HUD/player_stats/Panel/VBoxContainer/CPRow" unique_id=100000007]
+custom_minimum_size = Vector2(28, 0)
+layout_mode = 2
+text = "CP"
+
+[node name="CPBar" type="ProgressBar" parent="UI_HUD/player_stats/Panel/VBoxContainer/CPRow" unique_id=100000008]
+custom_minimum_size = Vector2(160, 16)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_styles/background = SubResource("StyleBoxFlat_bar_bg")
+theme_override_styles/fill = SubResource("StyleBoxFlat_cp_fill")
+value = 100.0
+show_percentage = false
+
+[node name="SPRow" type="HBoxContainer" parent="UI_HUD/player_stats/Panel/VBoxContainer" unique_id=100000009]
+custom_minimum_size = Vector2(0, 22)
+layout_mode = 2
+
+[node name="SPLabel" type="Label" parent="UI_HUD/player_stats/Panel/VBoxContainer/SPRow" unique_id=100000010]
+custom_minimum_size = Vector2(28, 0)
+layout_mode = 2
+text = "SP"
+
+[node name="SPBar" type="ProgressBar" parent="UI_HUD/player_stats/Panel/VBoxContainer/SPRow" unique_id=100000011]
+custom_minimum_size = Vector2(160, 16)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_styles/background = SubResource("StyleBoxFlat_bar_bg")
+theme_override_styles/fill = SubResource("StyleBoxFlat_sp_fill")
+value = 100.0
+show_percentage = false

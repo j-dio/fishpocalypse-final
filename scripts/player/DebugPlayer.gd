@@ -277,8 +277,3 @@ func _spawn_dodge_ghost() -> void:
 	ghost.global_position = global_position
 	ghost.global_rotation = global_rotation
 	ghost.setup(anim, anim.frame)
-	
-func deduct_sp(amount: float) -> void:
-	SP = max(SP - amount, 0)
-func deduct_cp(amount: float) -> void:
-	CP = max(CP - amount, 0)

@@ -26,7 +26,7 @@ animations = [{
 }]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4i7jc"]
-size = Vector3(1.7648163, 1.5214844, 0.31103516)
+size = Vector3(1.4510918, 1.8967285, 0.31103516)
 
 [node name="Fish" type="CharacterBody3D" unique_id=254113885]
 collision_layer = 2
@@ -44,4 +44,5 @@ autoplay = "default"
 frame_progress = 0.5741037
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1335891917]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.028360367, -0.015014648, 0)
 shape = SubResource("BoxShape3D_4i7jc")

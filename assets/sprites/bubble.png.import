@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d3w1x8l1jmd33"
-path.s3tc="res://.godot/imported/isda_shoot.png-e751fdd4d762fb0272b64e5ea68c11e2.s3tc.ctex"
+uid="uid://bxrhibxnknirg"
+path.s3tc="res://.godot/imported/bubble.png-9b2731b7346f121ef1fc1a9c24d375f3.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/sprites/isda_shoot.png"
-dest_files=["res://.godot/imported/isda_shoot.png-e751fdd4d762fb0272b64e5ea68c11e2.s3tc.ctex"]
+source_file="res://assets/sprites/bubble.png"
+dest_files=["res://.godot/imported/bubble.png-9b2731b7346f121ef1fc1a9c24d375f3.s3tc.ctex"]
 
 [params]
 

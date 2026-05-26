@@ -26,7 +26,7 @@ animations = [{
 }]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wgsmi"]
-size = Vector3(1.3189478, 1.5414734, 0.3203659)
+size = Vector3(1.9222662, 1.7238617, 0.3203659)
 
 [node name="Tank_Fish" type="CharacterBody3D" unique_id=807799453]
 collision_layer = 2
@@ -42,7 +42,8 @@ alpha_scissor_threshold = 1.0
 texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_kfuxu")
 autoplay = "default"
-frame_progress = 0.59701014
+frame_progress = 0.056725807
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=964106439]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.004198909, -0.09119415, 0)
 shape = SubResource("BoxShape3D_wgsmi")

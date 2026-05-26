@@ -29,7 +29,6 @@
 [ext_resource type="PackedScene" uid="uid://dwr1m6px173c6" path="res://scenes/DayNightSystem/dayNightSystem.tscn" id="23_bv014"]
 [ext_resource type="PackedScene" uid="uid://sheavwaiaj2f" path="res://scenes/EnemyRelated/tank_fish.tscn" id="24_oj3ja"]
 [ext_resource type="PackedScene" uid="uid://by4e1q3ce1ehm" path="res://scenes/EnemyRelated/fish.tscn" id="25_mlmqm"]
-[ext_resource type="PackedScene" uid="uid://hxknigqyh2fs" path="res://scenes/EnemyRelated/ranged_fish.tscn" id="26_mlmqm"]
 
 [sub_resource type="Texture2D" id="Texture2D_p1dug"]
 resource_local_to_scene = false
@@ -676,7 +675,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 71.223, 0, -10.332)
 player = NodePath("../Player")
 tanky_fish = ExtResource("24_oj3ja")
 normal_fish = ExtResource("25_mlmqm")
-ranged_fish = ExtResource("26_mlmqm")
 
 [node name="FishingSystem" type="Node" parent="." unique_id=670019011]
 script = ExtResource("14_fsys")

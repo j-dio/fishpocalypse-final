@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://blcs4n4ypsi37"]
+
+[ext_resource type="Script" uid="uid://br0cjyr0ko270" path="res://scripts/Fish/bubble_projectile.gd" id="1_7ulvv"]
+[ext_resource type="Texture2D" uid="uid://bxrhibxnknirg" path="res://assets/sprites/bubble.png" id="2_7ulvv"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ww3km"]
+radius = 0.5756836
+height = 1.2052002
+
+[node name="Area3D" type="Area3D" unique_id=285726234]
+collision_layer = 4
+script = ExtResource("1_7ulvv")
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=672190265]
+transform = Transform3D(-1.3113417e-08, -0.3, 0, 0.3, -1.3113417e-08, 0, 0, 0, 0.3, 0, 0, 0)
+gi_lightmap_texel_scale = 2.0
+billboard = 1
+texture = ExtResource("2_7ulvv")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1908178449]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.016571045, 0)
+shape = SubResource("CapsuleShape3D_ww3km")

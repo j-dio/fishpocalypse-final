@@ -4,19 +4,19 @@ extends Node3D
 @export var player: CharacterBody3D
 @export var tanky_fish: PackedScene
 @export var normal_fish: PackedScene
+@export var ranged_fish: PackedScene
 
 var spawn_distance: float = 50.0
 var base_spawn_amount: int = 1
 var enemies_spawned_this_night: int = 0
 var is_night: bool = false
-
 var day_count: int = 0
 var next_elite_day: int = 0
 
-# tanky=30%, normal=70%
 const SPAWN_TABLE = [
-	{"scene": "tanky",  "weight": 30},
-	{"scene": "normal", "weight": 70},
+	{"scene": "tanky",  "weight": 35},
+	{"scene": "normal", "weight": 50},
+	{"scene": "ranged", "weight": 15},
 ]
 
 func _ready() -> void:
@@ -43,7 +43,6 @@ func _on_timer_timeout() -> void:
 	for i in range(spawn_count):
 		spawn(get_random_position(), false)
 	enemies_spawned_this_night += spawn_count
-
 	if day_count >= next_elite_day:
 		spawn(get_random_position(), true)
 		_pick_next_elite_day()
@@ -55,7 +54,6 @@ func _pick_random_scene() -> PackedScene:
 	var total_weight = 0
 	for entry in SPAWN_TABLE:
 		total_weight += entry["weight"]
-
 	var roll = randi_range(1, total_weight)
 	var cumulative = 0
 	for entry in SPAWN_TABLE:
@@ -64,7 +62,7 @@ func _pick_random_scene() -> PackedScene:
 			match entry["scene"]:
 				"tanky":  return tanky_fish
 				"normal": return normal_fish
-
+				"ranged": return ranged_fish if ranged_fish != null else normal_fish
 	return normal_fish
 
 func spawn(pos: Vector3, elite: bool = false) -> void:

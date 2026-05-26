@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://hxknigqyh2fs"]
+
+[ext_resource type="Texture2D" uid="uid://d3w1x8l1jmd33" path="res://assets/sprites/isda_shoot.png" id="1_5s0u4"]
+[ext_resource type="Script" uid="uid://dnlrt1d3a4f1p" path="res://scripts/Fish/ranged_fish.gd" id="1_t6q6i"]
+[ext_resource type="PackedScene" uid="uid://blcs4n4ypsi37" path="res://scenes/EnemyRelated/bubble_projectile.tscn" id="2_j6bek"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t6q6i"]
+atlas = ExtResource("1_5s0u4")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j6bek"]
+atlas = ExtResource("1_5s0u4")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_m6y2y"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t6q6i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j6bek")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5o712"]
+size = Vector3(0.69262695, 0.8952637, 0.22741699)
+
+[node name="Ranged_Fish" type="CharacterBody3D" unique_id=1313920117]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
+script = ExtResource("1_t6q6i")
+projectile_scene = ExtResource("2_j6bek")
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="." unique_id=483288989]
+transform = Transform3D(1.4, 0, 0, 0, 1.4, 0, 0, 0, 1.4, 0, 0, 0)
+billboard = 1
+shaded = true
+texture_filter = 0
+sprite_frames = SubResource("SpriteFrames_m6y2y")
+frame_progress = 0.6855319
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1013894883]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.014526367, -0.0040283203, -0.0005493164)
+shape = SubResource("BoxShape3D_5o712")

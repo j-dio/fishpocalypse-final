@@ -50,6 +50,7 @@ var was_moving_before_dodge := false
 
 const _SFX_WALK  = preload("res://assets/audio/player_walk.mp3")
 const _SFX_DODGE = preload("res://assets/audio/player_dodge.mp3")
+const _SFX_HURT  = preload("res://assets/audio/player_hurt.mp3")
 
 
 func _ready() -> void:
@@ -183,8 +184,9 @@ func take_damage(amount: float) -> void:
 
 
 func _take_damage(amount: float) -> void:
-	if invincibility_timer > 0.0:
-		return
+	if invincibility_timer > 0.0: return
+	_play_hurt_sound()
+	_play_anim("hurt")
 	health.take_damage(amount)
 	invincibility_timer = INVINCIBILITY_TIME
 	print("[Player] took %.1f damage" % amount)
@@ -237,6 +239,14 @@ func _play_dodge_sound() -> void:
 		audio_player.pitch_scale = 1.5
 		audio_player.play()
 
+func _play_hurt_sound() -> void:
+	if audio_player:
+		audio_player.stream = _SFX_HURT
+		audio_player.volume_db = 1.0
+		audio_player.pitch_scale = 1.0
+		audio_player.play()
+
+
 func _play_anim(name: String) -> void:
 	if current_anim == name: return
 	current_anim = name
@@ -278,7 +288,3 @@ func _spawn_dodge_ghost() -> void:
 	ghost.global_rotation = global_rotation
 	ghost.setup(anim, anim.frame)
 	
-func deduct_sp(amount: float) -> void:
-	SP = max(SP - amount, 0)
-func deduct_cp(amount: float) -> void:
-	CP = max(CP - amount, 0)

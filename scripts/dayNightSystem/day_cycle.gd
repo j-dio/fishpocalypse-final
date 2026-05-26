@@ -1,10 +1,14 @@
 extends Node3D
 signal day_night_changed(is_night_active: bool)
-@export var day_length_sec: int = 360.0
+
+@export var day_length_sec: int = 360
 @export var speed_factor: float = 1.0
 @onready var light: DirectionalLight3D = $DirectionalLight3D
 @onready var world_env: WorldEnvironment = $WorldEnvironment
 @onready var music_player: AudioStreamPlayer = $AudioStreamPlayer
+@onready var wind: AudioStreamPlayer = $Wind
+@onready var bird: AudioStreamPlayer = $Bird
+
 var time_accumulated: float = 0.0
 var is_night: bool = false
 var sky_material: ProceduralSkyMaterial
@@ -55,6 +59,11 @@ func _set_day_state() -> void:
 func _set_night_state() -> void:
 	is_night = true
 	light.light_energy = 0.0
+	
+	# Remove chill music
+	wind.stop()
+	bird.stop()
+	
 	if _env:
 		_env.background_mode = Environment.BG_SKY
 		if sky_material:

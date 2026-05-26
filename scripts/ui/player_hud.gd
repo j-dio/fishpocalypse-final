@@ -5,9 +5,9 @@ class_name PlayerHUD
 @export var cp_fill_texture: Texture2D
 @export var sp_fill_texture: Texture2D
 
-@onready var _hp_bar: ProgressBar = $Panel/VBoxContainer/HPRow/HPBar
-@onready var _cp_bar: ProgressBar = $Panel/VBoxContainer/CPRow/CPBar
-@onready var _sp_bar: ProgressBar = $Panel/VBoxContainer/SPRow/SPBar
+@onready var _hp_bar: ProgressBar = $Panel/VBoxContainer/HPRow/Control/HPBar
+@onready var _cp_bar: ProgressBar = $Panel/VBoxContainer/CPRow/Control/CPBar
+@onready var _sp_bar: ProgressBar = $Panel/VBoxContainer/SPRow/Control/SPBar
 
 var _player = null
 

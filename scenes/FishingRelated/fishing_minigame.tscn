@@ -2,13 +2,34 @@
 
 [ext_resource type="Script" uid="uid://6cxlnnsaydcq" path="res://scripts/fishSystem/fishing_minigame.gd" id="1_fmg"]
 [ext_resource type="Script" uid="uid://8bo4ffiqn4ll" path="res://scripts/fishSystem/fishing_bar.gd" id="2_fb"]
+[ext_resource type="Texture2D" uid="uid://c46bxdlpa7q0v" path="res://assets/sprites/catch_status.png" id="3_etqg6"]
+
+[sub_resource type="Gradient" id="Gradient_etqg6"]
+offsets = PackedFloat32Array(0.305, 0.545, 0.795)
+colors = PackedColorArray(0.22745098, 0.12156863, 0.14509805, 1, 0.6431373, 0.34509805, 0.15294118, 1, 0.22745098, 0.12156863, 0.14509805, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_8xauv"]
+gradient = SubResource("Gradient_etqg6")
+width = 8
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_o5ovy"]
+texture = SubResource("GradientTexture1D_8xauv")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8xauv"]
+bg_color = Color(0.08802237, 0.68103427, 3.85046e-07, 1)
+border_width_top = 3
+border_color = Color(0.99999994, 0.9864351, 0.984091, 1)
+corner_detail = 5
 
 [node name="FishingMinigame" type="Control" unique_id=1621987674]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 272.0
+offset_top = 11.0
+offset_right = -143.0
+offset_bottom = -7.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -19,6 +40,8 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = -18.0
+offset_bottom = -9.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -29,24 +52,47 @@ theme_override_constants/separation = 6
 
 [node name="BarsHBox" type="HBoxContainer" parent="CenterBox/ContentVBox" unique_id=1247240678]
 layout_mode = 2
-theme_override_constants/separation = 4
+theme_override_constants/separation = 6
+alignment = 1
 
 [node name="FishBar" type="Control" parent="CenterBox/ContentVBox/BarsHBox" unique_id=1223678827]
-custom_minimum_size = Vector2(40, 200)
+custom_minimum_size = Vector2(25, 200)
 layout_mode = 2
 script = ExtResource("2_fb")
 
-[node name="CatchProgress" type="ProgressBar" parent="CenterBox/ContentVBox/BarsHBox" unique_id=570137232]
-custom_minimum_size = Vector2(14, 200)
+[node name="Border" type="ColorRect" parent="CenterBox/ContentVBox/BarsHBox/FishBar" unique_id=1849730354]
+z_index = -1
+layout_mode = 0
+offset_left = -2.0
+offset_top = -2.0
+offset_right = 27.0
+offset_bottom = 216.0
+color = Color(0, 0, 0, 1)
+
+[node name="CatchStatus" type="CenterContainer" parent="CenterBox/ContentVBox/BarsHBox" unique_id=582513253]
 layout_mode = 2
+
+[node name="CatchProgress" type="ProgressBar" parent="CenterBox/ContentVBox/BarsHBox/CatchStatus" unique_id=570137232]
+texture_filter = 1
+custom_minimum_size = Vector2(15, 213)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxTexture_o5ovy")
+theme_override_styles/fill = SubResource("StyleBoxFlat_8xauv")
 max_value = 1.0
 step = 0.001
 fill_mode = 3
 show_percentage = false
 
+[node name="TextureRect" type="TextureRect" parent="CenterBox/ContentVBox/BarsHBox/CatchStatus" unique_id=679138945]
+layout_mode = 2
+texture = ExtResource("3_etqg6")
+stretch_mode = 4
+
 [node name="HoldLabel" type="Label" parent="CenterBox/ContentVBox" unique_id=91282029]
 layout_mode = 2
-text = "Hold [F] to rise"
+theme_override_constants/line_spacing = 5
+theme_override_constants/outline_size = 16
+text = "Reel!"
 horizontal_alignment = 1
 
 [node name="WaitLabel" type="Label" parent="." unique_id=628939857]
@@ -63,7 +109,9 @@ offset_right = 120.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Waiting for a bite..."
+theme_override_constants/outline_size = 14
+text = "...
+"
 horizontal_alignment = 1
 
 [node name="BiteLabel" type="Label" parent="." unique_id=1047904367]
@@ -75,13 +123,14 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -120.0
-offset_top = -60.0
+offset_top = -48.0
 offset_right = 120.0
-offset_bottom = 60.0
+offset_bottom = 72.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/font_color = Color(1, 0.9, 0.1, 1)
-theme_override_font_sizes/font_size = 24
-text = "!! BITE !!
-Press [F]"
+theme_override_colors/font_color = Color(1, 0.535, 0.100000024, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 16
+theme_override_font_sizes/font_size = 29
+text = "HIT !"
 horizontal_alignment = 1

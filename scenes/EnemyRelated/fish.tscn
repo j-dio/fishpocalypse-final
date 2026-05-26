@@ -3,22 +3,22 @@
 [ext_resource type="Script" uid="uid://cudh7e2jibvxb" path="res://scripts/Fish/fish.gd" id="1_202cl"]
 [ext_resource type="Texture2D" uid="uid://duwgbcpnh4ysr" path="res://assets/sprites/isda_normal.png" id="2_202cl"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_202cl"]
+atlas = ExtResource("2_202cl")
+region = Rect2(0, 0, 32, 32)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_4i7jc"]
 atlas = ExtResource("2_202cl")
-region = Rect2(0, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_o8cn2"]
-atlas = ExtResource("2_202cl")
-region = Rect2(64, 0, 64, 64)
+region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_4iwxp"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_4i7jc")
+"texture": SubResource("AtlasTexture_202cl")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_o8cn2")
+"texture": SubResource("AtlasTexture_4i7jc")
 }],
 "loop": true,
 "name": &"default",
@@ -33,7 +33,7 @@ collision_layer = 2
 script = ExtResource("1_202cl")
 
 [node name="Sprite3D" type="AnimatedSprite3D" parent="." unique_id=1644682285]
-pixel_size = 0.03
+pixel_size = 0.05
 billboard = 1
 shaded = true
 alpha_cut = 3
@@ -41,7 +41,7 @@ alpha_scissor_threshold = 1.0
 texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_4iwxp")
 autoplay = "default"
-frame_progress = 0.5741037
+frame_progress = 0.80924106
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1335891917]
 shape = SubResource("BoxShape3D_4i7jc")

@@ -1,6 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://dwr1m6px173c6"]
+[gd_scene format=3 uid="uid://dwr1m6px173c6"]
 
-[ext_resource type="Script" uid="uid://bykntgvfrlrs8" path="res://scripts/DayNightSystem/day_cycle.gd" id="1_ffewv"]
+[ext_resource type="Script" uid="uid://bykntgvfrlrs8" path="res://scripts/dayNightSystem/day_cycle.gd" id="1_ffewv"]
+[ext_resource type="AudioStream" uid="uid://c7hcdv2c20g5g" path="res://assets/audio/nature_wind.mp3" id="2_2fm0q"]
+[ext_resource type="AudioStream" uid="uid://bsjj75pl8hp15" path="res://assets/audio/nature_bird.mp3" id="3_d8pa1"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_f5mkf"]
 sky_top_color = Color(0.22745098, 0.3019608, 0.9490196, 1)
@@ -17,11 +19,11 @@ background_mode = 2
 sky = SubResource("Sky_veb5h")
 ambient_light_source = 1
 
-[node name="DayNightSys" type="Node3D"]
+[node name="DayNightSys" type="Node3D" unique_id=1027322780]
 script = ExtResource("1_ffewv")
 speed_factor = 5.0
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=2072924879]
 light_color = Color(0.9332031, 0.97659343, 0.99628085, 1)
 light_energy = 1.5
 light_bake_mode = 1
@@ -30,8 +32,22 @@ shadow_opacity = 0.9
 shadow_blur = 2.5
 sky_mode = 1
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1897549798]
 environment = SubResource("Environment_ffewv")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=771515250]
 volume_db = -6.0
+
+[node name="Wind" type="AudioStreamPlayer" parent="." unique_id=524978055]
+stream = ExtResource("2_2fm0q")
+autoplay = true
+playback_type = 1
+parameters/looping = true
+
+[node name="Bird" type="AudioStreamPlayer" parent="." unique_id=427073605]
+stream = ExtResource("3_d8pa1")
+autoplay = true
+playback_type = 1
+parameters/looping = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=2057339920]

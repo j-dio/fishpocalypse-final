@@ -6,26 +6,28 @@ signal failed()
 
 enum State { IDLE, WAITING, BITE, ACTIVE, RESULT_SUCCESS, RESULT_FAIL }
 
-const RISE_ACCEL := 4.5
+const RISE_ACCEL := 6.5
 const FALL_GRAVITY := 3.2
 const FILL_RATE := 0.35
 const DRAIN_RATE := 0.22
 const RESULT_DISPLAY_TIME := 0.8
-const DIR_CHANGE_MIN := 0.15
-const DIR_CHANGE_MAX := 0.45
 
+# Lihok sa isda
+const DIR_CHANGE_MIN := 0.15
+const DIR_CHANGE_MAX := 0.25
+
+# Minimum mo howat og Max
 const WAIT_MIN := 2.0
-const WAIT_MAX := 5.0
-const BITE_WINDOW_MIN := 0.6
-const BITE_WINDOW_MAX := 0.8
+const WAIT_MAX := 2.0
+const BITE_WINDOW_MIN := 0.7
+const BITE_WINDOW_MAX := 100.0
 
 @onready var _fish_bar: FishingBar = $CenterBox/ContentVBox/BarsHBox/FishBar
-@onready var _catch_progress: ProgressBar = $CenterBox/ContentVBox/BarsHBox/CatchProgress
+@onready var _catch_progress: ProgressBar = $CenterBox/ContentVBox/BarsHBox/CatchStatus/CatchProgress
 @onready var _wait_label: Label = $WaitLabel
 @onready var _bite_label: Label = $BiteLabel
 
 var _state: State = State.IDLE
-
 var _fish_pos: float = 0.5
 var _fish_vel: float = 0.0
 var _fish_dir_timer: float = 0.0
@@ -70,7 +72,6 @@ func _set_state(s: State) -> void:
 		State.BITE:
 			visible = true
 			_bite_label.visible = true
-			_bite_label.text = "!! BITE !!\nPress [F]"
 		State.ACTIVE:
 			visible = true
 			$CenterBox.visible = true

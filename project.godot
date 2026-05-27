@@ -22,14 +22,17 @@ config/icon="res://icon.svg"
 [autoload]
 
 GameState="*res://0_autoloads/game_state.gd"
+DebugMenu="*uid://cggqb75a8w8r"
+ProjectilePool="*uid://8b5wtbpkhpq6"
 
 [display]
 
 window/stretch/mode="viewport"
+window/vsync/vsync_mode=0
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/MarchingSquaresTerrain/plugin.cfg")
+enabled=PackedStringArray("res://addons/MarchingSquaresTerrain/plugin.cfg", "res://addons/debug_menu/plugin.cfg")
 
 [input]
 

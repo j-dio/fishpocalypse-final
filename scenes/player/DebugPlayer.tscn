@@ -394,10 +394,10 @@ mouse_filter = 2
 
 [node name="player_stats" type="Control" parent="UI_HUD" unique_id=785374330]
 anchors_preset = 0
-offset_left = 373.99997
-offset_top = 11.0
-offset_right = 564.099
-offset_bottom = 81.15842
+offset_left = 1041.0
+offset_top = 15.0
+offset_right = 1231.099
+offset_bottom = 85.15842
 scale = Vector2(0.505, 0.505)
 script = ExtResource("8_hud")
 hp_fill_texture = SubResource("GradientTexture1D_blpqp")

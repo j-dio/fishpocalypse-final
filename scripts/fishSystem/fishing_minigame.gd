@@ -26,6 +26,7 @@ const BITE_WINDOW_MAX := 100.0
 @onready var _catch_progress: ProgressBar = $CenterBox/ContentVBox/BarsHBox/CatchStatus/CatchProgress
 @onready var _wait_label: Label = $WaitLabel
 @onready var _bite_label: Label = $BiteLabel
+@onready var _white_bg: Panel = $Panel
 @onready var _reel_audio: AudioStreamPlayer = $ReelAudio
 @onready var _caught_audio: AudioStreamPlayer = $CaughtAudio
 
@@ -63,6 +64,7 @@ func is_active() -> bool:
 func _set_state(s: State) -> void:
 	_state = s
 	visible = false
+	_white_bg. visible = false
 	_wait_label.visible = false
 	_bite_label.visible = false
 	$CenterBox.visible = false
@@ -80,6 +82,7 @@ func _set_state(s: State) -> void:
 			_bite_label.visible = true
 		State.ACTIVE:
 			visible = true
+			_white_bg.visible = true
 			$CenterBox.visible = true
 			_fish_pos = 0.5
 			_fish_vel = 0.0

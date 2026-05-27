@@ -1,9 +1,14 @@
 [gd_scene format=3 uid="uid://x0tobd048vlo"]
 
 [ext_resource type="Script" uid="uid://b16sl8p5s3spy" path="res://scripts/enemySpawner.gd" id="1_ug7rb"]
+[ext_resource type="PackedScene" uid="uid://by4e1q3ce1ehm" path="res://scenes/EnemyRelated/fish.tscn" id="3_84txr"]
+[ext_resource type="PackedScene" uid="uid://hxknigqyh2fs" path="res://scenes/EnemyRelated/ranged_fish.tscn" id="4_b0ac1"]
 
 [node name="Spawner" type="Node3D" unique_id=183489620]
 script = ExtResource("1_ug7rb")
+normal_fish = ExtResource("3_84txr")
+ranged_fish = ExtResource("4_b0ac1")
+dbg = true
 
 [node name="Timer" type="Timer" parent="." unique_id=1830952643]
 autostart = true

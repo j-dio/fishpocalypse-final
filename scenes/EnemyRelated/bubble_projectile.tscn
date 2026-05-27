@@ -12,9 +12,12 @@ collision_layer = 4
 script = ExtResource("1_7ulvv")
 
 [node name="Sprite3D" type="Sprite3D" parent="." unique_id=672190265]
-transform = Transform3D(-1.3113417e-08, -0.3, 0, 0.3, -1.3113417e-08, 0, 0, 0, 0.3, 0, 0, 0)
-gi_lightmap_texel_scale = 2.0
+pixel_size = 0.003
 billboard = 1
+shaded = true
+double_sided = false
+alpha_scissor_threshold = 1.0
+texture_filter = 0
 texture = ExtResource("2_7ulvv")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1908178449]

@@ -3,8 +3,8 @@
 [ext_resource type="Script" uid="uid://6cxlnnsaydcq" path="res://scripts/fishSystem/fishing_minigame.gd" id="1_fmg"]
 [ext_resource type="Script" uid="uid://8bo4ffiqn4ll" path="res://scripts/fishSystem/fishing_bar.gd" id="2_fb"]
 [ext_resource type="Texture2D" uid="uid://c46bxdlpa7q0v" path="res://assets/sprites/catch_status.png" id="3_etqg6"]
-[ext_resource type="AudioStream" path="res://assets/audio/fishing_reel.mp3" id="4_reel"]
-[ext_resource type="AudioStream" path="res://assets/audio/caught_fish.mp3" id="5_caught"]
+[ext_resource type="AudioStream" uid="uid://dh1hdaywxtq1p" path="res://assets/audio/fishing_reel.mp3" id="4_reel"]
+[ext_resource type="AudioStream" uid="uid://bvv08yq1ryrte" path="res://assets/audio/caught_fish.mp3" id="5_caught"]
 
 [sub_resource type="Gradient" id="Gradient_etqg6"]
 offsets = PackedFloat32Array(0.305, 0.545, 0.795)
@@ -22,6 +22,17 @@ bg_color = Color(0.08802237, 0.68103427, 3.85046e-07, 1)
 border_width_top = 3
 border_color = Color(0.99999994, 0.9864351, 0.984091, 1)
 corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o5ovy"]
+bg_color = Color(1, 1, 1, 0.54901963)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
 
 [node name="FishingMinigame" type="Control" unique_id=1621987674]
 layout_mode = 3
@@ -42,7 +53,8 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = -18.0
+offset_left = 92.0
+offset_right = 74.0
 offset_bottom = -9.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -137,10 +149,18 @@ theme_override_font_sizes/font_size = 29
 text = "HIT !"
 horizontal_alignment = 1
 
-[node name="ReelAudio" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("4_reel")
-autoplay = false
+[node name="Panel" type="Panel" parent="." unique_id=2032981162]
+z_index = -2
+texture_filter = 1
+layout_mode = 0
+offset_left = 403.0
+offset_top = 168.0
+offset_right = 497.0
+offset_bottom = 423.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_o5ovy")
 
-[node name="CaughtAudio" type="AudioStreamPlayer" parent="."]
+[node name="ReelAudio" type="AudioStreamPlayer" parent="." unique_id=963494327]
+stream = ExtResource("4_reel")
+
+[node name="CaughtAudio" type="AudioStreamPlayer" parent="." unique_id=819144767]
 stream = ExtResource("5_caught")
-autoplay = false

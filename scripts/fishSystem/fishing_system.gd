@@ -1,3 +1,4 @@
+# scripts/fishSystem/fishing_system.gd
 class_name FishingSystem
 extends Node
 
@@ -9,9 +10,13 @@ const BASE_RARITY_WEIGHTS: Array[float] = [100.0, 60.0, 30.0, 10.0, 3.0, 1.0]
 @export var minigame: FishingMinigame
 @export var item_spawner: ItemSpawner
 
+## World-space center of the island. Used to compute which direction faces water.
+## Set this once in the Inspector to match your island's center position.
+@export var island_center: Vector3 = Vector3.ZERO
+
 var _can_fish: bool = false
-var _in_spot: bool = false
-var _current_spot: FishingSpot = null
+var _in_shore_zone: bool = false
+var _zones_entered: int = 0  # counts overlapping zones the player is inside
 var _player: Node3D = null
 var _locked_player: Node3D = null
 var _game_state: Node = null
@@ -26,30 +31,32 @@ func _ready() -> void:
 		push_error("FishingSystem: 'items_db' export not assigned in Inspector.")
 		return
 	_game_state = get_node_or_null("/root/GameState")
-	if _game_state == null:
-		push_error("FishingSystem: GameState autoload not found. Register game_state.gd in Project > Autoloads.")
-		return
-	_game_state.day_started.connect(_on_day_started)
-	_game_state.night_started.connect(_on_day_ended)
-	if _game_state.has_signal("transition_started"):
-		_game_state.transition_started.connect(_on_day_ended)
+	if _game_state != null:
+		if _game_state.has_signal("day_started"):
+			_game_state.day_started.connect(_on_day_started)
+		if _game_state.has_signal("night_started"):
+			_game_state.night_started.connect(_on_day_ended)
+		if _game_state.has_signal("transition_started"):
+			_game_state.transition_started.connect(_on_day_ended)
+	else:
+		push_warning("FishingSystem: GameState autoload not found — fishing enabled for all times (debug mode).")
+		_can_fish = true
 	minigame.caught.connect(_on_caught)
 	minigame.failed.connect(_on_failed)
-	call_deferred("_connect_fishing_spots")
+	call_deferred("_connect_shore_zones")
 
 func _on_day_started() -> void:
 	_can_fish = true
 
 func _on_day_ended() -> void:
 	_can_fish = false
+	_zones_entered = 0
 	if minigame.is_active():
 		minigame.cancel()
 		_unfreeze_player()
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("INTERACT"):
-		print("[FishingSystem] F pressed | can_fish:%s | in_spot:%s | minigame_null:%s" % [_can_fish, _in_spot, minigame == null])
-	if not _can_fish or not _in_spot or minigame.is_active():
+	if not _can_fish or not _in_shore_zone or minigame.is_active():
 		return
 	if not InputMap.has_action("INTERACT"):
 		return
@@ -64,10 +71,71 @@ func _start_fishing() -> void:
 	if item == null:
 		push_warning("FishingSystem: catch pool empty (all weapons locked by spawn_day?)")
 		return
-	if _current_spot != null and _player != null:
-		_player.global_rotation.y = _current_spot.facing_marker.global_rotation.y
+	# Pick the fishing animation based on water direction (no rotation — camera is a child of player)
+	var water_dir := _get_water_direction()
+	var anim_name := _pick_fishing_anim(water_dir)
+	if _player != null and _player.has_method("play_fishing_anim"):
+		_player.play_fishing_anim(anim_name)
 	minigame.start_wait(item, pole)
 	_freeze_player()
+
+## Detects which cardinal direction has water by casting a short downward ray
+## in each of the 4 directions from the player. The direction where the ray
+## finds no ground (or ground below water level) is the water direction.
+## Falls back to island_center math if all raycasts hit solid ground.
+func _get_water_direction() -> Vector3:
+	if _player == null:
+		return Vector3.FORWARD
+
+	var space := _player.get_world_3d().direct_space_state
+	var probe_dist := 4.0   # how far to probe outward from player
+	var water_y    := -1.0  # ground hits below this y are treated as water
+
+	var dirs: Array[Vector3] = [
+		Vector3(0.0, 0.0,  1.0),  # +Z  south / toward camera
+		Vector3(0.0, 0.0, -1.0),  # -Z  north / away from camera
+		Vector3( 1.0, 0.0, 0.0),  # +X  east  / screen-right
+		Vector3(-1.0, 0.0, 0.0),  # -X  west  / screen-left
+	]
+
+	var water_dirs: Array[Vector3] = []
+	for d: Vector3 in dirs:
+		var probe := _player.global_position + d * probe_dist
+		var params := PhysicsRayQueryParameters3D.create(
+			probe + Vector3(0.0, 2.0, 0.0),
+			probe + Vector3(0.0, -6.0, 0.0)
+		)
+		params.exclude = [_player.get_rid()]
+		var hit := space.intersect_ray(params)
+		# No terrain hit, or hit is at/below water level → water is this way
+		if hit.is_empty() or (hit["position"] as Vector3).y < water_y:
+			water_dirs.append(d)
+
+	if not water_dirs.is_empty():
+		var combined := Vector3.ZERO
+		for d: Vector3 in water_dirs:
+			combined += d
+		if combined.length_squared() > 0.001:
+			return combined.normalized()
+
+	# Fallback: use island_center offset when all probes hit solid ground
+	var fallback := _player.global_position - island_center
+	fallback.y = 0.0
+	if fallback.length_squared() > 0.001:
+		return fallback.normalized()
+	return Vector3.FORWARD
+
+## Maps a water direction to a fishing animation.
+## +Z (south / sea below on screen) -> fish_front
+## -Z (north / sea above on screen) -> walk_back  (no fish_back sprite exists)
+## +X (east  / screen-right)        -> fish_right
+## -X (west  / screen-left)         -> fish_left
+func _pick_fishing_anim(water_dir: Vector3) -> String:
+	var ax := absf(water_dir.x)
+	var az := absf(water_dir.z)
+	if az >= ax:
+		return "fish_front" if water_dir.z > 0.0 else "walk_back"
+	return "fish_right" if water_dir.x > 0.0 else "fish_left"
 
 func _roll_item(pole: FishingPoleData) -> Resource:
 	var pool: Array[Resource] = []
@@ -128,14 +196,20 @@ func _get_equipped_pole() -> FishingPoleData:
 	push_error("FishingSystem: no fishing poles in ItemsDB")
 	return null
 
-func _on_spot_entered(spot: FishingSpot, player: Node3D) -> void:
-	_in_spot = true
-	_current_spot = spot
+func _on_shore_entered(player: Node3D) -> void:
+	_zones_entered += 1
+	_in_shore_zone = true
 	_player = player
+	if _player.has_method("show_fishing_prompt"):
+		_player.show_fishing_prompt()
 
-func _on_spot_exited() -> void:
-	_in_spot = false
-	_current_spot = null
+func _on_shore_exited() -> void:
+	_zones_entered = maxi(_zones_entered - 1, 0)
+	if _zones_entered > 0:
+		return  # still inside at least one other zone — keep prompt active
+	_in_shore_zone = false
+	if _player != null and _player.has_method("hide_fishing_prompt"):
+		_player.hide_fishing_prompt()
 	_player = null
 
 func _on_caught(item: Resource) -> void:
@@ -171,10 +245,11 @@ func _unfreeze_player() -> void:
 	_locked_player.set_physics_process(true)
 	_locked_player = null
 
-func _connect_fishing_spots() -> void:
-	for spot: FishingSpot in get_tree().get_nodes_in_group("fishing_spots"):
-		spot.player_entered.connect(_on_spot_entered)
-		spot.player_exited.connect(_on_spot_exited)
+func _connect_shore_zones() -> void:
+	for node in get_tree().get_nodes_in_group("shore_zones"):
+		if node is ShoreZone:
+			node.player_entered_shore.connect(_on_shore_entered)
+			node.player_exited_shore.connect(_on_shore_exited)
 
 func _get_item_rarity(item: Resource) -> RarityTier:
 	var r: RarityTier = item.get("rarity") as RarityTier

@@ -519,3 +519,12 @@ custom_minimum_size = Vector2(28, 0)
 layout_mode = 2
 theme_override_constants/outline_size = 15
 text = "SP"
+
+[node name="FishingPrompt" type="Label3D" parent="."]
+position = Vector3(0, 2.2, 0)
+pixel_size = 0.01
+text = "Press F to Fish"
+font_size = 32
+billboard = 1
+modulate = Color(1, 1, 0, 1)
+visible = false

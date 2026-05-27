@@ -16,6 +16,7 @@ const BASE_RARITY_WEIGHTS: Array[float] = [100.0, 60.0, 30.0, 10.0, 3.0, 1.0]
 
 var _can_fish: bool = false
 var _in_shore_zone: bool = false
+var _zones_entered: int = 0  # counts overlapping zones the player is inside
 var _player: Node3D = null
 var _locked_player: Node3D = null
 var _game_state: Node = null
@@ -49,6 +50,7 @@ func _on_day_started() -> void:
 
 func _on_day_ended() -> void:
 	_can_fish = false
+	_zones_entered = 0
 	if minigame.is_active():
 		minigame.cancel()
 		_unfreeze_player()
@@ -159,12 +161,16 @@ func _get_equipped_pole() -> FishingPoleData:
 	return null
 
 func _on_shore_entered(player: Node3D) -> void:
+	_zones_entered += 1
 	_in_shore_zone = true
 	_player = player
 	if _player.has_method("show_fishing_prompt"):
 		_player.show_fishing_prompt()
 
 func _on_shore_exited() -> void:
+	_zones_entered = maxi(_zones_entered - 1, 0)
+	if _zones_entered > 0:
+		return  # still inside at least one other zone — keep prompt active
 	_in_shore_zone = false
 	if _player != null and _player.has_method("hide_fishing_prompt"):
 		_player.hide_fishing_prompt()

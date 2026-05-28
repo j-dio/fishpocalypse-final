@@ -10,6 +10,11 @@ var rarity: RarityTier
 @onready var muzzle: Marker3D = $Muzzle
 
 const PROJECTILE_SPAWNER = preload("res://scenes/WeaponRelated/ProjectileSpawner.tscn")
+## Shared atlas cell width for fish weapons in posils.png (rest/shoot frames).
+const HOLD_FRAME_WIDTH_PX := 40.0
+## Grip sits near the tail (left side of unflipped art).
+const HOLD_GRIP_RATIO := 0.22
+const HOLD_MUZZLE_RATIO := 0.88
 
 func setup(new_data: FishWeaponData, rolled_rarity: RarityTier) -> void:
 	data = new_data
@@ -50,6 +55,8 @@ func apply_data() -> void:
 			fire_timer.timeout.connect(_on_fire_timer_timeout)
 	else:
 		push_warning("Weapon: Timer node missing")
+
+	_apply_hold_offsets()
 
 
 func shoot(direction: Vector3 = Vector3.FORWARD) -> void:
@@ -117,3 +124,42 @@ func _on_picked_up() -> void:
 func _on_fire_timer_timeout() -> void:
 	if sprite and sprite.sprite_frames and sprite.sprite_frames.has_animation(&"default"):
 		sprite.play(&"default")
+
+
+func _apply_hold_offsets() -> void:
+	if sprite == null:
+		return
+
+	var hold := data.hold_offset if data else Vector3.ZERO
+	var muzzle_ofs := data.muzzle_offset if data else Vector3.ZERO
+	if hold == Vector3.ZERO:
+		hold = _auto_hold_offset()
+	if muzzle_ofs == Vector3.ZERO:
+		muzzle_ofs = _auto_muzzle_offset()
+
+	sprite.position = hold
+	if muzzle:
+		muzzle.position = muzzle_ofs
+
+
+func _auto_hold_offset() -> Vector3:
+	var px := sprite.pixel_size
+	var width := HOLD_FRAME_WIDTH_PX * px
+	var half_w := width * 0.5
+	var grip_from_left := width * HOLD_GRIP_RATIO
+	# Centered sprite: shift so grip (near tail) sits on the hand marker at weapon root.
+	var shift_x := half_w - grip_from_left
+	if sprite.flip_h:
+		shift_x = -shift_x
+	return Vector3(shift_x, 0.0, 0.0)
+
+
+func _auto_muzzle_offset() -> Vector3:
+	var px := sprite.pixel_size
+	var width := HOLD_FRAME_WIDTH_PX * px
+	var half_w := width * 0.5
+	var muzzle_from_left := width * HOLD_MUZZLE_RATIO
+	var shift_x := muzzle_from_left - half_w
+	if sprite.flip_h:
+		shift_x = -shift_x
+	return Vector3(shift_x, 0.0, 0.0)

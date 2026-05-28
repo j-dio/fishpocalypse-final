@@ -253,7 +253,7 @@ func _update_aim() -> void:
 	if aim.length_squared() < 0.001: return
 	_facing_dir = aim.normalized()
 	weapon_holder.look_at(global_position + _facing_dir, Vector3.UP)
-	weapon_holder.rotate_y(PI)
+	weapon_holder.rotate_y(-PI / 2)
 
 
 func get_facing_dir() -> Vector3:
@@ -289,13 +289,19 @@ func _on_equipped_weapon_changed(weapon_node: Weapon) -> void:
 		return
 
 	if weapon_node.get_parent() != weapon_holder:
-		weapon_holder.add_child(weapon_node)
-		weapon_node.position = Vector3.ZERO
-		weapon_node.rotation = Vector3.ZERO
-		var pickup_area := weapon_node.get_node_or_null("PickupArea")
-		if pickup_area:
-			pickup_area.set_deferred("monitoring", false)
-			pickup_area.set_deferred("monitorable", false)
+		if weapon_node.get_parent():
+			weapon_node.reparent(weapon_holder, false)
+		else:
+			weapon_holder.add_child(weapon_node)
+	weapon_node.position = Vector3.ZERO
+	weapon_node.rotation = Vector3.ZERO
+	weapon_node.scale = Vector3.ONE
+	var pickup_area := weapon_node.get_node_or_null("PickupArea")
+	if pickup_area:
+		pickup_area.set_deferred("monitoring", false)
+		pickup_area.set_deferred("monitorable", false)
+	if weapon_node.data:
+		weapon_node.apply_data()
 	weapon_node.visible = true
 	combat.equip_weapon_node(weapon_node)
 
@@ -370,9 +376,6 @@ func _reset_camera_rotation(cam: Camera3D, original_rot: Vector3) -> void:
 	
 	
 func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_accept"):
-		inventory.use_item("item_slot_1")
-		_log_inventory()
 	if event.is_action_pressed("ui_cancel"):
 		inventory.drop_item("main_slot")
 		_log_inventory()

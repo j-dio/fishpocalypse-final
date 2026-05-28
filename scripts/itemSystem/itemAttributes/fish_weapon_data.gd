@@ -11,3 +11,7 @@ extends Resource
 @export var projectile: ProjectileData
 @export var sprite_frames: SpriteFrames
 @export var sfx: AudioStream
+## Local offset from weapon root to the grip (hand). ZERO uses auto alignment for 40×16 posils frames.
+@export var hold_offset: Vector3 = Vector3.ZERO
+## Local offset from weapon root to the muzzle. ZERO uses auto alignment from frame width.
+@export var muzzle_offset: Vector3 = Vector3.ZERO

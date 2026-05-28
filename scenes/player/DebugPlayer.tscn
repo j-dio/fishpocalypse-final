@@ -435,7 +435,7 @@ spot_range = 6.226308
 spot_angle = 49.290104
 
 [node name="Kamot" type="Marker3D" parent="." unique_id=265468261]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.35141972, -0.22932763, 0.16790777)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.32, 0.12, 0.18)
 
 [node name="COMPONENTS" type="Node3D" parent="." unique_id=848142950]
 

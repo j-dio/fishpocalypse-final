@@ -17,7 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://cv4ugy50jeh4i" path="res://assets/resources/cloud_noise.tres" id="13_g63d6"]
 [ext_resource type="Script" uid="uid://d2m8wwurpal4s" path="res://scripts/fishSystem/fishing_system.gd" id="14_fsys"]
 [ext_resource type="Texture2D" uid="uid://dkg22bs2y3afm" path="res://assets/sprites/splash.png" id="14_mlmqm"]
-[ext_resource type="Script" path="res://scripts/EnvironmentRelated/dagat_splash.gd" id="14_nlggb"]
+[ext_resource type="Script" uid="uid://c4whb06t4dur5" path="res://scripts/EnvironmentRelated/dagat_splash.gd" id="14_nlggb"]
 [ext_resource type="ArrayMesh" uid="uid://dxqp0wkpiex87" path="res://assets/models/kahoy/Sketchfab_Scene_coconut_tree_coconut_tree_mat_0.res" id="14_qrpbx"]
 [ext_resource type="Script" uid="uid://cb2jjm11a4e1i" path="res://scripts/EnvironmentRelated/dagat_script.gd" id="15_auh40"]
 [ext_resource type="PackedScene" uid="uid://cgxmpu1beld0d" path="res://scenes/FishingRelated/fishing_minigame.tscn" id="15_fmg"]

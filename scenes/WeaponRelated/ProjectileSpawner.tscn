@@ -8,8 +8,9 @@
 script = ExtResource("1_fygdo")
 
 [node name="AnimatedSprite3D" type="Sprite3D" parent="." unique_id=1425115490]
-pixel_size = 0.03
+pixel_size = 0.05
 billboard = 1
+shaded = true
 texture_filter = 0
 
 [node name="Timer" type="Timer" parent="." unique_id=1671647826]
@@ -18,3 +19,7 @@ texture_filter = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1308599045]
 shape = SubResource("BoxShape3D_fygdo")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=1311837626]
+light_color = Color(1, 0, 0, 1)
+light_energy = 2.0

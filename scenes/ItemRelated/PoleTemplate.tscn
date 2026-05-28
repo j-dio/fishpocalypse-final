@@ -1,16 +1,20 @@
-[gd_scene load_steps=2 format=3 uid="uid://cty5iu42f5vlj"]
+[gd_scene format=3 uid="uid://cty5iu42f5vlj"]
 
 [ext_resource type="Script" uid="uid://lpkjwexsfu0s" path="res://scripts/itemSystem/1_poleTemplate.gd" id="1_5ed85"]
 
-[node name="PoleTemplate" type="Node3D"]
+[node name="PoleTemplate" type="Node3D" unique_id=2086389319]
 script = ExtResource("1_5ed85")
 
-[node name="Hook" type="Marker3D" parent="."]
+[node name="Hook" type="Marker3D" parent="." unique_id=450960550]
 
-[node name="Sprite3D" type="AnimatedSprite3D" parent="."]
+[node name="Sprite3D" type="AnimatedSprite3D" parent="." unique_id=1844323685]
+pixel_size = 0.04
+billboard = 2
+shaded = true
+texture_filter = 0
 
-[node name="string" type="Node3D" parent="."]
+[node name="string" type="Node3D" parent="." unique_id=842865052]
 
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=235136768]
 
-[node name="Timer" type="Timer" parent="."]
+[node name="Timer" type="Timer" parent="." unique_id=1048456985]

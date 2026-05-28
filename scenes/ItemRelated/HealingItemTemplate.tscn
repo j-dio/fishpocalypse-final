@@ -1,13 +1,20 @@
 [gd_scene format=3 uid="uid://coorhorn3jw5t"]
 
 [ext_resource type="Script" uid="uid://cn50jyn0286xd" path="res://scripts/itemSystem/2_healingItemTemplate.gd" id="1_tx4bm"]
+[ext_resource type="AudioStream" uid="uid://bs37dw7c5iqt3" path="res://assets/audio/fishing_hit.mp3" id="2_rddwg"]
 
 [node name="HealingItemTemplate" type="Node3D" unique_id=1982820915]
 script = ExtResource("1_tx4bm")
 dbg = true
 
 [node name="ConsumeSound" type="AudioStreamPlayer3D" parent="." unique_id=1308990108]
+stream = ExtResource("2_rddwg")
+pitch_scale = 1.5
 
 [node name="Sprite3D" type="Sprite3D" parent="." unique_id=1167728912]
+pixel_size = 0.04
+billboard = 2
+shaded = true
+texture_filter = 0
 
 [node name="Timer" type="Timer" parent="." unique_id=593265771]

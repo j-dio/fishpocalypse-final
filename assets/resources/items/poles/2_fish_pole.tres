@@ -1,13 +1,17 @@
 [gd_resource type="Resource" script_class="FishingPoleData" format=3 uid="uid://bh7y3pobcvt0r"]
 
 [ext_resource type="Script" uid="uid://btinxc3vf3cat" path="res://scripts/itemSystem/itemAttributes/fishing_pole_data.gd" id="1_jdm5w"]
-[ext_resource type="Texture2D" uid="uid://dv6sm1evvirtr" path="res://assets/sprites/missing_sprite.png" id="2_7c0b5"]
+[ext_resource type="Texture2D" uid="uid://73hsf4wqetrc" path="res://assets/sprites/poles.png" id="2_jdm5w"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7c0b5"]
+atlas = ExtResource("2_jdm5w")
+region = Rect2(0, 32, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_fuqvs"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_7c0b5")
+"texture": SubResource("AtlasTexture_7c0b5")
 }],
 "loop": true,
 "name": &"default",

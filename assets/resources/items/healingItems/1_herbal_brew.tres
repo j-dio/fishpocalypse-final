@@ -1,10 +1,10 @@
-[gd_resource type="Resource" script_class="HealingItemData" load_steps=3 format=3 uid="uid://crfcm8wn0p6xd"]
+[gd_resource type="Resource" script_class="HealingItemData" format=3 uid="uid://crfcm8wn0p6xd"]
 
 [ext_resource type="Script" uid="uid://8ko8ju356at2" path="res://scripts/itemSystem/itemAttributes/healing_item_data.gd" id="1_ka5ia"]
-[ext_resource type="Texture2D" uid="uid://dpfcwjk04vj41" path="res://assets/sprites/missing_sprite2.png" id="2_2gcj7"]
+[ext_resource type="Texture2D" uid="uid://do4to5daojl6x" path="res://assets/sprites/item2.png" id="2_ka5ia"]
 
 [resource]
 script = ExtResource("1_ka5ia")
 weight = 20.0
 base_heal_amount = 60.0
-sprite = ExtResource("2_2gcj7")
+sprite = ExtResource("2_ka5ia")

@@ -217,7 +217,7 @@ func _execute_punch() -> void:
 				knockback_dir.y = 0.0
 				body.velocity += knockback_dir * 8.0
 
-		punch_hitbox.monitoring = false
+		punch_hitbox.monitoring = true
 
 	if hit_bodies.is_empty():
 		print("[Punch] missed")

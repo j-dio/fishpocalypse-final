@@ -10,7 +10,7 @@ var grow_duration: float = 0.4
 const GRACE_END: float      = 0.3
 const LIFETIME: float       = 8.0
 const _SCALE_EPSILON: float = 0.001
-const _INV_GROW_DUR: float  = 1.0 / 0.4  # precomputed; matches grow_duration
+const _INV_GROW_DUR: float  = 0.25
 
 var _timer: float = 0.0
 var _grew: bool   = false

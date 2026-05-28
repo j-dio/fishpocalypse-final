@@ -155,10 +155,8 @@ func _spawn(pos: Vector3, elite: bool = false) -> void:
 	enemy.set_physics_process(true)
 	enemy.reset()
 	enemy.apply_day_scaling(_day_count)  # apply day scaling after reset
-
 	current_capacity      += 1
 	_population_remaining -= 1
-
 	if dbg: _log_count("spawn")
 	
 	

@@ -143,7 +143,7 @@ material = SubResource("ShaderMaterial_g63d6")
 
 [node name="DN_CYCLE" parent="." unique_id=1953072460 instance=ExtResource("23_bv014")]
 transform = Transform3D(0.7071067, 0.49999997, -0.49999994, 0, 0.70710677, 0.7071067, 0.7071067, -0.49999997, 0.49999994, 0, 90, 10)
-day_length_sec = 160
+day_length_sec = 1
 speed_factor = 1.0
 
 [node name="ISLAND" type="Node3D" parent="." unique_id=780296146]
@@ -858,6 +858,8 @@ disable_mode = 2
 [node name="Spawner" parent="." unique_id=1235847215 node_paths=PackedStringArray("player") instance=ExtResource("21_v3fq3")]
 player = NodePath("../Player")
 tanky_fish = ExtResource("24_oj3ja")
+spawn_interval = 0.5
+dbg = false
 
 [node name="FishingSystem" type="Node" parent="." unique_id=670019011]
 script = ExtResource("14_fsys")

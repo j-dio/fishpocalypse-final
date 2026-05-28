@@ -52,6 +52,7 @@ func _process(delta: float) -> void:
 
 func _on_body_entered(body: Node3D) -> void:
 	if _timer <= GRACE_END: return
+	$AudioStreamPlayer3D.play()
 	if body.is_in_group(&"player"):
 		_target._take_damage(damage)
 	_retire()

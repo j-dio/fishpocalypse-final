@@ -354,7 +354,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_bmswy"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_blpqp"]
 
 [node name="DebugPlayer" type="CharacterBody3D" unique_id=1697580463]
 floor_snap_length = 0.5
@@ -362,7 +362,6 @@ script = ExtResource("1_x2lrw")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=629382131]
 transform = Transform3D(1, 0, 0, 0, 0.8660254, 0.5, 0, -0.5, 0.8660254, 0, 6, 10)
-visible = false
 current = true
 fov = 37.849285
 
@@ -380,17 +379,16 @@ alpha_cut = 3
 alpha_scissor_threshold = 1.0
 texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_id87f")
-animation = &"item_consume"
-frame_progress = 0.3019595
+animation = &"idle"
 
 [node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=1495656726]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 4.4519567, 0)
-visible = false
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 3.4519567, 0)
 light_color = Color(1, 0, 0, 1)
-light_energy = 6.0
+light_energy = 5.0
+light_bake_mode = 1
 shadow_enabled = true
-spot_range = 7.143156
-spot_angle = 44.10083
+spot_range = 8.0
+spot_angle = 61.707783
 
 [node name="Kamot" type="Marker3D" parent="." unique_id=265468261]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.35141972, -0.22932763, 0.16790777)
@@ -547,6 +545,15 @@ layout_mode = 2
 theme_override_constants/outline_size = 15
 text = "SP"
 
+[node name="ColorRect" type="ColorRect" parent="UI_HUD" unique_id=768634712]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="FishingPrompt" type="Label3D" parent="." unique_id=466541008]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.2, 0)
 visible = false
@@ -569,4 +576,4 @@ frame_progress = 0.042966034
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PunchHitbox" unique_id=1154839011]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0.5373771)
-shape = SubResource("SphereShape3D_bmswy")
+shape = SubResource("BoxShape3D_blpqp")

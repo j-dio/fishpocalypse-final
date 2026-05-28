@@ -275,16 +275,61 @@ func _push_back_to_land() -> void:
 
 func take_damage(amount: float) -> void:
 	_take_damage(amount)
-
-
 func _take_damage(amount: float) -> void:
 	if invincibility_timer > 0.0: return
 	_play_hurt_sound()
-	_play_anim("hurt")
+	_play_anim(&"hurt")
 	health.take_damage(amount)
 	invincibility_timer = INVINCIBILITY_TIME
-	print("[Player] took %.1f damage" % amount)
-
+	_hurt_camera_punch()
+	_hurt_screen_flash()
+	
+func _hurt_camera_punch() -> void:
+	var cam = $Camera3D
+	var original_fov = cam.fov
+	var original_rotation = cam.rotation_degrees
+	
+	var tween = create_tween()
+	tween.set_parallel(true)
+	
+	# FOV Punch
+	tween.tween_property(cam, "fov", original_fov + 7.0, 0.07)
+	tween.tween_property(cam, "fov", original_fov, 0.28)
+	
+	# Camera Shake
+	tween.tween_method(_apply_shake.bind(cam, original_rotation), 2.2, 0.0, 0.35)
+	# Reset rotation at the end
+	tween.tween_callback(_reset_camera_rotation.bind(cam, original_rotation))
+func _hurt_screen_flash() -> void:
+	var flash = $UI_HUD/ColorRect
+	
+	# Strong red flash
+	flash.modulate = Color(1.0, 0.25, 0.2, 0.65)
+	flash.visible = true
+	
+	var tween = create_tween()
+	tween.set_trans(Tween.TRANS_QUAD)
+	tween.set_ease(Tween.EASE_OUT)
+	
+	# Fade out the flash
+	tween.tween_property(flash, "modulate:a", 0.0, 0.32)
+	tween.tween_callback(func(): 
+		flash.visible = false
+	)
+	
+	
+func _apply_shake(intensity: float, cam: Camera3D, original_rot: Vector3) -> void:
+	cam.rotation_degrees = original_rot + Vector3(
+		randf_range(-intensity, intensity),
+		randf_range(-intensity, intensity),
+		randf_range(-intensity * 0.5, intensity * 0.5)
+	)
+	
+	
+func _reset_camera_rotation(cam: Camera3D, original_rot: Vector3) -> void:
+	cam.rotation_degrees = original_rot
+	
+	
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_accept"):
 		inventory.use_item("item_slot_1")

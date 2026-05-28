@@ -14,8 +14,6 @@
 [ext_resource type="Texture2D" uid="uid://bvosluw4bj2ob" path="res://assets/sprites/border_health.png" id="12_bmswy"]
 [ext_resource type="Texture2D" uid="uid://bmrovxx7002pj" path="res://assets/sprites/fist.png" id="13_blpqp"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_xit8r"]
-size = Vector3(1.5, 1.5, 0.5)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ok2xt"]
 atlas = ExtResource("2_gf0uj")
@@ -271,6 +269,9 @@ animations = [{
 script = ExtResource("7_blpqp")
 metadata/_custom_type_script = "uid://xpnm82ynjqsm"
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_dp"]
+radius = 0.4
+height = 1.8
 [sub_resource type="Gradient" id="Gradient_bmswy"]
 offsets = PackedFloat32Array(0.5282258, 1)
 colors = PackedColorArray(0.5376838, 0, 0, 1, 1, 0, 0, 1)
@@ -357,6 +358,7 @@ animations = [{
 
 [node name="DebugPlayer" type="CharacterBody3D" unique_id=1697580463]
 script = ExtResource("1_x2lrw")
+floor_snap_length = 0.5
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=629382131]
 transform = Transform3D(1, 0, 0, 0, 0.8660254, 0.5, 0, -0.5, 0.8660254, 0, 6, 10)
@@ -367,7 +369,7 @@ fov = 37.849285
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=787803252]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1639091780]
-shape = SubResource("BoxShape3D_xit8r")
+shape = SubResource("CapsuleShape3D_dp")
 
 [node name="Sprite3D" type="AnimatedSprite3D" parent="." unique_id=639763124]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)

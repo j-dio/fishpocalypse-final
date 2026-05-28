@@ -2,7 +2,7 @@ extends HBoxContainer
 class_name InventorySlots
 
 const _COLOR_EMPTY  := Color(0.08, 0.08, 0.08, 0.85)
-const _COLOR_WEAPON := Color(0.25, 0.55, 0.95, 0.9)
+const _COLOR_WEAPON :=  Color(1.0, 0.173, 0.161, 0.9)
 const _COLOR_ACTIVE := Color(0.35, 0.90, 0.40, 1.0)
 const _COLOR_ITEM   := Color(0.85, 0.45, 0.10, 0.9)
 

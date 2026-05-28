@@ -69,21 +69,19 @@ func fire() -> void:
 
 func attack() -> void:
 	if _equipped_weapon_node == null: return
-	if _shot_delay_timer > 0.0: return
 	var data: FishWeaponData = _equipped_weapon_node.data
 	if data == null: return
+	if not _equipped_weapon_node.get("is_melee"):
+		fire()
+		return
+	if _shot_delay_timer > 0.0: return
 	if _player.CP < data.base_recharge_cost: return
-
 	_shot_delay_timer = float(data.base_shot_delay)
 	_player.deduct_cp(data.base_recharge_cost)
 	_player.block_cp_recharge(float(data.base_shot_delay))
-
-	if _equipped_weapon_node.get("is_melee"):
-		_equipped_weapon_node.melee_attack(_player.get_facing_dir())
-		_player._swing_weapon(float(data.base_shot_delay))
-		fired.emit(data)
-	else:
-		fire()
+	_equipped_weapon_node.melee_attack(_player.get_facing_dir())
+	_player._swing_weapon(float(data.base_shot_delay))
+	fired.emit(data)
 
 func dodge() -> void:
 	if _player.SP < dodge_sp_cost or _player.is_dodging: return

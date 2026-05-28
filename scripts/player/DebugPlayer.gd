@@ -283,6 +283,7 @@ func _take_damage(amount: float) -> void:
 	invincibility_timer = INVINCIBILITY_TIME
 	_hurt_camera_punch()
 	_hurt_screen_flash()
+  print("[Player] took %.1f damage" % amount)
 	
 func _hurt_camera_punch() -> void:
 	var cam = $Camera3D
@@ -301,7 +302,15 @@ func _hurt_camera_punch() -> void:
 	# Reset rotation at the end
 	tween.tween_callback(_reset_camera_rotation.bind(cam, original_rotation))
 func _hurt_screen_flash() -> void:
-	var flash = $UI_HUD/ColorRect
+  var flash = get_node_or_null("UI_HUD/ColorRect")
+  if flash == null: return
+  flash.modulate = Color(1.0, 0.25, 0.2, 0.65)
+  flash.visible = true
+  var tween = create_tween()
+  tween.set_trans(Tween.TRANS_QUAD)
+  tween.set_ease(Tween.EASE_OUT)
+  tween.tween_property(flash, "modulate:a", 0.0, 0.32)
+  tween.tween_callback(func(): flash.visible = false)
 	
 	# Strong red flash
 	flash.modulate = Color(1.0, 0.25, 0.2, 0.65)

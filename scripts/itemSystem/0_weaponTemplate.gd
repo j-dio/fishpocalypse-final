@@ -73,9 +73,9 @@ func shoot(direction: Vector3 = Vector3.FORWARD) -> void:
 		if count > 1:
 			angle = deg_to_rad(10.0 * (i - (count - 1) / 2.0))
 		var dir := shoot_dir.rotated(Vector3.UP, angle)
-		p.global_position = muzzle.global_position if muzzle else global_position
-		p.setup(data.projectile, data.base_damage_per_shot * rarity.weapon_multiplier, dir)
 		get_tree().current_scene.add_child(p)
+		p.global_position = muzzle.global_position if muzzle else global_position
+		p.setup(data.projectile, data.base_damage_per_shot * rarity.damage_multiplier, dir)
 
 	if audio: audio.play()
 

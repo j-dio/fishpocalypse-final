@@ -46,6 +46,8 @@ func apply_data() -> void:
 	if fire_timer:
 		fire_timer.wait_time = data.base_shot_delay * (rarity.shot_delay_multiplier if rarity else 1.0)
 		fire_timer.one_shot = true   # FIX: one-shot — CombatSystem decides when to fire again
+		if not fire_timer.timeout.is_connected(_on_fire_timer_timeout):
+			fire_timer.timeout.connect(_on_fire_timer_timeout)
 	else:
 		push_warning("Weapon: Timer node missing")
 
@@ -61,6 +63,9 @@ func shoot(direction: Vector3 = Vector3.FORWARD) -> void:
 	if not muzzle or not muzzle.is_inside_tree():
 		push_warning("Weapon: muzzle not ready")
 		return
+
+	if sprite and sprite.sprite_frames and sprite.sprite_frames.has_animation(&"shoot"):
+		sprite.play(&"shoot")
 
 	var shoot_dir := direction
 	if direction == Vector3.FORWARD and muzzle:
@@ -107,3 +112,8 @@ func _on_picked_up() -> void:
 	# this node into the weapon_holder. Freeing it here would delete it
 	# before it can be equipped. Call this only after a drop/swap-out.
 	pass
+
+
+func _on_fire_timer_timeout() -> void:
+	if sprite and sprite.sprite_frames and sprite.sprite_frames.has_animation(&"default"):
+		sprite.play(&"default")

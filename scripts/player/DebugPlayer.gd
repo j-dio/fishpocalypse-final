@@ -268,18 +268,35 @@ func _on_player_died() -> void:
 	set_physics_process(false)
 
 
-# FIX: signal now carries a Weapon node directly, no need to call get_equipped_weapon_node()
 func _on_equipped_weapon_changed(weapon_node: Weapon) -> void:
-	if weapon_node == null:
-		for child in weapon_holder.get_children():
+	# Collect nodes that still belong to an inventory slot — never free these.
+	var keeper_nodes: Array = []
+	if inventory.main_slot_node != null: keeper_nodes.append(inventory.main_slot_node)
+	if inventory.secondary_slot_node != null: keeper_nodes.append(inventory.secondary_slot_node)
+
+	# Free orphaned weapon nodes (swapped out / dropped).
+	for child in weapon_holder.get_children():
+		if child is Weapon and child not in keeper_nodes:
 			child.queue_free()
+
+	# Hide all slot weapons; only the active one will be shown below.
+	for node in keeper_nodes:
+		if is_instance_valid(node) and node.get_parent() == weapon_holder:
+			node.visible = false
+
+	if weapon_node == null:
 		combat.equip_weapon_node(null)
 		return
-	for child in weapon_holder.get_children():
-		if child != weapon_node:
-			child.queue_free()
+
 	if weapon_node.get_parent() != weapon_holder:
 		weapon_holder.add_child(weapon_node)
+		weapon_node.position = Vector3.ZERO
+		weapon_node.rotation = Vector3.ZERO
+		var pickup_area := weapon_node.get_node_or_null("PickupArea")
+		if pickup_area:
+			pickup_area.set_deferred("monitoring", false)
+			pickup_area.set_deferred("monitorable", false)
+	weapon_node.visible = true
 	combat.equip_weapon_node(weapon_node)
 
 func _check_ocean_boundary() -> void:

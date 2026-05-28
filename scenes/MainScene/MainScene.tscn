@@ -30,6 +30,7 @@
 [ext_resource type="Script" uid="uid://d0testdmy1p4r" path="res://scripts/test_dummy.gd" id="29_td"]
 [ext_resource type="Script" uid="uid://butapasd4olx0" path="res://scripts/components/health_component.gd" id="30_hc"]
 [ext_resource type="PackedScene" uid="uid://dfygvlwksvhog" path="res://scenes/FishingRelated/shore_zone.tscn" id="31_nlggb"]
+[ext_resource type="PackedScene" uid="uid://bjgds8umisd4" path="res://scenes/ItemRelated/ItemSpawner.tscn" id="55_y07ru"]
 
 [sub_resource type="Texture2D" id="Texture2D_p1dug"]
 resource_local_to_scene = false
@@ -187,7 +188,7 @@ current_texture_preset = SubResource("Resource_uyltb")
 metadata/_custom_type_script = "uid://cddg1xr5hye1d"
 
 [node name="Chunk (0, -1)" type="MeshInstance3D" parent="ISLAND/MarchingSquaresTerrain" unique_id=150482112 node_paths=PackedStringArray("terrain_system")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -64)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.43613243, 3.766426, -65.93419)
 script = ExtResource("9_oye2u")
 terrain_system = NodePath("..")
 chunk_coords = Vector2i(0, -1)
@@ -892,7 +893,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.878887, 1, -65.880455)
 script = ExtResource("14_fsys")
 items_db = ExtResource("17_db")
 rarity_config = ExtResource("18_rc")
+minigame = NodePath("../UI/FishingMinigame")
+item_spawner = NodePath("../ItemSpawner")
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=1882678914]
 
 [node name="FishingMinigame" parent="UI" unique_id=1396498718 instance=ExtResource("15_fmg")]
+
+[node name="ItemSpawner" parent="." unique_id=2078365853 instance=ExtResource("55_y07ru")]
+rarity_config = ExtResource("18_rc")

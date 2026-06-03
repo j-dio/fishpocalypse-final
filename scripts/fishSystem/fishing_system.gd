@@ -42,6 +42,8 @@ func _ready() -> void:
 		push_warning("FishingSystem: GameState autoload not found — fishing enabled for all times (debug mode).")
 		_can_fish = true
 	if item_spawner == null:
+		item_spawner = get_node_or_null("../ItemSpawner") as ItemSpawner
+	if item_spawner == null:
 		var spawners := get_tree().get_nodes_in_group("item_spawners")
 		if not spawners.is_empty():
 			item_spawner = spawners[0] as ItemSpawner

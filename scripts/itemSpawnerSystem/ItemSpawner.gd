@@ -36,7 +36,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 # INTERNAL
-func _launch_arc(item: Node3D, spread_radius: float, angle: float) -> void:
+func _launch_arc(item: Node3D, spread_radius: float, angle: float, pickup_area: Area3D = null) -> void:
 	var origin   := spawn_marker.global_position
 	var land_pos := origin + Vector3(cos(angle), 0.0, sin(angle)) * spread_radius
 	var peak_pos := origin + Vector3.UP * drop_height
@@ -59,6 +59,12 @@ func _launch_arc(item: Node3D, spread_radius: float, angle: float) -> void:
 	# Settle to normal
 	tween.tween_property(item, "scale", Vector3.ONE, 0.10)\
 		.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN_OUT)
+	# Re-enable pickup once the full landing animation has settled
+	if pickup_area:
+		tween.tween_callback(func():
+			if is_instance_valid(pickup_area):
+				pickup_area.monitoring = true
+		)
 
 	# Spin: 3 full rotations that ease out — fast on launch, stops on landing
 	item.create_tween()\
@@ -73,8 +79,14 @@ func _instantiate(scene: PackedScene, data: Resource, rarity: RarityTier,
 				  spread: float, angle: float) -> Node3D:
 	var item := scene.instantiate() as Node3D
 	get_tree().current_scene.add_child(item)
+	# Disable pickup area before the first physics step so the item doesn't get
+	# instantly absorbed — it spawns at the player's position, so without this
+	# body_entered fires in frame 1 before the arc animation can play.
+	var pickup_area := item.get_node_or_null("PickupArea") as Area3D
+	if pickup_area:
+		pickup_area.monitoring = false
 	item.setup(data, rarity)
-	_launch_arc(item, spread, angle)
+	_launch_arc(item, spread, angle, pickup_area)
 	return item
 	
 	

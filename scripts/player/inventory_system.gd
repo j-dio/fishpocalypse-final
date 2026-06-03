@@ -201,6 +201,7 @@ func _equip_pole(p: FishingPoleData) -> void:
 	pole_slot = p
 	print("[Inventory] Pole equipped: %s" % p)
 	equipped_pole_changed.emit(p)
+	slot_changed.emit("pole_slot")
 
 
 func get_equipped_pole() -> FishingPoleData:

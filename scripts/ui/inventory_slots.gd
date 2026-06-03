@@ -5,6 +5,7 @@ const _COLOR_EMPTY  := Color(0.08, 0.08, 0.08, 0.85)
 const _COLOR_WEAPON :=  Color(1.0, 0.173, 0.161, 0.9)
 const _COLOR_ACTIVE := Color(0.35, 0.90, 0.40, 1.0)
 const _COLOR_ITEM   := Color(0.85, 0.45, 0.10, 0.9)
+const _COLOR_POLE   := Color(0.20, 0.55, 0.90, 0.9)
 
 var _inventory: InventorySystem = null
 var _active_slot: String = "main_slot"
@@ -13,6 +14,7 @@ var _active_slot: String = "main_slot"
 @onready var _slot_secondary: ColorRect = $SlotSecondary
 @onready var _slot_item1:     ColorRect = $SlotItem1
 @onready var _slot_item2:     ColorRect = $SlotItem2
+@onready var _slot_pole:      ColorRect = $SlotPole
 
 
 func setup(inventory: InventorySystem) -> void:
@@ -28,6 +30,7 @@ func _refresh_all_slots() -> void:
 	_update_weapon_slot(_slot_secondary, _inventory.secondary_slot, "secondary_slot")
 	_update_item_slot(_slot_item1, _inventory.item_slot_1)
 	_update_item_slot(_slot_item2, _inventory.item_slot_2)
+	_update_pole_slot(_slot_pole, _inventory.pole_slot)
 
 
 func _update_weapon_slot(rect: ColorRect, data: FishWeaponData, slot_name: String) -> void:
@@ -44,6 +47,18 @@ func _update_weapon_slot(rect: ColorRect, data: FishWeaponData, slot_name: Strin
 		rect.color = _COLOR_WEAPON
 		if icon and data.sprite_frames:
 			icon.texture = data.sprite_frames.get_frame_texture("default", 0)
+
+
+func _update_pole_slot(rect: ColorRect, data: FishingPoleData) -> void:
+	if rect == null: return
+	var icon: TextureRect = rect.get_node_or_null("Icon")
+	if data == null:
+		rect.color = _COLOR_EMPTY
+		if icon: icon.texture = null
+	else:
+		rect.color = _COLOR_POLE
+		if icon and data.sprite:
+			icon.texture = data.sprite.get_frame_texture("default", 0)
 
 
 func _update_item_slot(rect: ColorRect, data: HealingItemData) -> void:
@@ -64,6 +79,7 @@ func _on_slot_changed(slot_name: String) -> void:
 		"secondary_slot": _update_weapon_slot(_slot_secondary, _inventory.secondary_slot, "secondary_slot")
 		"item_slot_1":    _update_item_slot(_slot_item1, _inventory.item_slot_1)
 		"item_slot_2":    _update_item_slot(_slot_item2, _inventory.item_slot_2)
+		"pole_slot":      _update_pole_slot(_slot_pole, _inventory.pole_slot)
 
 
 func _on_weapon_changed(_weapon_node: Weapon) -> void:

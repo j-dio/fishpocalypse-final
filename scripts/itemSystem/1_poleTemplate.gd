@@ -46,7 +46,7 @@ func _setup_pickup_area() -> void:
 func _on_body_entered(body: Node3D) -> void:
 	if not body.is_in_group("player"):
 		return
-	var inv: InventorySystem = body.get_node_or_null("InventorySystem")
+	var inv: InventorySystem = body.get_node_or_null("COMPONENTS/InventorySystem")
 	if inv:
 		inv.pickup(self)
 

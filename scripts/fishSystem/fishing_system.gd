@@ -248,6 +248,8 @@ func _freeze_player() -> void:
 func _unfreeze_player() -> void:
 	if _locked_player == null:
 		return
+	if _locked_player.has_method("stop_fishing_anim"):
+		_locked_player.stop_fishing_anim()
 	_locked_player.set_physics_process(true)
 	_locked_player = null
 

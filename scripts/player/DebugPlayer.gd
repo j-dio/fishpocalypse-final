@@ -323,6 +323,7 @@ func _on_equipped_pole_changed(pole: FishingPoleData) -> void:
 	sprite.billboard = 1
 	sprite.shaded = true
 	sprite.texture_filter = 2
+	sprite.visible = false
 	pole_holder.add_child(sprite)
 	_held_pole_sprite = sprite
 
@@ -498,6 +499,27 @@ func hide_fishing_prompt() -> void:
 
 func play_fishing_anim(anim_name: String) -> void:
 	_play_anim(anim_name)
+	if not is_instance_valid(_held_pole_sprite):
+		return
+	_held_pole_sprite.visible = true
+	match anim_name:
+		"fish_right":
+			pole_holder.position = Vector3(0.5, 0.12, 0.0)
+			_held_pole_sprite.flip_h = false
+		"fish_left":
+			pole_holder.position = Vector3(-0.5, 0.12, 0.0)
+			_held_pole_sprite.flip_h = true
+		"fish_front":
+			pole_holder.position = Vector3(0.0, 0.12, 0.4)
+			_held_pole_sprite.flip_h = false
+		_:
+			pole_holder.position = Vector3(0.0, 0.12, -0.4)
+			_held_pole_sprite.flip_h = false
+
+
+func stop_fishing_anim() -> void:
+	if is_instance_valid(_held_pole_sprite):
+		_held_pole_sprite.visible = false
 
 
 func _spawn_dodge_ghost() -> void:

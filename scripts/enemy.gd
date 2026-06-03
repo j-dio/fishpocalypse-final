@@ -6,6 +6,9 @@ extends CharacterBody3D
 @export var damage: float     = 5.0
 @export var is_elite: bool    = false
 
+const SEPARATION_RADIUS: float   = 1.8
+const SEPARATION_STRENGTH: float = 2.8
+
 var health: float
 var gravity: float         = 9.8
 var jump_force: float      = 5.0
@@ -64,8 +67,9 @@ func _physics_process(delta: float) -> void:
 		velocity.y = 0.0
 
 	var direction := (player_reference.global_position - global_position).normalized()
-	velocity.x = direction.x * speed
-	velocity.z = direction.z * speed
+	var sep := _compute_separation()
+	velocity.x = direction.x * speed + sep.x
+	velocity.z = direction.z * speed + sep.z
 	move_and_slide()
 
 	for i in get_slide_collision_count():
@@ -74,6 +78,19 @@ func _physics_process(delta: float) -> void:
 			_deal_damage_to_player(collider)
 
 	_apply_stuck_escape(delta)
+
+
+func _compute_separation() -> Vector3:
+	var sep := Vector3.ZERO
+	for other: Node3D in get_tree().get_nodes_in_group(&"active_enemy"):
+		if other == self: continue
+		var delta_pos := global_position - other.global_position
+		var dist := delta_pos.length()
+		if dist > 0.01 and dist < SEPARATION_RADIUS:
+			sep += delta_pos.normalized() * (1.0 - dist / SEPARATION_RADIUS)
+	if sep.length_squared() > 0.0:
+		sep = sep.normalized() * SEPARATION_STRENGTH
+	return sep
 
 
 # shared escape logic called by subclasses that override _physics_process

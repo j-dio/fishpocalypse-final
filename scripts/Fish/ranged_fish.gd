@@ -72,15 +72,16 @@ func _physics_process(delta: float) -> void:
 	var dist: float         = global_position.distance_to(player_pos)
 	var dir: Vector3        = (player_pos - global_position).normalized()
 
+	var sep := _compute_separation()
 	if dist > PREFERRED_OUTER:
-		velocity.x = dir.x * speed
-		velocity.z = dir.z * speed
+		velocity.x = dir.x * speed + sep.x
+		velocity.z = dir.z * speed + sep.z
 	elif dist < PREFERRED_INNER:
-		velocity.x = -dir.x * speed
-		velocity.z = -dir.z * speed
+		velocity.x = -dir.x * speed + sep.x
+		velocity.z = -dir.z * speed + sep.z
 	else:
-		velocity.x = 0.0
-		velocity.z = 0.0
+		velocity.x = sep.x
+		velocity.z = sep.z
 
 	move_and_slide()
 

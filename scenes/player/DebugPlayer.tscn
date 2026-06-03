@@ -14,6 +14,7 @@
 [ext_resource type="Script" uid="uid://c6xm1esa8nsrh" path="res://scripts/ui/enemy_indicator.gd" id="9_ind"]
 [ext_resource type="Texture2D" uid="uid://bvosluw4bj2ob" path="res://assets/sprites/border_health.png" id="12_bmswy"]
 [ext_resource type="Texture2D" uid="uid://odyn88wwwt5i" path="res://assets/sprites/fists.png" id="13_blpqp"]
+[ext_resource type="Resource" uid="uid://dyjmr7uqctvpk" path="res://assets/resources/items/items_db.tres" id="items_db_ref"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_dp"]
 radius = 0.4
@@ -269,10 +270,6 @@ animations = [{
 "speed": 2.0
 }]
 
-[sub_resource type="Resource" id="Resource_1p3k1"]
-script = ExtResource("7_blpqp")
-metadata/_custom_type_script = "uid://xpnm82ynjqsm"
-
 [sub_resource type="Gradient" id="Gradient_bmswy"]
 offsets = PackedFloat32Array(0.5282258, 1)
 colors = PackedColorArray(0.5376838, 0, 0, 1, 1, 0, 0, 1)
@@ -441,7 +438,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.32, 0.12, 0.18)
 
 [node name="InventorySystem" type="Node" parent="COMPONENTS" unique_id=1226888241]
 script = ExtResource("4_inv")
-items_db = SubResource("Resource_1p3k1")
+items_db = ExtResource("items_db_ref")
 
 [node name="HealthComponent" type="Node" parent="COMPONENTS" unique_id=177549279]
 script = ExtResource("3_health")

@@ -434,6 +434,9 @@ spot_angle = 49.290104
 [node name="Kamot" type="Marker3D" parent="." unique_id=265468261]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.32, 0.12, 0.18)
 
+[node name="PoleHolder" type="Marker3D" parent="." unique_id=123456789]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.32, 0.12, 0.18)
+
 [node name="COMPONENTS" type="Node3D" parent="." unique_id=848142950]
 
 [node name="InventorySystem" type="Node" parent="COMPONENTS" unique_id=1226888241]

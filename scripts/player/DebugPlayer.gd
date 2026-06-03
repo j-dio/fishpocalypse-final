@@ -6,6 +6,8 @@ extends CharacterBody3D
 
 @onready var camera: Camera3D = get_viewport().get_camera_3d()
 @onready var weapon_holder: Marker3D = $Kamot
+@onready var pole_holder: Marker3D = $PoleHolder
+var _held_pole_sprite: AnimatedSprite3D = null
 
 @onready var fist_sprite: AnimatedSprite3D = $PunchHitbox/FistSprite
 @onready var punch_hitbox: Area3D = $PunchHitbox 
@@ -72,6 +74,9 @@ func _ready() -> void:
 	inventory.slot_changed.connect(func(_slot): _log_inventory())
 	# FIX: connect equipped_weapon_changed so swapping slots calls equip_weapon
 	inventory.equipped_weapon_changed.connect(_on_equipped_weapon_changed)
+	inventory.equipped_pole_changed.connect(_on_equipped_pole_changed)
+	if inventory.pole_slot:
+		_on_equipped_pole_changed(inventory.pole_slot)
 	if spotlight: spotlight.visible = false
 	var day_night_system = get_tree().get_first_node_in_group("day_night")
 	if day_night_system:
@@ -304,6 +309,23 @@ func _on_equipped_weapon_changed(weapon_node: Weapon) -> void:
 		weapon_node.apply_data()
 	weapon_node.visible = true
 	combat.equip_weapon_node(weapon_node)
+
+func _on_equipped_pole_changed(pole: FishingPoleData) -> void:
+	if is_instance_valid(_held_pole_sprite):
+		_held_pole_sprite.queue_free()
+		_held_pole_sprite = null
+	if pole == null or pole.sprite == null:
+		return
+	var sprite := AnimatedSprite3D.new()
+	sprite.sprite_frames = pole.sprite
+	sprite.play(&"default")
+	sprite.pixel_size = 0.05
+	sprite.billboard = 1
+	sprite.shaded = true
+	sprite.texture_filter = 2
+	pole_holder.add_child(sprite)
+	_held_pole_sprite = sprite
+
 
 func _check_ocean_boundary() -> void:
 	if global_position.y <= WATER_Y_LEVEL:

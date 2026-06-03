@@ -504,10 +504,10 @@ func play_fishing_anim(anim_name: String) -> void:
 	_held_pole_sprite.visible = true
 	match anim_name:
 		"fish_right":
-			pole_holder.position = Vector3(0.5, 0.12, 0.0)
+			pole_holder.position = Vector3(0.5, -0.3, 0.0)
 			_held_pole_sprite.flip_h = false
 		"fish_left":
-			pole_holder.position = Vector3(-0.5, 0.12, 0.0)
+			pole_holder.position = Vector3(-0.5, -0.3, 0.0)
 			_held_pole_sprite.flip_h = true
 		"fish_front":
 			pole_holder.position = Vector3(0.0, 0.12, 0.4)

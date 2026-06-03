@@ -892,8 +892,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.878887, 1, -65.880455)
 script = ExtResource("14_fsys")
 items_db = ExtResource("17_db")
 rarity_config = ExtResource("18_rc")
-minigame = NodePath("../UI/FishingMinigame")
-item_spawner = NodePath("../ItemSpawner")
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=1882678914]
 

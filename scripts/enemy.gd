@@ -17,6 +17,7 @@ var stuck_threshold: float = 0.3
 var stuck_distance: float  = 0.05
 
 func _ready() -> void:
+	add_to_group("enemy")
 	health = max_health
 	if is_elite:
 		_apply_elite_modifiers()

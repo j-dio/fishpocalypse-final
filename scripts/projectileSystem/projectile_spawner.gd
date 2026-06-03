@@ -5,6 +5,8 @@ var data: ProjectileData
 var damage: float = 0.0
 var direction: Vector3 = Vector3.FORWARD
 var _tick_accum: float = 0.0
+var _hit_count: int = 0
+var _hit_bodies: Array = []
 
 @onready var sprite: Sprite3D = $AnimatedSprite3D
 @onready var lifetime_timer: Timer = $Timer          # match your actual node name
@@ -56,10 +58,21 @@ func _physics_process(delta: float) -> void:
 func _on_body_entered(body: Node) -> void:
 	if data == null: return
 	if data.type != ProjectileData.ProjectileType.BULLET: return
+
+	if body is StaticBody3D:
+		queue_free()
+		return
+
 	if data.owner_type == ProjectileData.OwnerType.PLAYER and not body.is_in_group("enemy"): return
 	if data.owner_type == ProjectileData.OwnerType.ENEMY  and not body.is_in_group("player"): return
+
+	if body in _hit_bodies: return
+	_hit_bodies.append(body)
+
 	_apply_damage(body)
-	queue_free()
+	_hit_count += 1
+	if _hit_count >= data.max_pierce:
+		queue_free()
 
 
 func _apply_damage(body: Node) -> void:

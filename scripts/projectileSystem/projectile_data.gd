@@ -10,6 +10,7 @@ enum ProjectileType { BULLET, LASER }
 @export var speed: float = 20.0
 @export var damage: float = 10.0
 @export var lifetime: float = 2.0
+@export var max_pierce: int = 3
 
 @export var sprite: Texture2D
 @export var packed_scene: PackedScene

@@ -83,12 +83,14 @@ func _physics_process(delta: float) -> void:
 		velocity.z = 0.0
 
 	move_and_slide()
-	
+
 	for i: int in get_slide_collision_count():
 		var collider: Object = get_slide_collision(i).get_collider()
 		if collider.is_in_group(&"player"):
 			_deal_damage_to_player(collider)
-			
+
+	_apply_stuck_escape(delta)
+
 	if dist <= ATTACK_RANGE and _attack_timer >= ATTACK_COOLDOWN and ProjectilePool.can_shoot():
 		_attack_timer = 0.0
 		_shoot(dir)

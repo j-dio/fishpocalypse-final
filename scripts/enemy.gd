@@ -7,28 +7,36 @@ extends CharacterBody3D
 @export var is_elite: bool    = false
 
 var health: float
-var gravity: float        = 9.8
-var jump_force: float     = 5.0
-var jump_cooldown: float  = 0.6
-var jump_timer: float     = 0.0
+var gravity: float         = 9.8
+var jump_force: float      = 5.0
+var jump_cooldown: float   = 0.6
+var jump_timer: float      = 0.0
 var last_position: Vector3
-var stuck_timer: float    = 0.0
+var stuck_timer: float     = 0.0
 var stuck_threshold: float = 0.3
 var stuck_distance: float  = 0.05
 
+# despawn if enemy hasn't moved >1.5 units within this window
+const MAX_STUCK_DURATION: float = 8.0
+var _unstuck_timer: float  = 0.0
+var _check_pos: Vector3
+
 func _ready() -> void:
 	add_to_group("enemy")
-	health = max_health
+	health        = max_health
+	last_position = global_position
+	_check_pos    = global_position
 	if is_elite:
 		_apply_elite_modifiers()
-	last_position = global_position
 
 func reset() -> void:
-	health       = max_health
-	jump_timer   = 0.0
-	stuck_timer  = 0.0
-	last_position = global_position
-	velocity     = Vector3.ZERO
+	health         = max_health
+	jump_timer     = 0.0
+	stuck_timer    = 0.0
+	_unstuck_timer = 0.0
+	last_position  = global_position
+	_check_pos     = global_position
+	velocity       = Vector3.ZERO
 	if is_elite:
 		_apply_elite_modifiers()
 
@@ -60,16 +68,23 @@ func _physics_process(delta: float) -> void:
 	velocity.z = direction.z * speed
 	move_and_slide()
 
-	var blocked_by_terrain := false
 	for i in get_slide_collision_count():
-		var collision  := get_slide_collision(i)
-		var collider   := collision.get_collider()
+		var collider := get_slide_collision(i).get_collider()
 		if collider.is_in_group("player"):
 			_deal_damage_to_player(collider)
-			continue
+
+	_apply_stuck_escape(delta)
+
+
+# shared escape logic called by subclasses that override _physics_process
+func _apply_stuck_escape(delta: float) -> void:
+	var blocked_by_terrain := false
+	for i in get_slide_collision_count():
+		var col     := get_slide_collision(i)
+		var collider := col.get_collider()
 		if not collider is StaticBody3D:
 			continue
-		if abs(collision.get_normal().y) < 0.5:
+		if abs(col.get_normal().y) < 0.5:
 			blocked_by_terrain = true
 
 	var moved := global_position.distance_to(last_position)
@@ -79,10 +94,23 @@ func _physics_process(delta: float) -> void:
 		stuck_timer = 0.0
 	last_position = global_position
 
-	if stuck_timer >= stuck_threshold and is_on_floor() and jump_timer <= 0.0:
+	# removed is_on_floor() guard — enemy inside geometry won't be on_floor
+	# but still needs to jump free; jump_timer prevents re-trigger spam
+	if stuck_timer >= stuck_threshold and jump_timer <= 0.0:
 		velocity.y  = jump_force
 		stuck_timer = 0.0
 		jump_timer  = jump_cooldown
+
+	# despawn if enemy has not moved significantly in MAX_STUCK_DURATION seconds
+	# catches enemies fully embedded in geometry where no collision normals fire
+	if global_position.distance_to(_check_pos) > 1.5:
+		_check_pos     = global_position
+		_unstuck_timer = 0.0
+	else:
+		_unstuck_timer += delta
+		if _unstuck_timer >= MAX_STUCK_DURATION:
+			die()
+
 
 func _deal_damage_to_player(player) -> void:
 	if player.has_method("_take_damage"):

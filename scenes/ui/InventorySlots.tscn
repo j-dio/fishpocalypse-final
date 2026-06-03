@@ -171,7 +171,9 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-stretch_mode = 6
+texture_filter = 1
+expand_mode = 1
+stretch_mode = 5
 
 [node name="KeyLabel" type="Label" parent="SlotPole" unique_id=312847592]
 layout_mode = 1

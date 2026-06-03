@@ -4,8 +4,7 @@ class_name ItemSpawner
 @export var dbg := false
 
 # Trajectory
-@export var drop_height: float = 4.0
-@export var bounce_amount: float = 0.6
+@export var drop_height: float = 10.0
 # REMOVED: drop_horizontal_force; was exported but never used
 
 # Preloaded scenes
@@ -40,25 +39,32 @@ func _unhandled_input(event: InputEvent) -> void:
 func _launch_arc(item: Node3D, spread_radius: float, angle: float) -> void:
 	var origin   := spawn_marker.global_position
 	var land_pos := origin + Vector3(cos(angle), 0.0, sin(angle)) * spread_radius
-	var peak_pos := origin.lerp(land_pos, 0.5) + Vector3.UP * drop_height
-	# CHANGED: origin.lerp() instead of manual land_offset * 0.5
-	
+	var peak_pos := origin + Vector3.UP * drop_height
+
 	item.global_position = origin
-	
+	item.scale = Vector3.ONE
+
+	# Position: shoot straight up then fall to landing spot
 	var tween := item.create_tween()
-	tween.set_trans(Tween.TRANS_QUAD)
-	tween.tween_property(item, "global_position", peak_pos, 0.25).set_ease(Tween.EASE_OUT)
-	tween.tween_property(item, "global_position", land_pos, 0.25).set_ease(Tween.EASE_IN)
-	
-	if bounce_amount > 0.01:
-		var bounce_peak := land_pos + Vector3.UP * (drop_height * bounce_amount)
-		tween.tween_property(item, "global_position", bounce_peak, 0.15).set_ease(Tween.EASE_OUT)
-		tween.tween_property(item, "global_position", land_pos, 0.15).set_ease(Tween.EASE_IN)
-		
+	tween.tween_property(item, "global_position", peak_pos, 0.30)\
+		.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	tween.tween_property(item, "global_position", land_pos, 0.45)\
+		.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+	# Squash flat on impact
+	tween.tween_property(item, "scale", Vector3(1.4, 0.35, 1.4), 0.08)\
+		.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+	# Spring back with overshoot (TRANS_BACK adds natural overshoot)
+	tween.tween_property(item, "scale", Vector3(0.85, 1.2, 0.85), 0.14)\
+		.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	# Settle to normal
+	tween.tween_property(item, "scale", Vector3.ONE, 0.10)\
+		.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN_OUT)
+
+	# Spin: 3 full rotations that ease out — fast on launch, stops on landing
 	item.create_tween()\
-		.tween_property(item, "rotation:y", item.rotation.y + TAU, 0.65)\
-		.set_trans(Tween.TRANS_LINEAR)
-		
+		.tween_property(item, "rotation:y", item.rotation.y + TAU * 3.0, 0.75)\
+		.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+
 	if dbg: print("[SPAWNER] Arc -> ", land_pos, " angle=", rad_to_deg(angle), "°")
 	
 	
@@ -91,7 +97,7 @@ func _pick_weighted_rarity() -> RarityTier:
 # CHANGED: _position param removed (was never used, marker position always used instead)
 # CHANGED: angle moved here from _launch_arc - sentinel resolved at call site, not inside arc
 func spawn_weapon(data: FishWeaponData, rarity: RarityTier,
-				  spread: float = 1.2, angle: float = -1.0) -> Node3D:
+				  spread: float = 2.0, angle: float = -1.0) -> Node3D:
 	if not data or not rarity:
 		push_error("[ItemSpawner] Missing data or rarity for weapon"); return null
 	var a := angle if angle >= 0.0 else randf() * TAU
@@ -101,7 +107,7 @@ func spawn_weapon(data: FishWeaponData, rarity: RarityTier,
 	
 # CHANGED: same as spawn_weapon - _position removed, angle resolved here
 func spawn_healing_item(data: HealingItemData, rarity: RarityTier,
-						spread: float = 1.2, angle: float = -1.0) -> Node3D:
+						spread: float = 2.0, angle: float = -1.0) -> Node3D:
 	if not data or not rarity:
 		push_error("[ItemSpawner] Missing data or rarity for healing item"); return null
 	var a := angle if angle >= 0.0 else randf() * TAU
@@ -111,7 +117,7 @@ func spawn_healing_item(data: HealingItemData, rarity: RarityTier,
 	
 # CHANGED: same as spawn_weapon — _position removed, angle resolved here
 func spawn_pole(data: FishingPoleData, rarity: RarityTier,
-				spread: float = 1.2, angle: float = -1.0) -> Node3D:
+				spread: float = 2.0, angle: float = -1.0) -> Node3D:
 	if not data or not rarity:
 		push_error("[ItemSpawner] Missing data or rarity for pole"); return null
 	var a := angle if angle >= 0.0 else randf() * TAU
